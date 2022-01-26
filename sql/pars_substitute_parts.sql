@@ -1,0 +1,46 @@
+/****** Script for SelectTopNRows command from SSMS  ******/
+-- определяем MIX_NAME изделия
+SELECT TOP 1 [PRODUCT_ID]
+      ,[ROUTE_ID]
+      ,[MIX_NAME]
+      ,[SETUP_ID]
+      ,[LDF_FILE_NAME]
+      ,[MACHINE_FILE_NAME]
+      ,[SETUP_VALID_FLAG]
+      ,[LAST_MODIFIED_TIME]
+      ,[DOS_FILE_NAME]
+      ,[MODEL_STRING]
+      ,[TOP_BOTTOM]
+      ,[PT_GROUP_NAME]
+      ,[PT_LOT_NAME]
+      ,[PT_MC_FILE_NAME]
+      ,[PT_DOWNLOADED_FLAG]
+      ,[PT_NEEDS_DOWNLOAD]
+      ,[SUB_PARTS_FLAG]
+      ,[BARCODE_SIDE]
+      ,[CYCLE_TIME]
+      ,[IMPORT_SOURCE]
+      ,[MODIFIED_IMPORT_SOURCE]
+      ,[THEORETICAL_XOVER_TIME]
+      ,[PUBLISH_MODE]
+      ,[PCB_NAME]
+      ,[MASTER_MJS_ID]
+      ,[LED_VALID_FLAG]
+      ,[DGS_PPD_VALID_FLAG]
+      ,[ACTIVE_MODEL_STRING]
+      ,[REGISTERED_PCB_NAME]
+FROM [PanaCIM].[dbo].[product_setup]
+WHERE PCB_NAME = 'NPM_910-00473_A'
+order by LAST_MODIFIED_TIME desc
+
+/****** Script for SelectTopNRows command from SSMS  ******/
+-- просмотр аналогов
+SELECT TOP 10000 [MIX_NAME]
+      ,[PRIMARY_PN]
+      ,[SUBSTITUTE_PN]
+      ,[EQUIPMENT_ID]
+      ,[SUB_PART_IMPORT_SRC]
+      ,[PUBLISH_MODE]
+      ,[ROUTE_ID]
+FROM [PanaCIM].[dbo].[substitute_parts]
+WHERE MIX_NAME = 'NPM_910-00473_A_NPM_910-00473_A_1'
