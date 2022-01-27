@@ -14,8 +14,6 @@ import (
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/filereader"
 )
 
-//var db *sql.DB
-
 type WorkOrders struct {
 	JobID string `json: "jobid"`
 }

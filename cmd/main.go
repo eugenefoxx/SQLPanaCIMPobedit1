@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"os/exec"
 	"strconv"
 
 	_ "github.com/denisenkom/go-mssqldb"
@@ -71,10 +72,10 @@ func main() {
 	//opmopites.MSSQLComposite(db)
 	SelectVersion()
 
-	test1 := sortworkorders.OperationStorage{
+	jobIdStorage := sortworkorders.OperationStorage{
 		DB: db,
 	}
-	rr, err := test1.TestQr()
+	rr, err := jobIdStorage.TestQr()
 	if err != nil {
 		logger.Errorf(err.Error())
 	}
@@ -95,43 +96,105 @@ func main() {
 		logger.Errorf(err.Error())
 	}
 
-	/*test, err := sortworkorders.Sort.TestQr() //TestQr()
-	if err != nil {
-		log.Println(err)
-	}
-	fmt.Println(test)*/
 	//	logger.Println("logger initialized")
-	/*
-		sortworkorders.Getclosedworkorders()
+	// берем для проверки три последних полученных job_id и если их нет,
+	// вносим в файл processedwo.csv для последующей обработки
+	jobIdStorage.Getclosedworkorders()
 
-		res, err := sortworkorders.GetLastJobIdValue1()
-		if err != nil {
-			logger.Errorf(err.Error())
-		}
-		if res != "" {
-			logger.Infof(("res - %v"), res)
-		}
-		res2, err := sortworkorders.GetLastJobIdValue2()
-		if err != nil {
-			logger.Errorf(err.Error())
-		}
-		if res2 != "" {
-			logger.Infof(("res2 - %v"), res2)
-		}
-		res3, err := sortworkorders.GetLastJobIdValue3()
-		if err != nil {
-			logger.Errorf(err.Error())
-		}
-		if res3 != "" {
-			logger.Infof(("res3 - %v"), res3)
-		}
-	*/
+	res, err := jobIdStorage.GetLastJobIdValue1()
+	if err != nil {
+		logger.Errorf(err.Error())
+	}
+	if res != "" {
+		logger.Infof(("res - %v"), res)
 
-	recipe := os.Getenv("recipe")
-	reportCsv := os.Getenv("report")
-	substituteCsv := os.Getenv("substitute")
-	panacimCsv := os.Getenv("panacim")
-	reportSUMCsv := os.Getenv("reportSUM")
+		//s := string.patterSlice[0]
+		//t1 := strings.Replace(s, "{", "", -1)
+		// запросы для формирования рецепта
+		// получение product_id
+		productIdSlice, err := panacimStorage.GetProductId(res)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		fmt.Printf("product id - %v\n", productIdSlice[0].Product_Id)
+		productid := productIdSlice[0].Product_Id
+		// получение product_name для рецепта
+		productNameSlice, err := panacimStorage.GetProductName(productid)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		fmt.Printf("product name NPM - %v\n", productNameSlice[0].ProductName)
+		npm := productNameSlice[0].ProductName
+		lineSlice, err := panacimStorage.GetRouteId(productid)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		fmt.Printf("route %v\n", lineSlice[0].Route_Id)
+		routeid := lineSlice[0].Route_Id
+		if routeid == "1009" {
+			app := "/home/a20272/Code/github.com/eugenefoxx/readDGSP1forKATE/readDGSP1forKATE"
+			args := []string{"-L1", npm}
+			cmd := exec.Command(app, args...)
+			_, err = cmd.Output()
+
+			if err != nil {
+				//	println(err.Error())
+				logger.Errorf(err.Error())
+				return
+			}
+		}
+
+		// объем выпуска ? пока вопрос корректности такого подсчета
+		fmt.Println("get sum pattern")
+		fmt.Println(panacimStorage.GetSumPattert(res))
+		patterSlice, err := panacimStorage.GetSumPattert(res)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		fmt.Printf("кол-во м/з: %v\n", patterSlice[0].SumPattern)
+		qtyPattern := patterSlice[0].SumPattern
+
+		pcbSlice, err := panacimStorage.GetPatternForPanel()
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		fmt.Printf("кол-во м/з: %v\n", pcbSlice[0].PatternPerPanel)
+		qtyPCB := pcbSlice[0].PatternPerPanel
+
+		qtyPatternInt, err := strconv.Atoi(qtyPattern)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+
+		qtyPCBInt, err := strconv.Atoi(qtyPCB)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		//qtyPCB
+		valueLot := qtyPatternInt * qtyPCBInt
+		fmt.Printf("valueLot: %v\n", valueLot)
+
+	}
+	res2, err := jobIdStorage.GetLastJobIdValue2()
+	if err != nil {
+		logger.Errorf(err.Error())
+	}
+	if res2 != "" {
+		logger.Infof(("res2 - %v"), res2)
+	}
+	res3, err := jobIdStorage.GetLastJobIdValue3()
+	if err != nil {
+		logger.Errorf(err.Error())
+	}
+	if res3 != "" {
+		logger.Infof(("res3 - %v"), res3)
+	}
+
+	recipe := os.Getenv("recipe")            // internal/source/recipte.csv
+	reportCsv := os.Getenv("report")         // /internal/report/report.csv
+	substituteCsv := os.Getenv("substitute") // /internal/source/parts.csv
+	panacimCsv := os.Getenv("panacim")       // /internal/source/panacim.csv
+	reportSUMCsv := os.Getenv("reportSUM")   // /internal/report/reportSumComponent.csv
 
 	//npm := readfileseeker("/home/eugenearch/Code/github.com/eugenefoxx/SQLPanacimP1/csvfolder/NPM_910-00473_A_recipte.csv")
 	npm := filereader.Readfileseeker(recipe)

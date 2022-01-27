@@ -1,0 +1,2 @@
+IDNUM LotNum Lot MCFileName Filter AutoChg BaseChg Lane ProductionID SimProduct DGSPCBName DGSPCBRev DGSPCBSide DGSRefPin C DataGenMode MountHead VSTPath Order TargetTact
+2140 1 "NPM_915-00235_A" "NPM_915-00235_A" 0 0 0 1 "" 0 "NPM_915-00235_A" "A" "T" "" "" 0 0 "" 0 0.000

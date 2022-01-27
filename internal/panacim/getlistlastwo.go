@@ -10,8 +10,27 @@ import (
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/utils"
 )
 
-const queryLastListWO = `SELECT TOP 3 [WORK_ORDER_ID],[WORK_ORDER_NAME],[LOT_SIZE],[JOB_ID],
-[MASTER_WORK_ORDER_ID],[COMMENTS] FROM [PanaCIM].[dbo].[work_orders] order by [JOB_ID] desc;`
+/*
+Создать представление из [PanaCIM].[dbo].[work_orders] и [PanaCIM].[dbo].[job_history]
+для добавления к JOB_ID параметра CLOSING_TYPE = '0'
+
+*/
+
+/*const queryLastListWO = `SELECT TOP 3 [WORK_ORDER_ID],[WORK_ORDER_NAME],[LOT_SIZE],[JOB_ID],
+[MASTER_WORK_ORDER_ID],[COMMENTS] FROM [PanaCIM].[dbo].[work_orders] order by [JOB_ID] desc;`*/
+const queryLastListWO = `
+SELECT 
+DISTINCT([PanaCIM].[dbo].[work_orders].WORK_ORDER_ID) AS WORK_ORDER_ID
+,[PanaCIM].[dbo].[work_orders].WORK_ORDER_NAME
+,[PanaCIM].[dbo].[work_orders].LOT_SIZE
+,[PanaCIM].[dbo].[work_orders].JOB_ID
+,[PanaCIM].[dbo].[job_history].CLOSING_TYPE
+,[PanaCIM].[dbo].[job_history].SETUP_ID
+FROM [PanaCIM].[dbo].[work_orders]
+INNER JOIN  [PanaCIM].[dbo].[job_history] ON [PanaCIM].[dbo].[work_orders].JOB_ID=[PanaCIM].[dbo].[job_history].JOB_ID
+WHERE [PanaCIM].[dbo].[job_history].CLOSING_TYPE='0'
+order by [PanaCIM].[dbo].[work_orders].JOB_ID desc 
+`
 
 type LastWOData struct {
 	WORKORDERID          string         `db:"WORK_ORDER_ID"`
@@ -91,16 +110,20 @@ func (r PanaCIMStorage) WriteListWOToFile(in []LastWOData) (err error) {
 	}
 	defer splitWO.Close()
 
-	for _, i := range in {
+	for y, i := range in {
 		fmt.Println("test JobId", i.JOBID)
 		var result = []string{i.JOBID}
-		for _, v := range result {
-			_, err = fmt.Fprintln(splitWO, v)
-			if err != nil {
-				splitWO.Close()
-				return nil
+		// обрезаем select до первых трех строк по порядку
+		if y < 3 {
+			for _, v := range result {
+				_, err = fmt.Fprintln(splitWO, v)
+				if err != nil {
+					splitWO.Close()
+					return nil
+				}
 			}
 		}
+
 	}
 	return nil
 }
