@@ -144,6 +144,34 @@ func main() {
 			}
 		}
 
+		// получаем потребленные компоненты их кол-ва по job_id
+		componentsSlice, err := panacimStorage.GetPanacimDataComponentsByJobId(res)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		fmt.Printf("componentsSlice %v %v\n", componentsSlice[0].PartNo, componentsSlice[0].SumPlaceCount)
+		fmt.Printf("componentsSlice %v %v\n", componentsSlice[1].PartNo, componentsSlice[1].SumPlaceCount)
+		if err := panacimStorage.WtitePanaCIMDataComponentsToFile(componentsSlice); err != nil {
+			logger.Errorf(err.Error())
+		}
+
+		mixnameSlice, err := panacimStorage.GetPanaCIMixName(productid)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		fmt.Printf("mixname: %v\n", mixnameSlice[0].MixName)
+
+		mixname := mixnameSlice[0].MixName
+		partsSlice, err := panacimStorage.GetPanaCIMParts(mixname)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		fmt.Printf("%v\n", partsSlice[0].PrimaryPn)
+
+		if err := panacimStorage.WritePanaCIMPartsToFile(partsSlice); err != nil {
+			logger.Errorf(err.Error())
+		}
+
 		// объем выпуска ? пока вопрос корректности такого подсчета
 		fmt.Println("get sum pattern")
 		fmt.Println(panacimStorage.GetSumPattert(res))
@@ -158,7 +186,7 @@ func main() {
 		if err != nil {
 			logger.Errorf(err.Error())
 		}
-		fmt.Printf("кол-во м/з: %v\n", pcbSlice[0].PatternPerPanel)
+		fmt.Printf("кол-во плат в м/з: %v\n", pcbSlice[0].PatternPerPanel)
 		qtyPCB := pcbSlice[0].PatternPerPanel
 
 		qtyPatternInt, err := strconv.Atoi(qtyPattern)
@@ -173,6 +201,8 @@ func main() {
 		//qtyPCB
 		valueLot := qtyPatternInt * qtyPCBInt
 		fmt.Printf("valueLot: %v\n", valueLot)
+
+		// конец блока расчета объема выпуска партии
 
 	}
 	res2, err := jobIdStorage.GetLastJobIdValue2()
