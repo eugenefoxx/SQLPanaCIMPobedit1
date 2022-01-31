@@ -2,6 +2,7 @@ package panacim
 
 import (
 	"database/sql"
+	"sync"
 
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/logging"
 )
@@ -9,8 +10,10 @@ import (
 type PanaCIMStorage struct {
 	DB     *sql.DB
 	logger *logging.Logger
+	mu     *sync.Mutex
 }
 
+// [PanaCIM].[dbo].[InfoInstallLastJobId_View]
 type InfoInstallLastJobId_View struct {
 	PartNo        string `db:"PART_NO"`
 	PlaceCount    string `db:"PLACE_COUNT"`
@@ -23,6 +26,7 @@ type SubstituteParts struct {
 	SubstitutePn string `db:"SUBSTITUTE_PN"`
 }
 
+// [PanaCIM].[dbo].[product_data]
 type ProductData struct {
 	ProductName     string `db:"PRODUCT_NAME"`
 	PatternPerPanel string `db:"PATTERN_COMBINATIONS_PER_PANEL"`
@@ -30,6 +34,7 @@ type ProductData struct {
 
 type ProductDataLink []ProductData
 
+// [PanaCIM].[dbo].[job_products]
 type JobProducts struct {
 	SetupId string `db:"SETUP_ID"`
 }

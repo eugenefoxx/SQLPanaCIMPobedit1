@@ -28,6 +28,7 @@ type SumPattern struct {
 }
 
 func (r PanaCIMStorage) GetSumPattert(jobid string) ([]SumPattern, error) {
+
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -94,6 +95,7 @@ WHERE [PRODUCT_ID] = (
 const querySelectPatternForPanel = `SELECT * FROM dbo.GetQtyPerPanel();`
 
 func (r PanaCIMStorage) GetPatternForPanel() ([]ProductData, error) {
+
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -173,6 +175,7 @@ WHERE [SETUP_ID] = (
 const querySelectProductId = `SELECT * FROM dbo.GetLastProductId();`
 
 func (r PanaCIMStorage) GetProductId(jobid string) ([]ProductSetup, error) {
+
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -244,6 +247,7 @@ where [PRODUCT_ID] =
 `
 
 func (r PanaCIMStorage) GetProductName(productid string) ([]ProductData, error) {
+
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -282,6 +286,7 @@ WHERE PRODUCT_ID = `
 //`
 
 func (r PanaCIMStorage) GetRouteId(productid string) ([]ProductSetup, error) {
+
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -365,6 +370,7 @@ group by PART_NO;
 `
 
 func (r PanaCIMStorage) GetPanacimDataComponentsByJobId(jobid string) ([]InfoInstallLastJobId_View, error) {
+
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -413,6 +419,7 @@ func (r PanaCIMStorage) GetPanacimDataComponentsByJobId(jobid string) ([]InfoIns
 }
 
 func (r PanaCIMStorage) WtitePanaCIMDataComponentsToFile(in []InfoInstallLastJobId_View) (err error) {
+
 	panaCIMpath := os.Getenv("panacim")
 
 	panacimFileRemove := panaCIMpath
@@ -469,6 +476,7 @@ order by LAST_MODIFIED_TIME desc
 `
 
 func (r PanaCIMStorage) GetPanaCIMixName(productid string) ([]ProductSetup, error) {
+
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -504,6 +512,7 @@ FROM [PanaCIM].[dbo].[substitute_parts]
 WHERE [MIX_NAME] = `
 
 func (r PanaCIMStorage) GetPanaCIMParts(mixname string) ([]SubstituteParts, error) {
+
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -535,6 +544,7 @@ func (r PanaCIMStorage) GetPanaCIMParts(mixname string) ([]SubstituteParts, erro
 }
 
 func (r PanaCIMStorage) WritePanaCIMPartsToFile(in []SubstituteParts) (err error) {
+
 	substitutepath := os.Getenv("substitute")
 
 	substituteFileRemove := substitutepath

@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"database/sql"
+	"encoding/csv"
 	"fmt"
 	"log"
 	"os"
@@ -13,7 +15,6 @@ import (
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/sortworkorders"
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/filereader"
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/logging"
-	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/removefiles"
 	"github.com/joho/godotenv"
 )
 
@@ -23,7 +24,7 @@ const (
 )
 
 var (
-	logger = logging.GetLogger()
+	//logger = logging.GetLogger()
 	//logger logging.Logger
 	db *sql.DB
 )
@@ -51,6 +52,7 @@ func main() {
 	}
 	defer db.Close()
 	log.Printf("Connected!\n")
+
 	/*db, err := mssql.NewMSSQL()
 	if err != nil {
 		logger.Errorf(err.Error())
@@ -167,7 +169,7 @@ func main() {
 			logger.Errorf(err.Error())
 		}
 		fmt.Printf("%v\n", partsSlice[0].PrimaryPn)
-
+		// запись полученных замен из БД в файл
 		if err := panacimStorage.WritePanaCIMPartsToFile(partsSlice); err != nil {
 			logger.Errorf(err.Error())
 		}
@@ -204,6 +206,126 @@ func main() {
 
 		// конец блока расчета объема выпуска партии
 
+		// ВСТАВКА
+		recipe := os.Getenv("recipe")                              // internal/source/recipte.csv
+		reportCsv := os.Getenv("report")                           // /internal/report/report.csv
+		substituteCsv := os.Getenv("substitute")                   // /internal/source/parts.csv
+		substituteCsvFormatted := os.Getenv("substituteFormatted") // /internal/source/partsFormatted.csv
+		panacimCsv := os.Getenv("panacim")                         // /internal/source/panacim.csv
+		reportSUMCsv := os.Getenv("reportSUM")                     // /internal/report/reportSumComponent.csv
+
+		//npm := readfileseeker("/home/eugenearch/Code/github.com/eugenefoxx/SQLPanacimP1/csvfolder/NPM_910-00473_A_recipte.csv")
+		npmRecipe := filereader.Readfileseeker(recipe)
+		report, err := os.Create(reportCsv)
+		if err != nil {
+			logger.Errorf(err.Error())
+			return
+		}
+		defer report.Close()
+
+		split, err := os.OpenFile(reportCsv, os.O_APPEND|os.O_WRONLY, 0644)
+
+		if err != nil {
+			logger.Errorf(err.Error())
+			return
+		}
+		defer split.Close()
+
+		for _, iter := range npmRecipe {
+
+			qtytotal, err := strconv.Atoi(iter[1])
+			if err != nil {
+				logger.Errorf(err.Error())
+				return
+			}
+
+			//var result = []string{iter[0] + "," + iter[1] + "," + strconv.Itoa(int(uint16(qtytotal)*value))}
+			var result = []string{iter[0] + "," + iter[1] + "," + strconv.Itoa(int(qtytotal)*valueLot)}
+			//fmt.Println(result)
+			for _, v := range result {
+				_, err = fmt.Fprintln(split, v)
+				if err != nil {
+					split.Close()
+					return
+				}
+			}
+
+		}
+		////
+		// читаем файл с заменами в массив строк, поскольку записи оригинал - замена могут неоднократно повторяться
+		partsGet, err := readLines(substituteCsv)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		// передаем на проверку дублей
+		arrFotmattedparts := removeDuplicatesinfile(partsGet)
+
+		file, err := os.OpenFile(substituteCsvFormatted, os.O_CREATE|os.O_WRONLY, 0644)
+		if err != nil {
+			logger.Errorf(("failed creating file: %s"), err)
+		}
+		// записываем полученный очищенный результат в файл
+		datawriterFormatted := bufio.NewWriter(file)
+		for _, data := range arrFotmattedparts {
+			_, _ = datawriterFormatted.WriteString(data + "\n")
+		}
+		datawriterFormatted.Flush()
+		file.Close()
+		////
+		//fmt.Println(nmpparts[0], nmpparts[1])
+		reportDGS := filereader.Readfile(reportCsv)
+		//reportParts := readfileseeker("/home/eugenearch/Code/github.com/eugenefoxx/SQLPanacimP1/csvfolder/parts.csv")
+		//reportParts := filereader.Readfileseeker(substituteCsv) - меняю на ниже
+		reportParts := filereader.Readfileseeker(substituteCsvFormatted)
+		//panacimdata := readfileseeker("/home/eugenearch/Code/github.com/eugenefoxx/SQLPanacimP1/csvfolder/panacim.csv")
+		panacimdata := filereader.Readfileseeker(panacimCsv)
+
+		for p := 0; p < len(reportDGS); p++ {
+			parseParts(reportParts, reportDGS, panacimdata, reportDGS[p][0])
+		}
+		// формируем файлы
+		for p := 0; p < len(reportDGS); p++ {
+			insertPanacimDataQty(panacimdata, reportDGS[p][0])
+		}
+		//  формируем файлы с подсчетом Итого установленных компонентов оригинал + замена
+		for p := 0; p < len(reportDGS); p++ {
+			insertPanacimDataQtyTotal(reportDGS[p][0])
+		}
+		//reportSum, err := os.Create("/home/eugenearch/Code/github.com/eugenefoxx/SQLPanacimP1/csvfolder/reportSumComponent.csv")
+		reportSum, err := os.Create(reportSUMCsv)
+		if err != nil {
+			//log.Println(err)
+			logger.Errorf(err.Error())
+		}
+		defer reportSum.Close()
+		//reportSumRead := filereader.Readfile("/home/eugenearch/Code/github.com/eugenefoxx/SQLPanacimP1/csvfolder/reportSumComponent.csv")
+		reportSumRead := filereader.Readfile(reportSUMCsv)
+		for r := 0; r < len(reportDGS); r++ {
+			sumComponent(reportDGS, reportSumRead, reportDGS[r][0])
+		}
+
+		reportSummary := filereader.Readfile(reportSUMCsv)
+
+		summaryReportComponents(reportSummary, res, strconv.Itoa(valueLot))
+
+		//var i int
+		/*
+				Стопосто, [01.12.2021 13:03]
+			Загнать в мапу и проверить длинну мапа с массивом
+
+			Viacheslav Poturaev, [01.12.2021 13:03]
+			либо отсортировать массивы и пробежать соседей
+
+			map[int]string использовать. В качестве ключа - индекс в строке
+		*/
+
+		// очистка директории
+		//directorypath := os.Getenv("operationdata")
+		//directory := directorypath
+		//removefiles.RemoveFiles(directory)
+
+		// КОНЕЦ
+
 	}
 	res2, err := jobIdStorage.GetLastJobIdValue2()
 	if err != nil {
@@ -219,98 +341,6 @@ func main() {
 	if res3 != "" {
 		logger.Infof(("res3 - %v"), res3)
 	}
-
-	recipe := os.Getenv("recipe")            // internal/source/recipte.csv
-	reportCsv := os.Getenv("report")         // /internal/report/report.csv
-	substituteCsv := os.Getenv("substitute") // /internal/source/parts.csv
-	panacimCsv := os.Getenv("panacim")       // /internal/source/panacim.csv
-	reportSUMCsv := os.Getenv("reportSUM")   // /internal/report/reportSumComponent.csv
-
-	//npm := readfileseeker("/home/eugenearch/Code/github.com/eugenefoxx/SQLPanacimP1/csvfolder/NPM_910-00473_A_recipte.csv")
-	npm := filereader.Readfileseeker(recipe)
-	report, err := os.Create(reportCsv)
-	if err != nil {
-		logger.Errorf(err.Error())
-		return
-	}
-	defer report.Close()
-
-	split, err := os.OpenFile(reportCsv, os.O_APPEND|os.O_WRONLY, 0644)
-
-	if err != nil {
-		logger.Errorf(err.Error())
-		return
-	}
-	defer split.Close()
-
-	for _, iter := range npm {
-
-		qtytotal, err := strconv.Atoi(iter[1])
-		if err != nil {
-			logger.Errorf(err.Error())
-			return
-		}
-
-		//var result = []string{iter[0] + "," + iter[1] + "," + strconv.Itoa(int(uint16(qtytotal)*value))}
-		var result = []string{iter[0] + "," + iter[1] + "," + strconv.Itoa(int(qtytotal)*value)}
-		//fmt.Println(result)
-		for _, v := range result {
-			_, err = fmt.Fprintln(split, v)
-			if err != nil {
-				split.Close()
-				return
-			}
-		}
-
-	}
-	//fmt.Println(nmpparts[0], nmpparts[1])
-	reportDGS := filereader.Readfile(reportCsv)
-	//reportParts := readfileseeker("/home/eugenearch/Code/github.com/eugenefoxx/SQLPanacimP1/csvfolder/parts.csv")
-	reportParts := filereader.Readfileseeker(substituteCsv)
-	//panacimdata := readfileseeker("/home/eugenearch/Code/github.com/eugenefoxx/SQLPanacimP1/csvfolder/panacim.csv")
-	panacimdata := filereader.Readfileseeker(panacimCsv)
-
-	for p := 0; p < len(reportDGS); p++ {
-		parseParts(reportParts, reportDGS, panacimdata, reportDGS[p][0])
-	}
-	// формируем файлы
-	for p := 0; p < len(reportDGS); p++ {
-		insertPanacimDataQty(panacimdata, reportDGS[p][0])
-	}
-	//  формируем файлы с подсчетом Итого установленных компонентов оригинал + замена
-	for p := 0; p < len(reportDGS); p++ {
-		insertPanacimDataQtyTotal(reportDGS[p][0])
-	}
-	//reportSum, err := os.Create("/home/eugenearch/Code/github.com/eugenefoxx/SQLPanacimP1/csvfolder/reportSumComponent.csv")
-	reportSum, err := os.Create(reportSUMCsv)
-	if err != nil {
-		//log.Println(err)
-		logger.Errorf(err.Error())
-	}
-	defer reportSum.Close()
-	//reportSumRead := filereader.Readfile("/home/eugenearch/Code/github.com/eugenefoxx/SQLPanacimP1/csvfolder/reportSumComponent.csv")
-	reportSumRead := filereader.Readfile(reportSUMCsv)
-	for r := 0; r < len(reportDGS); r++ {
-		sumComponent(reportDGS, reportSumRead, reportDGS[r][0])
-	}
-
-	reportSummary := filereader.Readfile(reportSUMCsv)
-
-	summaryReportComponents(reportSummary)
-
-	//var i int
-	/*
-			Стопосто, [01.12.2021 13:03]
-		Загнать в мапу и проверить длинну мапа с массивом
-
-		Viacheslav Poturaev, [01.12.2021 13:03]
-		либо отсортировать массивы и пробежать соседей
-
-		map[int]string использовать. В качестве ключа - индекс в строке
-	*/
-	directorypath := os.Getenv("operationdata")
-	directory := directorypath
-	removefiles.RemoveFiles(directory)
 
 	/*
 		app := "/home/eugenearch/Code/github.com/eugenefoxx/test/readIni/readIni"
@@ -344,7 +374,8 @@ func SelectVersion() {
 	fmt.Printf("%s\n", result)
 }
 
-func summaryReportComponents(reportSumRead [][]string) {
+// Вычисляем расхожение с рецептом
+func summaryReportComponents(reportSumRead [][]string, jobid, sum_googs string) {
 	logger := logging.GetLogger()
 	reportSummaryCsv := os.Getenv("reportSummary")
 
@@ -354,6 +385,11 @@ func summaryReportComponents(reportSumRead [][]string) {
 		return
 	}
 	defer reportSummary.Close()
+
+	writer := csv.NewWriter(reportSummary)
+	writer.Write([]string{"jobid:" + jobid + "," + "sum_googs:" + sum_googs})
+	writer.Comma = ','
+	writer.Flush()
 
 	split, err := os.OpenFile(reportSummaryCsv, os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
@@ -381,6 +417,49 @@ func summaryReportComponents(reportSumRead [][]string) {
 				_, err = fmt.Fprintln(split, v)
 				if err != nil {
 					split.Close()
+					return
+				}
+			}
+		}
+	}
+
+	// dirReportsummary
+	reportpath := os.Getenv("dirReportsummary")
+	reportfile, err := os.Create(reportpath + jobid + ".csv")
+	if err != nil {
+		logger.Errorf(err.Error())
+		return
+	}
+	defer reportfile.Close()
+
+	pathReportToFile := reportpath + jobid + ".csv"
+
+	split2, err := os.OpenFile(pathReportToFile, os.O_APPEND|os.O_WRONLY, 0644)
+	if err != nil {
+		logger.Errorf(err.Error())
+		return
+	}
+	defer split2.Close()
+
+	for i := 0; i < len(reportSumRead); i++ {
+		total1, err := strconv.Atoi(reportSumRead[i][2])
+		if err != nil {
+			logger.Errorf(err.Error())
+			return
+		}
+		total2, err := strconv.Atoi(reportSumRead[i][3])
+		if err != nil {
+			logger.Errorf(err.Error())
+			return
+		}
+		if total2-total1 != 0 {
+
+			//	fmt.Printf("read Отклонение от DGS delta reportSummaryComponent %s %d\n", reportSumRead[i][0], total2-total1)
+			var result = []string{reportSumRead[i][0] + "," + strconv.Itoa(total2-total1)}
+			for _, v := range result {
+				_, err = fmt.Fprintln(split2, v)
+				if err != nil {
+					split2.Close()
 					return
 				}
 			}
@@ -427,6 +506,7 @@ func parseParts(reportParts, reportDGS, panacimdata [][]string, parts string) {
 	for i := 0; i < len(reportParts); i++ {
 		for ii := 0; ii < len(reportDGS); ii++ {
 			if reportParts[i][0] == parts {
+
 				//if panacimdata[p][0] == reportParts[i][0] {
 				//	var result = []string{reportParts[i][1] + "," + panacimdata[p][1]}
 				var result = []string{reportParts[i][1]}
@@ -437,6 +517,7 @@ func parseParts(reportParts, reportDGS, panacimdata [][]string, parts string) {
 						split.Close()
 						return
 					}
+
 				}
 				break
 			}
@@ -529,6 +610,7 @@ func sumComponent(reportDGS, reportSumRead [][]string, component string) {
 	logger := logging.GetLogger()
 	subtitutepath := os.Getenv("parts")
 	reportSUMCsv := os.Getenv("reportSUM")
+
 	/*	report, err := os.Create("/home/eugenearch/Code/github.com/eugenefoxx/SQLPanacimP1/csvfolder/reportSumComponent.csv")
 		if err != nil {
 			log.Println(err)
@@ -592,4 +674,38 @@ func sumComponent(reportDGS, reportSumRead [][]string, component string) {
 
 		}
 	}
+}
+
+func readLines(path string) ([]string, error) {
+	file, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+
+	var lines []string
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+	return lines, scanner.Err()
+}
+
+func removeDuplicatesinfile(elements []string) []string { // change string to int here if required
+	// Use map to record duplicates as we find them.
+	encountered := map[string]bool{} // change string to int here if required
+	result := []string{}             // change string to int here if required
+
+	for v := range elements {
+		if encountered[elements[v]] == true {
+			// Do not add duplicate.
+		} else {
+			// Record this element as an encountered element.
+			encountered[elements[v]] = true
+			// Append to result slice.
+			result = append(result, elements[v])
+		}
+	}
+	// Return the new slice.
+	return result
 }

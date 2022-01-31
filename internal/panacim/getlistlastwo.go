@@ -42,6 +42,7 @@ type LastWOData struct {
 }
 
 func (r PanaCIMStorage) GetLastListWO() ([]LastWOData, error) {
+
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -76,6 +77,7 @@ func (r PanaCIMStorage) GetLastListWO() ([]LastWOData, error) {
 }
 
 func (r PanaCIMStorage) WriteListWOToFile(in []LastWOData) (err error) {
+
 	dirWOpath := os.Getenv("dirWO")
 	closedWORemovepath := os.Getenv("closedWORemove")
 

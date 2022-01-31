@@ -145,3 +145,62 @@ SELECT TOP 1000 [PRODUCT_ID]
 FROM [PanaCIM].[dbo].[product_setup]
     --where MACHINE_FILE_NAME = 'ID9536'
 order by LAST_MODIFIED_TIME desc
+
+// РАЗБОР РАСЧЕТА ПРОИЗВЕДЕННЫХ ПЛАТ 
+// ПО job_id ПОЛУЧАЕМ PANEL_EQUIPMENT_ID
+SELECT TOP 1000 [PANEL_ID]
+      ,[EQUIPMENT_ID]
+      ,[NC_VERSION]
+      ,[START_TIME]
+      ,[END_TIME]
+      ,[PANEL_EQUIPMENT_ID]
+      ,[PANEL_SOURCE]
+      ,[PANEL_TRACE]
+      ,[STAGE_NO]
+      ,[LANE_NO]
+      ,[JOB_ID]
+      ,[SETUP_ID]
+      ,[TRX_PRODUCT_ID]
+      ,[HUMIDITY]
+      ,[TEMPERATURE]
+      ,[SETUP_AUDIT_HISTORY_ID]
+      ,[AUDIT_STATUS]
+  FROM [PanaCIM].[dbo].[panels]
+  where JOB_ID = '5344' 
+
+  // ПОЛУЧИВ НАБОР ВЫШЕ ПОЛУЧЕМ СПИСОК PANEL_PLACEMENT_ID
+  SELECT TOP 1000 [PANEL_EQUIPMENT_ID]
+      ,[EQUIPMENT_ID]
+      ,[MASTER_PLACEMENT_ID]
+      ,[PANEL_PLACEMENT_ID]
+      ,[TIMESTAMP]
+      ,[TRX_PRODUCT_ID]
+  FROM [PanaCIM].[dbo].[panel_placement_header] 
+  WHERE PANEL_EQUIPMENT_ID between 2480587 and 2480654
+  order by PANEL_EQUIPMENT_ID
+
+  // ЗНАЯ PANEL_PLACEMENT_ID МОЖЕМ УВИДЕТЬ -
+  SELECT TOP 1000 [PANEL_PLACEMENT_ID]
+      ,[REEL_ID]
+      ,[NC_PLACEMENT_ID]
+      ,[PATTERN_NO]
+      ,[Z_NUM]
+      ,[PU_NUM]
+      ,[PART_NO]
+      ,[CUSTOM_AREA1]
+      ,[CUSTOM_AREA2]
+      ,[CUSTOM_AREA3]
+      ,[CUSTOM_AREA4]
+      ,[REF_DESIGNATOR]
+      ,[PATTERN_IDNUM]
+      ,[PATTERN_BARCODE]
+      ,[PATTERN_DESIGNATOR]
+      ,[PREPICKUP_LOT]
+      ,[PREPICKUP_STS]
+      ,[NCADD]
+      ,[NHADD]
+      ,[NBLKSERIAL]
+      ,[PLACEMENT_ORDER]
+      ,[FEEDER_BC]
+  FROM [PanaCIM].[dbo].[panel_placement_details] 
+  where PANEL_PLACEMENT_ID between 2087411 and 2087478
