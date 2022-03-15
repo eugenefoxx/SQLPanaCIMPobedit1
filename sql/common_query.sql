@@ -47,3 +47,12 @@ SELECT TOP 1000 [PRODUCT_ID]
       ,[PATTERN_TYPES_PER_PANEL]
   FROM [PanaCIM].[dbo].[product_data]
   where [PRODUCT_ID] = '2501'
+
+
+  -- группировать компоненты в WO по парт-номеру, лоту и кол-ву
+  SELECT 
+    [PART_NO]
+    ,[LOT_NO] 
+        , SUM([PLACE_COUNT]) AS SUM_PLACE_COUNT
+FROM [PanaCIM].[dbo].[InfoInstallLastJobId_View]
+ group by LOT_NO, PART_NO;

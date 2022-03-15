@@ -167,6 +167,7 @@ SELECT TOP 1000 [PANEL_ID]
       ,[AUDIT_STATUS]
   FROM [PanaCIM].[dbo].[panels]
   where JOB_ID = '5344' 
+  order by [PANEL_EQUIPMENT_ID] asc
 
   // ПОЛУЧИВ НАБОР ВЫШЕ ПОЛУЧЕМ СПИСОК PANEL_PLACEMENT_ID
   SELECT TOP 1000 [PANEL_EQUIPMENT_ID]
@@ -177,7 +178,7 @@ SELECT TOP 1000 [PANEL_ID]
       ,[TRX_PRODUCT_ID]
   FROM [PanaCIM].[dbo].[panel_placement_header] 
   WHERE PANEL_EQUIPMENT_ID between 2480587 and 2480654
-  order by PANEL_EQUIPMENT_ID
+  order by PANEL_EQUIPMENT_ID asc
 
   // ЗНАЯ PANEL_PLACEMENT_ID МОЖЕМ УВИДЕТЬ -
   SELECT TOP 1000 [PANEL_PLACEMENT_ID]

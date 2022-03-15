@@ -188,6 +188,7 @@ func main() {
 		if err != nil {
 			logger.Errorf(err.Error())
 		}
+		fmt.Printf("2222 кол-во плат в м/з: %v\n", pcbSlice[0])
 		fmt.Printf("кол-во плат в м/з: %v\n", pcbSlice[0].PatternPerPanel)
 		qtyPCB := pcbSlice[0].PatternPerPanel
 
