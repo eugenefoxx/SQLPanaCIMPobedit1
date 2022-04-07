@@ -41,6 +41,7 @@ func init() {
 
 // NPM_910-00473_A_
 func main() {
+	fmt.Println("Hello!")
 	//	logging.Init()
 	logger := logging.GetLogger()
 	var err error
