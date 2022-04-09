@@ -41,7 +41,7 @@ func init() {
 
 // NPM_910-00473_A_
 func main() {
-	fmt.Println("Hello!")
+
 	//	logging.Init()
 	logger := logging.GetLogger()
 	var err error
@@ -109,7 +109,15 @@ func main() {
 		logger.Errorf(err.Error())
 	}
 	if res != "" {
+		// получаем номер актуального JOB_ID
 		logger.Infof(("res - %v"), res)
+
+		unixSlice, err := panacimStorage.GetUnixTimeWO(res)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		fmt.Printf("starunix: %v\n", unixSlice[0].StartUnixTimeWO)
+		fmt.Printf("endunix: %v\n", unixSlice[0].EndUnixTimeWO)
 
 		//s := string.patterSlice[0]
 		//t1 := strings.Replace(s, "{", "", -1)
@@ -128,6 +136,12 @@ func main() {
 		}
 		fmt.Printf("product name NPM - %v\n", productNameSlice[0].ProductName)
 		npm := productNameSlice[0].ProductName
+
+		sumPCB := panacimStorage.GetSumPCBFromU03(string(unixSlice[0].StartUnixTimeWO), string(unixSlice[0].EndUnixTimeWO), npm)
+		fmt.Printf("sumPCB: %v\n", sumPCB)
+		fmt.Printf("product name NPM - %v\n", productNameSlice[0].ProductName)
+		fmt.Printf("starunix: %v\n", unixSlice[0].StartUnixTimeWO)
+		fmt.Printf("endunix: %v\n", unixSlice[0].EndUnixTimeWO)
 		lineSlice, err := panacimStorage.GetRouteId(productid)
 		if err != nil {
 			logger.Errorf(err.Error())

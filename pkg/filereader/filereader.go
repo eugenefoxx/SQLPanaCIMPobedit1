@@ -31,6 +31,24 @@ func Readfileseeker(name string) [][]string {
 	return cr
 }
 
+func Readfileseekerspace(name string) [][]string {
+	logger := logging.GetLogger()
+	f, err := os.Open(name)
+	if err != nil {
+		//	fmt.Println(err)
+		logger.Println(err.Error())
+	}
+	defer f.Close()
+
+	cr, err := readseekerspace(f)
+	if err != nil {
+		//log.Fatalf("error read %s", err)
+		logger.Fatalf("error read %s", err)
+	}
+
+	return cr
+}
+
 func readseeker(rs io.ReadSeeker) ([][]string, error) {
 	logger := logging.GetLogger()
 	row1, err := bufio.NewReader(rs).ReadSlice('\n')
@@ -46,6 +64,34 @@ func readseeker(rs io.ReadSeeker) ([][]string, error) {
 	lines := csv.NewReader(rs) //.ReadAll()
 	//lines.Comma = '|'
 	lines.Comma = ','
+	lines.LazyQuotes = true
+
+	CSVdata, err := lines.ReadAll()
+	if err != nil {
+		//	fmt.Println(err)
+		//	os.Exit(1)
+		//log.Fatal(err)
+		logger.Fatalf("error read %s", err)
+	}
+
+	return CSVdata, nil
+}
+
+func readseekerspace(rs io.ReadSeeker) ([][]string, error) {
+	logger := logging.GetLogger()
+	row1, err := bufio.NewReader(rs).ReadSlice('\n')
+	if err != nil {
+		return nil, err
+	}
+
+	_, err = rs.Seek(int64(len(row1)), io.SeekStart)
+	if err != nil {
+		return nil, err
+	}
+
+	lines := csv.NewReader(rs) //.ReadAll()
+	//lines.Comma = '|'
+	lines.Comma = ' '
 	lines.LazyQuotes = true
 
 	CSVdata, err := lines.ReadAll()

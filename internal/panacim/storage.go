@@ -45,3 +45,16 @@ type ProductSetup struct {
 	Route_Id   string `db:"ROUTE_ID"`
 	MixName    string `db:"MIX_NAME"`
 }
+
+type Job_History struct {
+	JOB_ID            string         `db:"JOB_ID"`
+	EQUIPMENT_ID      string         `db:"EQUIPMENT_ID"`
+	SETUP_ID          string         `db:"SETUP_ID"`
+	StartUnixTimeWO   string         `db:"START_TIME"`
+	EndUnixTimeWO     string         `db:"END_TIME"`
+	CLOSING_TYPE      string         `db:"CLOSING_TYPE"`
+	START_OPERATOR_ID sql.NullString `db:"START_OPERATOR_ID"`
+	END_OPERATOR_ID   sql.NullString `db:"END_OPERATOR_ID"`
+	TFR_REASON        sql.NullString `db:"TFR_REASON"`
+	LANE_NO           string         `db:"LANE_NO"`
+}
