@@ -4,6 +4,7 @@ import (
 	"os"
 )
 
+// очистка указанной директории
 func RemoveFiles(path string) {
 	// The target directory.
 	directory := path

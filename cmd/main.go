@@ -12,6 +12,7 @@ import (
 
 	_ "github.com/denisenkom/go-mssqldb"
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/panacim"
+	"github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc"
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/sortworkorders"
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/filereader"
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/logging"
@@ -54,6 +55,30 @@ func main() {
 	defer db.Close()
 	log.Printf("Connected!\n")
 
+	app_py := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/test_ping_sappyrfc.py"
+	pysaprfc.PyExec(app_py)
+	/*cmd := exec.Command("python3", app_py)
+	_, err = cmd.StdoutPipe()
+	if err != nil {
+		panic(err)
+	}
+	_, err = cmd.StderrPipe()
+	if err != nil {
+		panic(err)
+	}
+	err = cmd.Start()
+	if err != nil {
+		panic(err)
+	}*/
+	/*cmd := exec.Command("python3", "-c", app_py)
+	out, err := cmd.Output()
+
+	if err != nil {
+		println(err.Error())
+		return
+	}
+
+	fmt.Println(string(out))*/
 	/*db, err := mssql.NewMSSQL()
 	if err != nil {
 		logger.Errorf(err.Error())
@@ -109,6 +134,7 @@ func main() {
 		logger.Errorf(err.Error())
 	}
 	if res != "" {
+		res := "5436" //"5436"
 		// получаем номер актуального JOB_ID
 		logger.Infof(("res - %v"), res)
 
@@ -138,10 +164,15 @@ func main() {
 		npm := productNameSlice[0].ProductName
 
 		sumPCB := panacimStorage.GetSumPCBFromU03(string(unixSlice[0].StartUnixTimeWO), string(unixSlice[0].EndUnixTimeWO), npm)
+		sumPCBint, err := strconv.Atoi(sumPCB)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
 		fmt.Printf("sumPCB: %v\n", sumPCB)
 		fmt.Printf("product name NPM - %v\n", productNameSlice[0].ProductName)
 		fmt.Printf("starunix: %v\n", unixSlice[0].StartUnixTimeWO)
 		fmt.Printf("endunix: %v\n", unixSlice[0].EndUnixTimeWO)
+		os.Exit(1)
 		lineSlice, err := panacimStorage.GetRouteId(productid)
 		if err != nil {
 			logger.Errorf(err.Error())
@@ -172,6 +203,55 @@ func main() {
 			logger.Errorf(err.Error())
 		}
 
+		// получаем данные по потреблению по id и кол-ву
+		componentIdSlice, err := panacimStorage.GetPanacimDataComponentsByJobIdAllParamReelid(res)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		// записываем результат в файл
+		if err := panacimStorage.WtitePanaCIMDataComponentsToFileUnpackId(componentIdSlice); err != nil {
+			logger.Errorf(err.Error())
+		}
+
+		// получить work order name
+		wo_nameSlice, err := panacimStorage.GetWOName(res)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		woname := wo_nameSlice[0].WORKORDERNAME
+		fmt.Printf("WO name: %v\n", woname)
+		// записываем данные номер заказа, сумму произведенных плат, дату в файл info_order.csv
+		if err := panacimStorage.WriteDataInfoOrderSAP(woname, sumPCB); err != nil {
+			logger.Errorf(err.Error())
+		}
+		// записываем результат в файл work_order_name.csv
+		if err := panacimStorage.WriteWorkOrderNameToFile(wo_nameSlice); err != nil {
+			logger.Errorf(err.Error())
+		}
+		// получаем для SAP данные для выпуска заказа - материал, сумма, партия
+		wo_componentSlice, err := panacimStorage.GetPanacimDataComponentsByJobIdSAP(res)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		// записываем результат в файл wo_component.csv
+		if err := panacimStorage.WritePanacimDataComponentsByJobIdSAPToFile(wo_componentSlice); err != nil {
+			logger.Errorf(err.Error())
+		}
+
+		// вызов модуля SAP для распаковки ео
+		// unpack_id_pyrfc := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/unpack_id.py"
+		// pysaprfc.PyExec(unpack_id_pyrfc)
+
+		// Вызов модуля SAP для проверки и вставки данных
+		//app_py_info_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/order_info.py"
+		// pysaprfc.PyExec(app_py_info_order)
+
+		// Вывоз модуля SAP для выпуска по заказу изделия
+		//app_py_output_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/output_order.py"
+		//pysaprfc.PyExec(app_py_output_order)
+
+		f := pysaprfc.PyExecArg("/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/test.py", "Jhon")
+		fmt.Printf("py - %v\n", f)
 		mixnameSlice, err := panacimStorage.GetPanaCIMixName(productid)
 		if err != nil {
 			logger.Errorf(err.Error())
@@ -183,7 +263,7 @@ func main() {
 		if err != nil {
 			logger.Errorf(err.Error())
 		}
-		fmt.Printf("%v\n", partsSlice[0].PrimaryPn)
+		//fmt.Printf("%v\n", partsSlice[0].PrimaryPn)
 		// запись полученных замен из БД в файл
 		if err := panacimStorage.WritePanaCIMPartsToFile(partsSlice); err != nil {
 			logger.Errorf(err.Error())
@@ -203,7 +283,7 @@ func main() {
 		if err != nil {
 			logger.Errorf(err.Error())
 		}
-		fmt.Printf("2222 кол-во плат в м/з: %v\n", pcbSlice[0])
+		fmt.Printf("кол-во плат в м/з: %v\n", pcbSlice[0])
 		fmt.Printf("кол-во плат в м/з: %v\n", pcbSlice[0].PatternPerPanel)
 		qtyPCB := pcbSlice[0].PatternPerPanel
 
@@ -256,7 +336,8 @@ func main() {
 			}
 
 			//var result = []string{iter[0] + "," + iter[1] + "," + strconv.Itoa(int(uint16(qtytotal)*value))}
-			var result = []string{iter[0] + "," + iter[1] + "," + strconv.Itoa(int(qtytotal)*valueLot)}
+			// var result = []string{iter[0] + "," + iter[1] + "," + strconv.Itoa(int(qtytotal)*valueLot)}
+			var result = []string{iter[0] + "," + iter[1] + "," + strconv.Itoa(int(qtytotal)*int(sumPCBint))}
 			//fmt.Println(result)
 			for _, v := range result {
 				_, err = fmt.Fprintln(split, v)
@@ -322,8 +403,9 @@ func main() {
 
 		reportSummary := filereader.Readfile(reportSUMCsv)
 
-		summaryReportComponents(reportSummary, res, strconv.Itoa(valueLot))
-
+		// summaryReportComponents(reportSummary, res, strconv.Itoa(valueLot))
+		summaryReportComponents(reportSummary, res, sumPCB)
+		summaryReportComponentsToFile(reportSummary, woname, sumPCB)
 		//var i int
 		/*
 				Стопосто, [01.12.2021 13:03]
@@ -342,6 +424,8 @@ func main() {
 
 		// КОНЕЦ
 
+	} else {
+		logger.Println("res нет новых данных")
 	}
 	res2, err := jobIdStorage.GetLastJobIdValue2()
 	if err != nil {
@@ -349,6 +433,8 @@ func main() {
 	}
 	if res2 != "" {
 		logger.Infof(("res2 - %v"), res2)
+	} else {
+		logger.Println("res2 нет новых данных")
 	}
 	res3, err := jobIdStorage.GetLastJobIdValue3()
 	if err != nil {
@@ -356,6 +442,8 @@ func main() {
 	}
 	if res3 != "" {
 		logger.Infof(("res3 - %v"), res3)
+	} else {
+		logger.Println("res3 нет новых данных")
 	}
 
 	/*
@@ -391,7 +479,7 @@ func SelectVersion() {
 }
 
 // Вычисляем расхожение с рецептом
-func summaryReportComponents(reportSumRead [][]string, jobid, sum_googs string) {
+func summaryReportComponents(reportSumRead [][]string, jobid, sum_goods string) {
 	logger := logging.GetLogger()
 	reportSummaryCsv := os.Getenv("reportSummary")
 
@@ -403,7 +491,7 @@ func summaryReportComponents(reportSumRead [][]string, jobid, sum_googs string) 
 	defer reportSummary.Close()
 
 	writer := csv.NewWriter(reportSummary)
-	writer.Write([]string{"jobid:" + jobid + "," + "sum_googs:" + sum_googs})
+	writer.Write([]string{"jobid:" + jobid + "," + "sum_goods:" + sum_goods})
 	writer.Comma = ','
 	writer.Flush()
 
@@ -484,6 +572,56 @@ func summaryReportComponents(reportSumRead [][]string, jobid, sum_googs string) 
 
 }
 
+func summaryReportComponentsToFile(reportSumRead [][]string, work_order_name, sum_goods string) {
+	logger := logging.GetLogger()
+	reportSummaryPath := os.Getenv("reportSummaryFile")
+
+	fileName := reportSummaryPath + "Отчет отклонений по заказу:" + work_order_name + ".csv"
+	reportSummaryFile, err := os.Create(fileName)
+	if err != nil {
+		logger.Errorf(err.Error())
+		return
+	}
+	defer reportSummaryFile.Close()
+
+	writer := csv.NewWriter(reportSummaryFile)
+	writer.Write([]string{"work_order:" + work_order_name, "sum_goods:" + sum_goods})
+	writer.Comma = ','
+	writer.Flush()
+
+	split, err := os.OpenFile(fileName, os.O_APPEND|os.O_WRONLY, 0644)
+	if err != nil {
+		logger.Errorf(err.Error())
+		return
+	}
+	defer split.Close()
+
+	for i := 0; i < len(reportSumRead); i++ {
+		total1, err := strconv.Atoi(reportSumRead[i][2])
+		if err != nil {
+			logger.Errorf(err.Error())
+			return
+		}
+		total2, err := strconv.Atoi(reportSumRead[i][3])
+		if err != nil {
+			logger.Errorf(err.Error())
+			return
+		}
+		if total2-total1 != 0 {
+
+			//	fmt.Printf("read Отклонение от DGS delta reportSummaryComponent %s %d\n", reportSumRead[i][0], total2-total1)
+			var result = []string{reportSumRead[i][0] + "," + strconv.Itoa(total2-total1)}
+			for _, v := range result {
+				_, err = fmt.Fprintln(split, v)
+				if err != nil {
+					split.Close()
+					return
+				}
+			}
+		}
+	}
+}
+
 func parseParts(reportParts, reportDGS, panacimdata [][]string, parts string) {
 	logger := logging.GetLogger()
 	subtitutepath := os.Getenv("parts")
@@ -508,6 +646,7 @@ func parseParts(reportParts, reportDGS, panacimdata [][]string, parts string) {
 			//var resultp = []string{pars + "," + panacimdata[p][1]}
 			var resultp = []string{parts}
 			//fmt.Println(resultp)
+			//logger.Printf("Проверка1: %v\n", resultp)
 			for _, v := range resultp {
 				_, err = fmt.Fprintln(split, v)
 				if err != nil {
@@ -527,6 +666,7 @@ func parseParts(reportParts, reportDGS, panacimdata [][]string, parts string) {
 				//	var result = []string{reportParts[i][1] + "," + panacimdata[p][1]}
 				var result = []string{reportParts[i][1]}
 				//fmt.Println(result)
+				//logger.Printf("Проверка2: %v\n", result)
 				for _, v := range result {
 					_, err = fmt.Fprintln(split, v)
 					if err != nil {
@@ -537,6 +677,7 @@ func parseParts(reportParts, reportDGS, panacimdata [][]string, parts string) {
 				}
 				break
 			}
+
 		}
 	}
 }
@@ -547,7 +688,29 @@ func insertPanacimDataQty(panacimdata [][]string, parts string) {
 	subtitutepath := os.Getenv("parts")
 
 	//pp := filereader.Readfile("/home/eugenearch/Code/github.com/eugenefoxx/SQLPanacimP1/csvfolder/" + pars + ".csv")
+	// блок проверки и удаления дублированных номеров компонентов в файле
+	rl, err := readLines(subtitutepath + parts + ".csv")
+	if err != nil {
+		logger.Errorf(err.Error())
+	}
+	os.Remove(subtitutepath + parts + ".csv")
+	p := removeDuplicatesinfile(rl)
+	file, err := os.OpenFile(subtitutepath+parts+".csv", os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		logger.Errorf("error creating file %v", err.Error())
+	}
+	datawriter := bufio.NewWriter(file)
+	for _, data := range p {
+		_, err = datawriter.WriteString(data + "\n")
+		if err != nil {
+			logger.Errorf("error writing data %v", err.Error())
+		}
+	}
+	datawriter.Flush()
+	file.Close()
+	// конец блока
 	component := filereader.Readfile(subtitutepath + parts + ".csv")
+
 	//report, err := os.Create("/home/eugenearch/Code/github.com/eugenefoxx/SQLPanacimP1/csvfolder/" + parts + "pana.csv")
 	report, err := os.Create(subtitutepath + parts + "pana.csv")
 	if err != nil {

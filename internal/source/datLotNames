@@ -1,3 +1,3 @@
 IDNUM LotNum Lot MCFileName Filter AutoChg BaseChg Lane ProductionID SimProduct DGSPCBName DGSPCBRev DGSPCBSide DGSRefPin C DataGenMode MountHead VSTPath Order TargetTact
-2158 1 "NPM_915-00249_A_s" "NPM_915-00249_A_s" 0 0 0 1 "" 0 "NPM_915-00249_A" "A" "T" "1*H" "" 0 0 "" 0 0.000
-2159 2 "NPM_915-00249_A_p" "NPM_915-00249_A_p" 0 0 0 1 "" 0 "NPM_915-00249_A" "A" "B" "" "" 0 0 "" 0 0.000
+1786 1 "NPM_910-00105_F_s" "NPM_910-00105_F_s" 0 0 0 1 "" 0 "NPM_910-00105_F" "F" "T" "2*NPM_910-00105_F*F*Bottom*H" "" 0 0 "" 0 0.000
+1787 2 "NPM_910-00105_F_p" "NPM_910-00105_F_p" 0 0 0 1 "" 0 "NPM_910-00105_F" "F" "B" "" "" 0 0 "" 0 0.000

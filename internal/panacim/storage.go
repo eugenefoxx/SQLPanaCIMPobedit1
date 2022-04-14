@@ -9,15 +9,33 @@ import (
 
 type PanaCIMStorage struct {
 	DB     *sql.DB
-	logger *logging.Logger
+	logger logging.Logger
 	mu     *sync.Mutex
+}
+
+type LastWOData struct {
+	WORKORDERID          string         `db:"WORK_ORDER_ID"`
+	WORKORDERNAME        string         `db:"WORK_ORDER_NAME"`
+	LOTSIZE              string         `db:"LOT_SIZE"`
+	JOBID                string         `db:"JOB_ID"`
+	MASTER_WORK_ORDER_ID string         `db:"MASTER_WORK_ORDER_ID"`
+	COMMENTS             sql.NullString `db:"COMMENTS"`
 }
 
 // [PanaCIM].[dbo].[InfoInstallLastJobId_View]
 type InfoInstallLastJobId_View struct {
-	PartNo        string `db:"PART_NO"`
-	PlaceCount    string `db:"PLACE_COUNT"`
-	SumPlaceCount string `db:"SUM_PLACE_COUNT_ALL"`
+	ReelID          string `db:"REEL_ID"`
+	PartNo          string `db:"PART_NO"`
+	Lot             string `db:"LOT_NO"`
+	PlaceCount      string `db:"PLACE_COUNT"`
+	PickupCount     string `db:"PICKUP_COUNT"`
+	ReelBarcode     string `db:"reel_barcode"`
+	CurrentQuantity string `db:"CURRENT_QUANTITY"`
+	InitialQuantity string `db:"INITIAL_QUANTITY"`
+	PlaceCountAll   string `db:"PLACE_COUNT_ALL"`
+	PickupCountAll  string `db:"PICKUP_COUNT_ALL"`
+	Delta           string `db:"Delta"`
+	SumPlaceCount   string `db:"SUM_PLACE_COUNT_ALL"`
 }
 
 // [PanaCIM].[dbo].[substitute_parts]

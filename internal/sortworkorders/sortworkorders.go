@@ -12,6 +12,7 @@ import (
 	"sort"
 
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/filereader"
+	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/logging"
 )
 
 type WorkOrders struct {
@@ -19,7 +20,7 @@ type WorkOrders struct {
 }
 
 func (r OperationStorage) Getclosedworkorders() {
-	//logger := logging.GetLogger()
+	logger := logging.GetLogger()
 	//dirWOpath := os.Getenv("dirWO")
 	closedWORemovepath := os.Getenv("closedWORemove")
 	processedWOpath := os.Getenv("processedWO")
@@ -84,7 +85,7 @@ func (r OperationStorage) Getclosedworkorders() {
 	if _, err := os.Stat(processedWO); os.IsNotExist(err) {
 		clwo, err := os.Create(processedWO)
 		if err != nil {
-			log.Println(err)
+			logger.Errorf(err.Error())
 		}
 		defer clwo.Close()
 
@@ -100,7 +101,7 @@ func (r OperationStorage) Getclosedworkorders() {
 	split, err := os.OpenFile(processedWO, os.O_APPEND|os.O_WRONLY, 0644)
 
 	if err != nil {
-		r.logger.Errorf(err.Error())
+		logger.Errorf(err.Error())
 		return
 	}
 	defer split.Close()
@@ -111,7 +112,7 @@ func (r OperationStorage) Getclosedworkorders() {
 	reader.Comma = ';'
 	if err != nil {
 		//	fmt.Println("Ошибка", err)
-		r.logger.Errorf(err.Error())
+		logger.Errorf(err.Error())
 		os.Exit(1)
 	}
 	defer csvFile.Close()
@@ -123,7 +124,8 @@ func (r OperationStorage) Getclosedworkorders() {
 		if error == io.EOF {
 			break
 		} else if error != nil {
-			log.Fatal(error)
+			logger.Fatal(error)
+			//log.Fatal(error)
 		}
 		arrWO = append(arrWO, WorkOrders{
 			JobID: line[0],
@@ -132,7 +134,7 @@ func (r OperationStorage) Getclosedworkorders() {
 	arrwoJSON, _ := json.Marshal(arrWO)
 
 	if err = json.Unmarshal([]byte(arrwoJSON), &arrWO); err != nil {
-		r.logger.Errorf(err.Error())
+		logger.Errorf(err.Error())
 	}
 	crarr := arrWO
 	sort.Slice(crarr, func(i, j int) bool {
@@ -197,8 +199,8 @@ func (r OperationStorage) Getclosedworkorders() {
 
 }
 
-func (r OperationStorage) GetLastJobIdValue1() (string, error) {
-
+func (r *OperationStorage) GetLastJobIdValue1() (string, error) {
+	logger := logging.GetLogger()
 	lastWOpath := os.Getenv("lastJobId")
 	processedWOpath := os.Getenv("processedWO")
 
@@ -206,7 +208,7 @@ func (r OperationStorage) GetLastJobIdValue1() (string, error) {
 	if _, err := os.Stat(lastclosedWO); os.IsNotExist(err) {
 		lastwo, err := os.Create(lastclosedWO)
 		if err != nil {
-			r.logger.Errorf(err.Error())
+			logger.Errorf(err.Error())
 		}
 		defer lastwo.Close()
 
@@ -218,7 +220,7 @@ func (r OperationStorage) GetLastJobIdValue1() (string, error) {
 
 	splitWO, err := os.OpenFile(lastclosedWO, os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
-		r.logger.Errorf(err.Error())
+		logger.Errorf(err.Error())
 		//return
 	}
 	defer splitWO.Close()
@@ -231,7 +233,7 @@ func (r OperationStorage) GetLastJobIdValue1() (string, error) {
 	reader.Comma = ';'
 	if err != nil {
 		//	fmt.Println("Ошибка", err)
-		r.logger.Errorf(err.Error())
+		logger.Errorf(err.Error())
 		os.Exit(1)
 	}
 	defer csvFile.Close()
@@ -243,7 +245,7 @@ func (r OperationStorage) GetLastJobIdValue1() (string, error) {
 		if error == io.EOF {
 			break
 		} else if error != nil {
-			r.logger.Fatalf(error.Error())
+			logger.Fatalf(error.Error())
 		}
 		arrWO = append(arrWO, WorkOrders{
 			JobID: line[0],
@@ -252,7 +254,7 @@ func (r OperationStorage) GetLastJobIdValue1() (string, error) {
 	arrwoJSON, _ := json.Marshal(arrWO)
 
 	if err = json.Unmarshal([]byte(arrwoJSON), &arrWO); err != nil {
-		r.logger.Errorf(err.Error())
+		logger.Errorf(err.Error())
 	}
 	crarr := arrWO
 	sort.Slice(crarr, func(i, j int) bool {
@@ -282,7 +284,7 @@ func (r OperationStorage) GetLastJobIdValue1() (string, error) {
 	readerlastclosedWO.Comma = ';'
 	if err != nil {
 		//	fmt.Println("Ошибка", err)
-		r.logger.Errorf(err.Error())
+		logger.Errorf(err.Error())
 		os.Exit(1)
 	}
 	defer csvFilelastclosedWO.Close()
@@ -294,7 +296,7 @@ func (r OperationStorage) GetLastJobIdValue1() (string, error) {
 			break
 		} else if error != nil {
 			//log.Fatal(error)
-			r.logger.Fatalf(error.Error())
+			logger.Fatalf(error.Error())
 		}
 		arrlastclosedWO = append(arrlastclosedWO, WorkOrders{
 			JobID: line[0],
@@ -303,6 +305,9 @@ func (r OperationStorage) GetLastJobIdValue1() (string, error) {
 	arrlastclosedWOJSON, _ := json.Marshal(arrlastclosedWO)
 
 	err = json.Unmarshal([]byte(arrlastclosedWOJSON), &arrlastclosedWO)
+	if err != nil {
+		logger.Errorf(err.Error())
+	}
 
 	crarrclosewo := arrlastclosedWO
 	sort.Slice(crarrclosewo, func(i, j int) bool {
@@ -336,8 +341,8 @@ func (r OperationStorage) GetLastJobIdValue1() (string, error) {
 
 }
 
-func (r OperationStorage) GetLastJobIdValue2() (string, error) {
-
+func (r *OperationStorage) GetLastJobIdValue2() (string, error) {
+	logger := logging.GetLogger()
 	lastWOpath := os.Getenv("lastJobId")
 	processedWOpath := os.Getenv("processedWO")
 
@@ -345,7 +350,7 @@ func (r OperationStorage) GetLastJobIdValue2() (string, error) {
 	if _, err := os.Stat(lastclosedWO); os.IsNotExist(err) {
 		lastwo, err := os.Create(lastclosedWO)
 		if err != nil {
-			r.logger.Errorf(err.Error())
+			logger.Errorf(err.Error())
 		}
 		defer lastwo.Close()
 
@@ -357,7 +362,7 @@ func (r OperationStorage) GetLastJobIdValue2() (string, error) {
 
 	splitWO, err := os.OpenFile(lastclosedWO, os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
-		r.logger.Errorf(err.Error())
+		logger.Errorf(err.Error())
 		//return
 	}
 	defer splitWO.Close()
@@ -370,7 +375,7 @@ func (r OperationStorage) GetLastJobIdValue2() (string, error) {
 	reader.Comma = ';'
 	if err != nil {
 		//	fmt.Println("Ошибка", err)
-		r.logger.Errorf(err.Error())
+		logger.Errorf(err.Error())
 		os.Exit(1)
 	}
 	defer csvFile.Close()
@@ -382,7 +387,7 @@ func (r OperationStorage) GetLastJobIdValue2() (string, error) {
 		if error == io.EOF {
 			break
 		} else if error != nil {
-			r.logger.Fatalf(error.Error())
+			logger.Fatalf(error.Error())
 		}
 		arrWO = append(arrWO, WorkOrders{
 			JobID: line[0],
@@ -391,6 +396,9 @@ func (r OperationStorage) GetLastJobIdValue2() (string, error) {
 	arrwoJSON, _ := json.Marshal(arrWO)
 
 	err = json.Unmarshal([]byte(arrwoJSON), &arrWO)
+	if err != nil {
+		logger.Errorf(err.Error())
+	}
 	crarr := arrWO
 	sort.Slice(crarr, func(i, j int) bool {
 		return crarr[i].JobID <= crarr[j].JobID
@@ -419,7 +427,7 @@ func (r OperationStorage) GetLastJobIdValue2() (string, error) {
 	readerlastclosedWO.Comma = ';'
 	if err != nil {
 		//	fmt.Println("Ошибка", err)
-		r.logger.Errorf(err.Error())
+		logger.Errorf(err.Error())
 		os.Exit(1)
 	}
 	defer csvFilelastclosedWO.Close()
@@ -430,7 +438,7 @@ func (r OperationStorage) GetLastJobIdValue2() (string, error) {
 		if error == io.EOF {
 			break
 		} else if error != nil {
-			r.logger.Fatalf(error.Error())
+			logger.Fatalf(error.Error())
 		}
 		arrlastclosedWO = append(arrlastclosedWO, WorkOrders{
 			JobID: line[0],
@@ -439,7 +447,7 @@ func (r OperationStorage) GetLastJobIdValue2() (string, error) {
 	arrlastclosedWOJSON, _ := json.Marshal(arrlastclosedWO)
 
 	if err = json.Unmarshal([]byte(arrlastclosedWOJSON), &arrlastclosedWO); err != nil {
-		r.logger.Errorf(err.Error())
+		logger.Errorf(err.Error())
 	}
 	crarrclosewo := arrlastclosedWO
 	sort.Slice(crarrclosewo, func(i, j int) bool {
@@ -474,8 +482,8 @@ func (r OperationStorage) GetLastJobIdValue2() (string, error) {
 
 }
 
-func (r OperationStorage) GetLastJobIdValue3() (string, error) {
-
+func (r *OperationStorage) GetLastJobIdValue3() (string, error) {
+	logger := logging.GetLogger()
 	lastWOpath := os.Getenv("lastJobId")
 	processedWOpath := os.Getenv("processedWO")
 
@@ -483,7 +491,7 @@ func (r OperationStorage) GetLastJobIdValue3() (string, error) {
 	if _, err := os.Stat(lastclosedWO); os.IsNotExist(err) {
 		lastwo, err := os.Create(lastclosedWO)
 		if err != nil {
-			r.logger.Errorf(err.Error())
+			logger.Errorf(err.Error())
 		}
 		defer lastwo.Close()
 
@@ -495,7 +503,7 @@ func (r OperationStorage) GetLastJobIdValue3() (string, error) {
 
 	splitWO, err := os.OpenFile(lastclosedWO, os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
-		r.logger.Errorf(err.Error())
+		logger.Errorf(err.Error())
 		//return
 	}
 	defer splitWO.Close()
@@ -508,7 +516,7 @@ func (r OperationStorage) GetLastJobIdValue3() (string, error) {
 	reader.Comma = ';'
 	if err != nil {
 		//	fmt.Println("Ошибка", err)
-		r.logger.Errorf(err.Error())
+		logger.Errorf(err.Error())
 		os.Exit(1)
 	}
 	defer csvFile.Close()
@@ -520,7 +528,7 @@ func (r OperationStorage) GetLastJobIdValue3() (string, error) {
 		if error == io.EOF {
 			break
 		} else if error != nil {
-			r.logger.Fatalf(err.Error())
+			logger.Fatalf(err.Error())
 		}
 		arrWO = append(arrWO, WorkOrders{
 			JobID: line[0],
@@ -529,7 +537,7 @@ func (r OperationStorage) GetLastJobIdValue3() (string, error) {
 	arrwoJSON, _ := json.Marshal(arrWO)
 
 	if err = json.Unmarshal([]byte(arrwoJSON), &arrWO); err != nil {
-		r.logger.Errorf(err.Error())
+		logger.Errorf(err.Error())
 	}
 	crarr := arrWO
 	sort.Slice(crarr, func(i, j int) bool {
@@ -562,7 +570,7 @@ func (r OperationStorage) GetLastJobIdValue3() (string, error) {
 	readerlastclosedWO.Comma = ';'
 	if err != nil {
 		//	fmt.Println("Ошибка", err)
-		r.logger.Errorf(err.Error())
+		logger.Errorf(err.Error())
 		os.Exit(1)
 	}
 	defer csvFilelastclosedWO.Close()
@@ -573,7 +581,7 @@ func (r OperationStorage) GetLastJobIdValue3() (string, error) {
 		if error == io.EOF {
 			break
 		} else if error != nil {
-			r.logger.Fatalf(error.Error())
+			logger.Fatalf(error.Error())
 		}
 		arrlastclosedWO = append(arrlastclosedWO, WorkOrders{
 			JobID: line[0],
@@ -582,7 +590,7 @@ func (r OperationStorage) GetLastJobIdValue3() (string, error) {
 	arrlastclosedWOJSON, _ := json.Marshal(arrlastclosedWO)
 
 	if err = json.Unmarshal([]byte(arrlastclosedWOJSON), &arrlastclosedWO); err != nil {
-		r.logger.Errorf(err.Error())
+		logger.Errorf(err.Error())
 	}
 	crarrclosewo := arrlastclosedWO
 	sort.Slice(crarrclosewo, func(i, j int) bool {

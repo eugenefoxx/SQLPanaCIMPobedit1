@@ -9,6 +9,6 @@ import (
 
 type OperationStorage struct {
 	DB     *sql.DB
-	logger *logging.Logger
+	logger logging.Logger
 	mu     sync.Mutex
 }
