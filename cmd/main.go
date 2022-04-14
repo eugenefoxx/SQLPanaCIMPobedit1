@@ -109,6 +109,7 @@ func main() {
 		logger.Errorf(err.Error())
 	}
 	if res != "" {
+		res := "5436"
 		// получаем номер актуального JOB_ID
 		logger.Infof(("res - %v"), res)
 
@@ -137,11 +138,13 @@ func main() {
 		fmt.Printf("product name NPM - %v\n", productNameSlice[0].ProductName)
 		npm := productNameSlice[0].ProductName
 
-		sumPCB := panacimStorage.GetSumPCBFromU03(string(unixSlice[0].StartUnixTimeWO), string(unixSlice[0].EndUnixTimeWO), npm)
+		sumPCB := panacimStorage.GetSumPCBFromU03V2(string(unixSlice[0].StartUnixTimeWO), string(unixSlice[0].EndUnixTimeWO), npm)
 		fmt.Printf("sumPCB: %v\n", sumPCB)
 		fmt.Printf("product name NPM - %v\n", productNameSlice[0].ProductName)
 		fmt.Printf("starunix: %v\n", unixSlice[0].StartUnixTimeWO)
 		fmt.Printf("endunix: %v\n", unixSlice[0].EndUnixTimeWO)
+		panacimStorage.GetSumComponentFromU03(string(unixSlice[0].StartUnixTimeWO), string(unixSlice[0].EndUnixTimeWO), npm)
+		//os.Exit(1)
 		lineSlice, err := panacimStorage.GetRouteId(productid)
 		if err != nil {
 			logger.Errorf(err.Error())
