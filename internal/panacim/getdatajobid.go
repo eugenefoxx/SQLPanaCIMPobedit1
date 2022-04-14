@@ -8,7 +8,9 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 	"time"
@@ -827,6 +829,258 @@ type U03 struct {
 var (
 	layoutDate string = "2006/01/02,15:04:05"
 )
+
+func (r PanaCIMStorage) GetSumPCBFromU03V2(startUnixTimeWO, finishUnixTimeWO, npm string) (sumstrPCBOrder string) {
+	logger := logging.GetLogger()
+	npmToUp := strings.ToUpper(npm)
+	// конвертация unix времени страта и завершения сборки WO
+
+	tStartWO, err := strconv.ParseInt(startUnixTimeWO, 10, 64)
+	if err != nil {
+		logger.Panic(err)
+		panic(err)
+	}
+	tmStartWO := time.Unix(tStartWO, 0)
+	p_tmStartWO, _ := time.Parse(layoutDate, tmStartWO.Format(layoutDate))
+	fmt.Println("p_tmStartWO:", p_tmStartWO)
+
+	tFinishWO, err := strconv.ParseInt(finishUnixTimeWO, 10, 64)
+	if err != nil {
+		panic(err)
+	}
+	tmFinishWO := time.Unix(tFinishWO, 0)
+	p_tmFinishWO, _ := time.Parse(layoutDate, tmFinishWO.Format(layoutDate))
+	fmt.Println("p_tmFinishWO: ", p_tmFinishWO)
+
+	folderFromPanaNPM_1 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resourcePanaCIM/NPM-1/"
+	folderFromPanaNPM_2 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resourcePanaCIM/NPM-2/"
+	folderFromPanaNPM_3 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resourcePanaCIM/NPM-3/"
+	folderFromPanaNPM_4 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resourcePanaCIM/NPM-4/"
+
+	folderToCopyNPM_1 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resource/NPM-1/"
+	folderToCopyNPM_2 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resource/NPM-2/"
+	folderToCopyNPM_3 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resource/NPM-3/"
+	folderToCopyNPM_4 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resource/NPM-4/"
+
+	err = cp.Copy(folderFromPanaNPM_1, folderToCopyNPM_1)
+	if err != nil {
+		log.Println(err)
+	}
+	err = cp.Copy(folderFromPanaNPM_2, folderToCopyNPM_2)
+	if err != nil {
+		log.Println(err)
+	}
+	err = cp.Copy(folderFromPanaNPM_3, folderToCopyNPM_3)
+	if err != nil {
+		log.Println(err)
+	}
+	err = cp.Copy(folderFromPanaNPM_4, folderToCopyNPM_4)
+	if err != nil {
+		log.Println(err)
+	}
+
+	// получить список папок в скопированной директории
+	resourcePath := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resource/"
+	f_resource, err := ioutil.ReadDir(resourcePath)
+	if err != nil {
+		log.Panicln(err)
+	}
+	// Разархивирование архивов, если они есть
+	for _, r := range f_resource {
+		if r.IsDir() {
+			folder, err := ioutil.ReadDir(resourcePath + r.Name())
+			if err != nil {
+				log.Panicln(err)
+			}
+			fmt.Println("folder Resource: ", resourcePath+r.Name())
+			for _, r2 := range folder {
+				if r2.IsDir() {
+					processed, err := ioutil.ReadDir(filepath.FromSlash(resourcePath + r.Name() + "/" + r2.Name()))
+					if err != nil {
+						log.Panicln(err)
+					}
+					fmt.Println("folder Resource2: ", resourcePath+r.Name()+"/"+r2.Name())
+					for _, r3 := range processed {
+						dataFolders, err := ioutil.ReadDir(resourcePath + r.Name() + "/" + r2.Name() + "/" + r3.Name())
+						if err != nil {
+							log.Panicln(err)
+						}
+						for _, r4 := range dataFolders {
+							if !r4.IsDir() {
+								if strings.Contains(r4.Name(), ".gz") {
+									// Open compressed file
+									gzipFile, err := os.Open(resourcePath + r.Name() + "/" + r2.Name() + "/" + r3.Name() + "/" + r4.Name())
+									if err != nil {
+										log.Fatal(err)
+									}
+									// Create a gzip reader on top of the file reader
+									// Again, it could be any type reader though
+									gzipReader, err := gzip.NewReader(gzipFile)
+									if err != nil {
+										log.Fatal(err)
+									}
+									//defer gzipReader.Close()
+									writeToFile := strings.Trim(r4.Name(), ".gz")
+									// Uncompress to a writer. We'll use a file writer
+									outfileWriter, err := os.Create(resourcePath + r.Name() + "/" + r2.Name() + "/" + r3.Name() + "/" + writeToFile)
+									if err != nil {
+										log.Fatal(err)
+									}
+									//defer outfileWriter.Close()
+
+									// Copy contents of gzipped file to output file
+									_, err = io.Copy(outfileWriter, gzipReader)
+									if err != nil {
+										log.Fatal(err)
+									}
+									gzipReader.Close()
+									outfileWriter.Close()
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	sumPCBOrder := 0
+	checkDuble := map[string]bool{}
+	inputCoreFolder, err := ioutil.ReadDir(resourcePath)
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, npmf := range inputCoreFolder {
+		if npmf.IsDir() {
+			// расчет кол-ва плат
+			if npmf.Name() == "NPM-1" {
+				fmt.Println("NPM-1 Great!!!")
+				processedf, err := ioutil.ReadDir(resourcePath + npmf.Name())
+				if err != nil {
+					log.Fatal(err)
+				}
+				for _, processed := range processedf {
+					fmt.Println("2 NPM-1 Great!!!")
+					if processed.IsDir() {
+						dataf, err := ioutil.ReadDir(resourcePath + npmf.Name() + "/" + processed.Name())
+						if err != nil {
+							log.Fatal(err)
+						}
+						for _, data := range dataf {
+							fmt.Println("3 NPM-1 Great!!!")
+							if data.IsDir() {
+								fileu03f, err := ioutil.ReadDir(resourcePath + npmf.Name() + "/" + processed.Name() + "/" + data.Name())
+								if err != nil {
+									log.Fatal(err)
+								}
+								for _, fileu03 := range fileu03f {
+									if !fileu03.IsDir() {
+										//fmt.Println("Finish")
+										if strings.Contains(fileu03.Name(), ".u03") && !strings.Contains(fileu03.Name(), ".gz") {
+											cfg, err := ini.LoadSources(ini.LoadOptions{
+												UnparseableSections: []string{
+													//	"Index",
+													//	"Information",
+
+													"BRecg",
+													"BRecgCalc",
+													"ElapseTimeRecog",
+													"SBoard",
+													"HeightCorrect",
+													"MountNormalTrace",
+													"MountLatestReel",
+													"MountExchangeReel",
+													"MountQualityTrace"},
+											}, resourcePath+"/"+npmf.Name()+"/"+processed.Name()+"/"+data.Name()+"/"+fileu03.Name())
+											if err != nil {
+												fmt.Printf("Fail to read file: %v", err)
+												os.Exit(1)
+											}
+											dataFile := cfg.Section("Index").Key("Date").String()
+											pdataFile, _ := time.Parse(layoutDate, dataFile)
+											if (pdataFile.After(p_tmStartWO) && pdataFile.Before(p_tmFinishWO)) &&
+												(strings.EqualFold(strings.ToUpper(cfg.Section("Information").Key("LotName").String()), strings.ToUpper(npmToUp))) {
+												// проверка на дубль в файлах по ключу Code checkDuble[cfg.Section("Information").Key("Code").String()] == true
+												if checkDuble[cfg.Section("Information").Key("Code").String()] {
+													fmt.Println("Code Double: ", cfg.Section("Information").Key("Code").String())
+												} else {
+													checkDuble[cfg.Section("Information").Key("Code").String()] = true
+													// получаем данные по указаннной секции
+													readSection := cfg.Section("MountQualityTrace").Body()
+													// конвертируем в байты
+													writeByte := []byte(readSection)
+													// записываем данные в файл
+													if err := ioutil.WriteFile("internal/out", writeByte, 0644); err != nil {
+														fmt.Printf("%v", err)
+													}
+													// Пересоздаю данный файл, чтобы его сумму хранить дальше в памяти
+													filepcb := "internal/pcb"
+
+													fileRemovePCB := "internal/pcb"
+
+													if _, err := os.Stat(fileRemovePCB); os.IsNotExist(err) {
+														pcbFile, err := os.Create(fileRemovePCB)
+														if err != nil {
+															logger.Errorf(err.Error())
+														}
+														defer pcbFile.Close()
+													}
+													e_pcb := os.Remove(fileRemovePCB)
+													if e_pcb != nil {
+														log.Fatal(e_pcb)
+													}
+													filepcbRW, err := os.OpenFile(filepcb, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
+													if err != nil {
+														logger.Errorf(err.Error())
+														return
+													}
+													defer filepcbRW.Close()
+
+													numberPCBs := filereader.Readfileseekerspace("internal/out")
+													for _, i := range numberPCBs {
+														data := U03{
+															B: i[0],
+														}
+														if data.B != "0" {
+															var result = []string{data.B}
+															for _, v := range result {
+																_, err = fmt.Fprintln(filepcbRW, v)
+																if err != nil {
+																	filepcbRW.Close()
+																	return
+																}
+															}
+														}
+													}
+													// читаю файл построчно
+													getnumberpcb, err := readLines(filepcb)
+													if err != nil {
+														logger.Errorf(err.Error())
+													}
+													// убираю дублированные номера
+													resnumberpcb := removeDuplicatesinfile(getnumberpcb)
+													// считаю уникальные номера плат и записываю в счетчик sumPCBOrder
+													for i := 0; i < len(resnumberpcb); i++ {
+														//for _, i := range resnumberpcb {
+														//fmt.Println("t ", i)
+														sumPCBOrder++
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	sumstrPCBOrder = strconv.Itoa(sumPCBOrder)
+
+	return sumstrPCBOrder
+}
 
 func (r *PanaCIMStorage) GetSumPCBFromU03(startUnixTimeWO, finishUnixTimeWO, npm string) (sumstrPCBOrder string) {
 	logger := logging.GetLogger()
