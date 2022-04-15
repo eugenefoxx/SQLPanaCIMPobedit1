@@ -26,7 +26,7 @@ def main():
     logger.info("Parsing cfg")
     config = configparser.ConfigParser()
     config.read(
-        "/ home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/sapnwrfc.cfg")
+        "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/sapnwrfc.cfg")
     config.sections()
     params_connection = config['connection']
     logger.info("Connecting to SAP RFC...")
@@ -38,19 +38,29 @@ def main():
         logger.info("Connection to SAP RFC creating.")
 
         work_order = None
-        with open('/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/work_order_name.csv', newline='') as csvfile:
+        # with open('/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/work_order_name.csv', newline='') as csvfile:
+        with open('/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/1000862_work_order_name.csv', newline='') as csvfile:
+            # with open('/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test1_work_order_name.csv', newline='') as csvfile:
+            # with open('/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_work_order_name.csv', newline='') as csvfile:
             spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
             for row in spamreader:
-                wo = '' .join(row)
+                work_order = '' .join(row)
 
-        orderSAP = work_order  # 000001000825 000001000836
+        orderSAP = '00000' + work_order  # 000001000825 000001000836
         # wo_component.csv wo_component_1000836.csv
         # 'wo_component_1000862.csv'
-        wo_component = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/wo_component.csv'
-        infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/info_order.csv'
+        # wo_component = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/wo_component.csv'
+        wo_component = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/wo_component_1000862.csv'
+        # wo_component = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test1_wo_component.csv'
+        # wo_component = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_wo_component.csv'
+
+        #infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/info_order.csv'
+        infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/1000862_info_order.csv'
+        # infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test1_info_order.csv'
+        # infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_info_order.csv'
 
         order_info = connection.call('Z_IEXT_PRODORD_INFO', **{
-            'AUFNR': orderSAP,  # 000001000825
+            'AUFNR': str(orderSAP),  # 000001000825
             'UCODE': '21717',
             'PCODE': 'NEWPASSWORD1',
         }
@@ -164,6 +174,7 @@ def main():
                         ]
                     })
                     print(chg)
+                    # logger.warning(parse_response(chg))
         #    elif str('00000000000' + row['PART_NO']) != str(c):
         #        print("not", c)
 
@@ -442,6 +453,23 @@ def get_reserv_num(dict_value):
         if key == 'RESITEMS':
             res = value[0].get('RSNUM', '')
             return res
+
+
+def parse_response(dict_value):
+    for key, value in dict_value.items():
+        if key == 'RETURN':
+            if value[0].get('TYPE', '') == 'E':
+                return 'Error: ' + str(value[0].get('MESSAGE', ''))
+            elif value[0].get('TYPE', '') == 'I':
+                return "Infomation: " + str(value[0].get('MESSAGE', ''))
+            elif value[0].get('TYPE', '') == 'W':
+                return "Warning: " + str(value[0].get('MESSAGE', ''))
+            # elif value[0].get('NUMBER', '') == '469':
+            # print("NOK")
+            # elif value[0].get('NUMBER', '') == '100':
+            # print("OK")
+            else:
+                return "Ответ не получен"
 
 
 if __name__ == "__main__":

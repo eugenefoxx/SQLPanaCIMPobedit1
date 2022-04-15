@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/exec"
 	"strconv"
+	"time"
 
 	_ "github.com/denisenkom/go-mssqldb"
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/panacim"
@@ -172,7 +173,7 @@ func main() {
 		fmt.Printf("product name NPM - %v\n", productNameSlice[0].ProductName)
 		fmt.Printf("starunix: %v\n", unixSlice[0].StartUnixTimeWO)
 		fmt.Printf("endunix: %v\n", unixSlice[0].EndUnixTimeWO)
-		os.Exit(1)
+		//os.Exit(1)
 		lineSlice, err := panacimStorage.GetRouteId(productid)
 		if err != nil {
 			logger.Errorf(err.Error())
@@ -241,17 +242,18 @@ func main() {
 		// вызов модуля SAP для распаковки ео
 		// unpack_id_pyrfc := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/unpack_id.py"
 		// pysaprfc.PyExec(unpack_id_pyrfc)
-
+		time.Sleep(10 * time.Second)
+		logger.Info("Дергаю info_order")
 		// Вызов модуля SAP для проверки и вставки данных
-		//app_py_info_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/order_info.py"
-		// pysaprfc.PyExec(app_py_info_order)
-
+		app_py_info_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/order_info.py"
+		pysaprfc.PyExec(app_py_info_order)
+		time.Sleep(10 * time.Second)
 		// Вывоз модуля SAP для выпуска по заказу изделия
 		//app_py_output_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/output_order.py"
 		//pysaprfc.PyExec(app_py_output_order)
 
-		f := pysaprfc.PyExecArg("/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/test.py", "Jhon")
-		fmt.Printf("py - %v\n", f)
+		//f := pysaprfc.PyExecArg("/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/test.py", "Jhon")
+		//fmt.Printf("py - %v\n", f)
 		mixnameSlice, err := panacimStorage.GetPanaCIMixName(productid)
 		if err != nil {
 			logger.Errorf(err.Error())

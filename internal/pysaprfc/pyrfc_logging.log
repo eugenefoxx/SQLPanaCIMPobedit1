@@ -175,3 +175,68 @@
 2022-04-14 17:09:37,093 - test_ping_sappyrfc - INFO - Parsing cfg
 2022-04-14 17:09:37,093 - test_ping_sappyrfc - INFO - Connecting to SAP RFC...
 2022-04-14 17:09:37,179 - test_ping_sappyrfc - INFO - {'ECHOTEXT': 'Hello SAP!', 'RESPTEXT': 'SAP R/3 Rel. 750   Sysid: UST      Date: 20220414   Time: 171439   Logon_Data: 400/21717T/E'}
+2022-04-15 16:17:57,056 - test_ping_sappyrfc - INFO - Parsing cfg
+2022-04-15 16:17:57,056 - test_ping_sappyrfc - INFO - Connecting to SAP RFC...
+2022-04-15 16:17:57,235 - test_ping_sappyrfc - INFO - {'ECHOTEXT': 'Hello SAP!', 'RESPTEXT': 'SAP R/3 Rel. 750   Sysid: UST      Date: 20220415   Time: 162304   Logon_Data: 400/21717T/E'}
+2022-04-15 16:24:06,780 - test_ping_sappyrfc - INFO - Parsing cfg
+2022-04-15 16:24:06,780 - test_ping_sappyrfc - INFO - Connecting to SAP RFC...
+2022-04-15 16:24:06,956 - test_ping_sappyrfc - INFO - {'ECHOTEXT': 'Hello SAP!', 'RESPTEXT': 'SAP R/3 Rel. 750   Sysid: UST      Date: 20220415   Time: 162914   Logon_Data: 400/21717T/E'}
+2022-04-15 16:24:53,748 - test_ping_sappyrfc - INFO - Parsing cfg
+2022-04-15 16:24:53,749 - test_ping_sappyrfc - INFO - Connecting to SAP RFC...
+2022-04-15 16:24:53,898 - test_ping_sappyrfc - INFO - {'ECHOTEXT': 'Hello SAP!', 'RESPTEXT': 'SAP R/3 Rel. 750   Sysid: UST      Date: 20220415   Time: 163001   Logon_Data: 400/21717T/E'}
+2022-04-15 16:25:18,881 - order_info - INFO - Parsing cfg
+2022-04-15 16:27:11,902 - test_ping_sappyrfc - INFO - Parsing cfg
+2022-04-15 16:27:11,903 - test_ping_sappyrfc - INFO - Connecting to SAP RFC...
+2022-04-15 16:27:12,061 - test_ping_sappyrfc - INFO - {'ECHOTEXT': 'Hello SAP!', 'RESPTEXT': 'SAP R/3 Rel. 750   Sysid: UST      Date: 20220415   Time: 163219   Logon_Data: 400/21717T/E'}
+2022-04-15 16:27:35,743 - order_info - INFO - Parsing cfg
+2022-04-15 16:27:35,743 - order_info - INFO - Connecting to SAP RFC...
+2022-04-15 16:27:35,794 - order_info - INFO - Connection to SAP RFC creating.
+2022-04-15 16:30:02,207 - test_ping_sappyrfc - INFO - Parsing cfg
+2022-04-15 16:30:02,208 - test_ping_sappyrfc - INFO - Connecting to SAP RFC...
+2022-04-15 16:30:02,396 - test_ping_sappyrfc - INFO - {'ECHOTEXT': 'Hello SAP!', 'RESPTEXT': 'SAP R/3 Rel. 750   Sysid: UST      Date: 20220415   Time: 163509   Logon_Data: 400/21717T/E'}
+2022-04-15 16:30:26,966 - order_info - INFO - Parsing cfg
+2022-04-15 16:30:26,967 - order_info - INFO - Connecting to SAP RFC...
+2022-04-15 16:30:27,030 - order_info - INFO - Connection to SAP RFC creating.
+2022-04-15 16:37:11,347 - test_ping_sappyrfc - INFO - Parsing cfg
+2022-04-15 16:37:11,347 - test_ping_sappyrfc - INFO - Connecting to SAP RFC...
+2022-04-15 16:37:11,528 - test_ping_sappyrfc - INFO - {'ECHOTEXT': 'Hello SAP!', 'RESPTEXT': 'SAP R/3 Rel. 750   Sysid: UST      Date: 20220415   Time: 164218   Logon_Data: 400/21717T/E'}
+2022-04-15 16:37:35,772 - order_info - INFO - Parsing cfg
+2022-04-15 16:37:35,773 - order_info - INFO - Connecting to SAP RFC...
+2022-04-15 16:37:35,841 - order_info - INFO - Connection to SAP RFC creating.
+2022-04-15 16:40:23,932 - test_ping_sappyrfc - INFO - Parsing cfg
+2022-04-15 16:40:23,932 - test_ping_sappyrfc - INFO - Connecting to SAP RFC...
+2022-04-15 16:40:24,122 - test_ping_sappyrfc - INFO - {'ECHOTEXT': 'Hello SAP!', 'RESPTEXT': 'SAP R/3 Rel. 750   Sysid: UST      Date: 20220415   Time: 164531   Logon_Data: 400/21717T/E'}
+2022-04-15 16:40:48,854 - order_info - INFO - Parsing cfg
+2022-04-15 16:40:48,854 - order_info - INFO - Connecting to SAP RFC...
+2022-04-15 16:40:48,926 - order_info - INFO - Connection to SAP RFC creating.
+2022-04-15 16:56:42,064 - test_ping_sappyrfc - INFO - Parsing cfg
+2022-04-15 16:56:42,064 - test_ping_sappyrfc - INFO - Connecting to SAP RFC...
+2022-04-15 16:56:42,249 - test_ping_sappyrfc - INFO - {'ECHOTEXT': 'Hello SAP!', 'RESPTEXT': 'SAP R/3 Rel. 750   Sysid: UST      Date: 20220415   Time: 170149   Logon_Data: 400/21717T/E'}
+2022-04-15 16:57:10,525 - order_info - INFO - Parsing cfg
+2022-04-15 16:57:10,526 - order_info - INFO - Connecting to SAP RFC...
+2022-04-15 16:57:10,583 - order_info - INFO - Connection to SAP RFC creating.
+2022-04-15 16:57:10,838 - order_info - WARNING - Error: Номер резервирования не соответствует номеру заказа.
+2022-04-15 16:57:10,840 - order_info - WARNING - Error: Номер резервирования не соответствует номеру заказа.
+2022-04-15 16:57:10,843 - order_info - WARNING - Error: Номер резервирования не соответствует номеру заказа.
+2022-04-15 16:57:10,845 - order_info - WARNING - Error: Номер резервирования не соответствует номеру заказа.
+2022-04-15 16:57:10,848 - order_info - WARNING - Error: Номер резервирования не соответствует номеру заказа.
+2022-04-15 16:57:10,851 - order_info - WARNING - Error: Номер резервирования не соответствует номеру заказа.
+2022-04-15 16:57:10,854 - order_info - WARNING - Error: Номер резервирования не соответствует номеру заказа.
+2022-04-15 17:02:41,296 - test_ping_sappyrfc - INFO - Parsing cfg
+2022-04-15 17:02:41,297 - test_ping_sappyrfc - INFO - Connecting to SAP RFC...
+2022-04-15 17:02:41,489 - test_ping_sappyrfc - INFO - {'ECHOTEXT': 'Hello SAP!', 'RESPTEXT': 'SAP R/3 Rel. 750   Sysid: UST      Date: 20220415   Time: 170748   Logon_Data: 400/21717T/E'}
+2022-04-15 17:03:05,100 - order_info - INFO - Parsing cfg
+2022-04-15 17:03:05,101 - order_info - INFO - Connecting to SAP RFC...
+2022-04-15 17:03:05,154 - order_info - INFO - Connection to SAP RFC creating.
+2022-04-15 17:06:10,968 - test_ping_sappyrfc - INFO - Parsing cfg
+2022-04-15 17:06:10,969 - test_ping_sappyrfc - INFO - Connecting to SAP RFC...
+2022-04-15 17:06:11,077 - test_ping_sappyrfc - INFO - {'ECHOTEXT': 'Hello SAP!', 'RESPTEXT': 'SAP R/3 Rel. 750   Sysid: UST      Date: 20220415   Time: 171118   Logon_Data: 400/21717T/E'}
+2022-04-15 17:06:36,192 - order_info - INFO - Parsing cfg
+2022-04-15 17:06:36,192 - order_info - INFO - Connecting to SAP RFC...
+2022-04-15 17:06:36,244 - order_info - INFO - Connection to SAP RFC creating.
+2022-04-15 17:18:09,570 - test_ping_sappyrfc - INFO - Parsing cfg
+2022-04-15 17:18:09,570 - test_ping_sappyrfc - INFO - Connecting to SAP RFC...
+2022-04-15 17:18:09,728 - test_ping_sappyrfc - INFO - {'ECHOTEXT': 'Hello SAP!', 'RESPTEXT': 'SAP R/3 Rel. 750   Sysid: UST      Date: 20220415   Time: 172317   Logon_Data: 400/21717T/E'}
+2022-04-15 17:18:34,971 - order_info - INFO - Parsing cfg
+2022-04-15 17:18:34,972 - order_info - INFO - Connecting to SAP RFC...
+2022-04-15 17:18:35,023 - order_info - INFO - Connection to SAP RFC creating.

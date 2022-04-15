@@ -38,8 +38,9 @@ def main():
     #    print(result)
 
         # id_test_1000836.csv
-        file_unpack_id = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/unpack_id.csv"
-
+        #file_unpack_id = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/unpack_id.csv"
+        file_unpack_id = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test1_unpack_id.csv"
+        #file_unpack_id = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_unpack_id.csv"
         # чтение списка выгруженных ЕО на редактирование
         rows = []
         with open(file_unpack_id, newline='') as file:
