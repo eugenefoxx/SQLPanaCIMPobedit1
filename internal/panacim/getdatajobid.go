@@ -1348,6 +1348,13 @@ type ReelIdDates struct {
 	ReelIdData []ReelIdData
 }
 
+type ComponentAllData struct {
+	SAP    string
+	ReelID string
+	Qty    string
+	Lot    string
+}
+
 const querySelectReelData = `
 SELECT [PART_NO]
 ,[REEL_BARCODE]
@@ -1592,6 +1599,22 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 		fmt.Printf("reel_id: %v, sum: %v\n", i[0], sum)
 	}
 	fmt.Printf("reelIdStore: %v\n", reelIdStore)
+	fileReelIDData := "internal/testReelId"
+	reelIdData, err := os.Create(fileReelIDData)
+	if err != nil {
+		logger.Errorf(err.Error())
+	}
+	defer reelIdData.Close()
+
+	var chapterReelID string = `id`
+	var chapterQty string = `qty`
+	writer := csv.NewWriter(reelIdData)
+	writer.Write([]string{chapterReelID, chapterQty})
+	writer.Comma = ','
+	writer.Flush()
+
+	// создать файл internal/pysaprfc/data/unpack_id.csv из слайса reelIdStore
+
 	valuesReelId := []string{}
 	for _, r := range reelIdStore {
 		valuesReelId = append(valuesReelId, "'"+r.ReelID+"'")
@@ -1623,13 +1646,16 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 		//return qrs, err
 		logger.Errorf(err.Error())
 	}
+	componentDataStore := []ComponentAllData{}
 	for _, i := range reelIdStore {
 		for _, j := range qrsRI {
 			if i.ReelID == j.REEL_BARCODE {
 				fmt.Printf("GOOD SAP: %v, ID: %v, Qty: %v, Lot: %v\n", j.PART_NO, i.ReelID, i.Qty, j.LOT_NO)
+				componentDataStore = append(componentDataStore, ComponentAllData{SAP: j.PART_NO, ReelID: i.ReelID, Qty: i.Qty, Lot: j.LOT_NO})
 			}
 		}
 	}
+	fmt.Printf("componentDataStore: %v\n", componentDataStore)
 	// обработка данных  со скрапом
 	// проверяем, создавался ли файл ранее
 	fileReelIDScrap_unic := "internal/reelid_scrap_unic"
