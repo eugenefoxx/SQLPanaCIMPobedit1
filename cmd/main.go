@@ -173,7 +173,7 @@ func main() {
 		fmt.Printf("starunix: %v\n", unixSlice[0].StartUnixTimeWO)
 		fmt.Printf("endunix: %v\n", unixSlice[0].EndUnixTimeWO)
 		panacimStorage.GetSumComponentFromU03(string(unixSlice[0].StartUnixTimeWO), string(unixSlice[0].EndUnixTimeWO), npm)
-		os.Exit(1)
+		//os.Exit(1)
 		lineSlice, err := panacimStorage.GetRouteId(productid)
 		if err != nil {
 			logger.Errorf(err.Error())
@@ -194,25 +194,25 @@ func main() {
 		}
 
 		// получаем потребленные компоненты их кол-ва по job_id
-		componentsSlice, err := panacimStorage.GetPanacimDataComponentsByJobId(res)
-		if err != nil {
-			logger.Errorf(err.Error())
-		}
-		fmt.Printf("componentsSlice %v %v\n", componentsSlice[0].PartNo, componentsSlice[0].SumPlaceCount)
-		fmt.Printf("componentsSlice %v %v\n", componentsSlice[1].PartNo, componentsSlice[1].SumPlaceCount)
-		if err := panacimStorage.WtitePanaCIMDataComponentsToFile(componentsSlice); err != nil {
-			logger.Errorf(err.Error())
-		}
+		//componentsSlice, err := panacimStorage.GetPanacimDataComponentsByJobId(res)
+		//if err != nil {
+		//	logger.Errorf(err.Error())
+		//}
+		//fmt.Printf("componentsSlice %v %v\n", componentsSlice[0].PartNo, componentsSlice[0].SumPlaceCount)
+		//fmt.Printf("componentsSlice %v %v\n", componentsSlice[1].PartNo, componentsSlice[1].SumPlaceCount)
+		//if err := panacimStorage.WtitePanaCIMDataComponentsToFile(componentsSlice); err != nil {
+		//	logger.Errorf(err.Error())
+		//}
 
 		// получаем данные по потреблению по id и кол-ву
-		componentIdSlice, err := panacimStorage.GetPanacimDataComponentsByJobIdAllParamReelid(res)
-		if err != nil {
-			logger.Errorf(err.Error())
-		}
+		//componentIdSlice, err := panacimStorage.GetPanacimDataComponentsByJobIdAllParamReelid(res)
+		//if err != nil {
+		//	logger.Errorf(err.Error())
+		//}
 		// записываем результат в файл
-		if err := panacimStorage.WtitePanaCIMDataComponentsToFileUnpackId(componentIdSlice); err != nil {
-			logger.Errorf(err.Error())
-		}
+		//if err := panacimStorage.WtitePanaCIMDataComponentsToFileUnpackId(componentIdSlice); err != nil {
+		//	logger.Errorf(err.Error())
+		//}
 
 		// получить work order name
 		wo_nameSlice, err := panacimStorage.GetWOName(res)
@@ -230,14 +230,14 @@ func main() {
 			logger.Errorf(err.Error())
 		}
 		// получаем для SAP данные для выпуска заказа - материал, сумма, партия
-		wo_componentSlice, err := panacimStorage.GetPanacimDataComponentsByJobIdSAP(res)
-		if err != nil {
-			logger.Errorf(err.Error())
-		}
+		//wo_componentSlice, err := panacimStorage.GetPanacimDataComponentsByJobIdSAP(res)
+		//if err != nil {
+		//	logger.Errorf(err.Error())
+		//}
 		// записываем результат в файл wo_component.csv
-		if err := panacimStorage.WritePanacimDataComponentsByJobIdSAPToFile(wo_componentSlice); err != nil {
-			logger.Errorf(err.Error())
-		}
+		//if err := panacimStorage.WritePanacimDataComponentsByJobIdSAPToFile(wo_componentSlice); err != nil {
+		//	logger.Errorf(err.Error())
+		//}
 
 		// вызов модуля SAP для распаковки ео
 		// unpack_id_pyrfc := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/unpack_id.py"
@@ -251,8 +251,8 @@ func main() {
 		//app_py_output_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/output_order.py"
 		//pysaprfc.PyExec(app_py_output_order)
 
-		f := pysaprfc.PyExecArg("/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/test.py", "Jhon")
-		fmt.Printf("py - %v\n", f)
+		//f := pysaprfc.PyExecArg("/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/test.py", "Jhon")
+		//fmt.Printf("py - %v\n", f)
 		mixnameSlice, err := panacimStorage.GetPanaCIMixName(productid)
 		if err != nil {
 			logger.Errorf(err.Error())

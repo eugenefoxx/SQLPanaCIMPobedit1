@@ -529,7 +529,7 @@ func (r PanaCIMStorage) WtitePanaCIMDataComponentsToFile(in []InfoInstallLastJob
 		defer panaFile.Close()
 
 		writer := csv.NewWriter(panaFile)
-		writer.Write([]string{partNO + `,` + sumPlaceCount})
+		writer.Write([]string{partNO, sumPlaceCount})
 		writer.Comma = ','
 		writer.Flush()
 	}
@@ -556,6 +556,7 @@ func (r PanaCIMStorage) WtitePanaCIMDataComponentsToFile(in []InfoInstallLastJob
 
 }
 
+// запись потребления id и кол-ва в файл на основе бд panacim
 func (r PanaCIMStorage) WtitePanaCIMDataComponentsToFileUnpackId(in []InfoInstallLastJobId_View) (err error) {
 	logger := logging.GetLogger()
 	unpack_id_path := os.Getenv("unpack_id")
@@ -1355,6 +1356,26 @@ type ComponentAllData struct {
 	Lot    string
 }
 
+type WOComponentListPartNumberAndLot struct {
+	SAP string
+	Lot string
+}
+
+type WOComponentListPartNumberAndLotAndSum struct {
+	SAP string
+	Lot string
+	Sum string
+}
+
+type PanacimComponentStore struct {
+	SAP string
+	Qty string // SUM_PLACE_COUNT
+}
+
+type PanacimComponentPartNumberStore struct {
+	SAP string
+}
+
 const querySelectReelData = `
 SELECT [PART_NO]
 ,[REEL_BARCODE]
@@ -1362,7 +1383,7 @@ SELECT [PART_NO]
 FROM [PanaCIM].[dbo].[reel_data]
 where REEL_BARCODE = `
 
-func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO, npm string) {
+func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO, npm string) error {
 	logger := logging.GetLogger()
 	npmToUp := strings.ToUpper(npm)
 
@@ -1372,8 +1393,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 
 	tStartWO, err := strconv.ParseInt(startUnixTimeWO, 10, 64)
 	if err != nil {
-		logger.Panic(err)
-		panic(err)
+		logger.Fatal(err)
 	}
 	tmStartWO := time.Unix(tStartWO, 0)
 	p_tmStartWO, _ := time.Parse(layoutDate, tmStartWO.Format(layoutDate))
@@ -1381,7 +1401,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 
 	tFinishWO, err := strconv.ParseInt(finishUnixTimeWO, 10, 64)
 	if err != nil {
-		panic(err)
+		logger.Fatal(err)
 	}
 	tmFinishWO := time.Unix(tFinishWO, 0)
 	p_tmFinishWO, _ := time.Parse(layoutDate, tmFinishWO.Format(layoutDate))
@@ -1420,13 +1440,13 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 	//checkDubleComponent := map[string]bool{}
 	inputCoreFolder, err := ioutil.ReadDir(resourcePath)
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 	}
 	for _, npmf := range inputCoreFolder {
 		if npmf.IsDir() {
 			processedf, err := ioutil.ReadDir(resourcePath + npmf.Name())
 			if err != nil {
-				log.Fatal(err)
+				logger.Fatal(err)
 			}
 			for _, processed := range processedf {
 				fmt.Println("COMPONENT NPM-1 Great!!!")
@@ -1434,14 +1454,14 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 
 					dataf, err := ioutil.ReadDir(resourcePath + npmf.Name() + "/" + processed.Name())
 					if err != nil {
-						log.Fatal(err)
+						logger.Fatal(err)
 					}
 					for _, data := range dataf {
 						fmt.Printf("COMPONENT %v Great!!!\n", data.Name())
 						if data.IsDir() {
 							fileu03f, err := ioutil.ReadDir(resourcePath + npmf.Name() + "/" + processed.Name() + "/" + data.Name())
 							if err != nil {
-								log.Fatal(err)
+								logger.Fatal(err)
 							}
 							for _, fileu03 := range fileu03f {
 								if !fileu03.IsDir() {
@@ -1486,14 +1506,14 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 											fileReelIdRW, err := os.OpenFile(fileReelId, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
 											if err != nil {
 												logger.Errorf(err.Error())
-												return
+												return err
 											}
 											//defer fileReelIdRW.Close()
 
 											fileReedIdScrapRW, err := os.OpenFile(fileReedIdScrap, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
 											if err != nil {
 												logger.Errorf(err.Error())
-												return
+												return err
 											}
 											//defer fileReedIdScrapRW.Close()
 
@@ -1510,7 +1530,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 														_, err := fmt.Fprintln(fileReelIdRW, v)
 														if err != nil {
 															fileReelIdRW.Close()
-															return
+															return err
 														}
 													}
 												}
@@ -1521,7 +1541,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 														_, err := fmt.Fprintln(fileReedIdScrapRW, v)
 														if err != nil {
 															fileReedIdScrapRW.Close()
-															return
+															return err
 														}
 													}
 												}
@@ -1599,21 +1619,57 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 		fmt.Printf("reel_id: %v, sum: %v\n", i[0], sum)
 	}
 	fmt.Printf("reelIdStore: %v\n", reelIdStore)
-	fileReelIDData := "internal/testReelId"
-	reelIdData, err := os.Create(fileReelIDData)
-	if err != nil {
-		logger.Errorf(err.Error())
+	//fileReelIDData := "internal/testReelId"
+	//reelIdData, err := os.Create(fileReelIDData)
+	//if err != nil {
+	//	logger.Errorf(err.Error())
+	//	}
+	//defer reelIdData.Close()
+	//writer := csv.NewWriter(reelIdData)
+	//writer.Write([]string{chapterReelID, chapterQty})
+	//writer.Comma = ','
+	//writer.Flush()
+	unpack_id_path := os.Getenv("unpack_id")
+
+	unpack_id_pathRemove := unpack_id_path
+	if utils.FileExists(unpack_id_pathRemove) {
+		os.Remove(unpack_id_pathRemove)
 	}
-	defer reelIdData.Close()
 
 	var chapterReelID string = `id`
 	var chapterQty string = `qty`
-	writer := csv.NewWriter(reelIdData)
-	writer.Write([]string{chapterReelID, chapterQty})
-	writer.Comma = ','
-	writer.Flush()
+	unpack_idFile := unpack_id_path
+	if _, err := os.Stat(unpack_idFile); os.IsNotExist(err) {
+		unpack_idFile, err := os.Create(unpack_idFile)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		defer unpack_idFile.Close()
+
+		writer := csv.NewWriter(unpack_idFile)
+		writer.Write([]string{chapterReelID, chapterQty})
+		writer.Comma = ','
+		writer.Flush()
+	}
 
 	// создать файл internal/pysaprfc/data/unpack_id.csv из слайса reelIdStore
+	addDataComponentsUnpackId, err := os.OpenFile(unpack_idFile, os.O_APPEND|os.O_WRONLY, 0644)
+	if err != nil {
+		logger.Errorf(err.Error())
+		return err
+	}
+	defer addDataComponentsUnpackId.Close()
+
+	for _, i := range reelIdStore {
+		var result = []string{i.ReelID + "," + i.Qty}
+		for _, v := range result {
+			_, err = fmt.Fprintln(addDataComponentsUnpackId, v)
+			if err != nil {
+				addDataComponentsUnpackId.Close()
+				return err
+			}
+		}
+	}
 
 	valuesReelId := []string{}
 	for _, r := range reelIdStore {
@@ -1656,6 +1712,158 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 		}
 	}
 	fmt.Printf("componentDataStore: %v\n", componentDataStore)
+	// создаем слайс из уникальных, унифицированных записей парт-номер и партия
+	checkDubleLot := map[string]bool{}
+	woComponentPartNumberAndLotStore := []WOComponentListPartNumberAndLot{}
+	for _, i := range componentDataStore {
+		sum := 0
+		if checkDubleLot[i.SAP+i.Lot] {
+			//fmt.Printf("duble sap %v + lot %v\n", i.SAP, i.Lot)
+		} else {
+			checkDubleLot[i.SAP+i.Lot] = true
+			fmt.Printf("no duble sap %v + lot %v + sum %s\n", i.SAP, i.Lot, strconv.Itoa(sum))
+			woComponentPartNumberAndLotStore = append(woComponentPartNumberAndLotStore, WOComponentListPartNumberAndLot{SAP: i.SAP, Lot: i.Lot})
+		}
+	}
+	// унифицируем данные до значения парт-номер, партия и суммированное значение по кол-ву
+	woComponentPartNumberAndLotAndSumStore := []WOComponentListPartNumberAndLotAndSum{}
+	for _, i := range woComponentPartNumberAndLotStore {
+		var sum int
+		for _, j := range componentDataStore {
+			if i.SAP == j.SAP && i.Lot == j.Lot {
+				sumInt, err := strconv.Atoi(j.Qty)
+				if err != nil {
+					logger.Errorf(err.Error())
+					return nil
+				}
+				sum += sumInt
+			}
+		}
+		fmt.Printf("HHHH SAP %v, Lot %v, SUM %d\n", i.SAP, i.Lot, sum)
+		woComponentPartNumberAndLotAndSumStore = append(woComponentPartNumberAndLotAndSumStore,
+			WOComponentListPartNumberAndLotAndSum{
+				SAP: i.SAP, Lot: i.Lot, Sum: strconv.Itoa(sum)})
+	}
+	//fmt.Printf("HH: %v", woComponentPartNumberAndLotAndSumStore)
+	// записываю результат в файл
+	wo_component_path := os.Getenv("wo_component")
+
+	wo_component_pathRemove := wo_component_path
+	if utils.FileExists(wo_component_pathRemove) {
+		os.Remove(wo_component_pathRemove)
+	}
+	var part_number string = `PART_NO`
+	var sum string = `SUM`
+	var lot string = `Lot`
+	wo_componentFile := wo_component_path
+	if _, err := os.Stat(wo_componentFile); os.IsNotExist(err) {
+		wo_componentFile, err := os.Create(wo_componentFile)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		defer wo_componentFile.Close()
+
+		writer := csv.NewWriter(wo_componentFile)
+		writer.Write([]string{part_number, sum, lot})
+		writer.Comma = ','
+		writer.Flush()
+	}
+
+	addWOComponentFile, err := os.OpenFile(wo_componentFile, os.O_APPEND|os.O_WRONLY, 0644)
+	if err != nil {
+		logger.Errorf(err.Error())
+		return nil
+	}
+	defer addWOComponentFile.Close()
+
+	for _, i := range woComponentPartNumberAndLotAndSumStore {
+		var result = []string{i.SAP + "," + i.Sum + "," + i.Lot}
+
+		for _, v := range result {
+			_, err = fmt.Fprintln(addWOComponentFile, v)
+			if err != nil {
+				addWOComponentFile.Close()
+				return nil
+			}
+		}
+	}
+
+	// формируем данные по сборке панасим по значению парт-номер и кол-во
+	// фомируем список уникальные парт-номера
+	checkDublePartNumber := map[string]bool{}
+	panacimPartNumberStore := []PanacimComponentPartNumberStore{}
+	for _, i := range componentDataStore {
+		if checkDublePartNumber[i.SAP] {
+
+		} else {
+			checkDublePartNumber[i.SAP] = true
+			panacimPartNumberStore = append(panacimPartNumberStore,
+				PanacimComponentPartNumberStore{SAP: i.SAP})
+		}
+	}
+	// формируем список уникальных парт-номеров и сумм их потребления
+	panacimComponentstore := []PanacimComponentStore{}
+	for _, i := range panacimPartNumberStore {
+		var sum int
+		for _, j := range woComponentPartNumberAndLotAndSumStore {
+			if i.SAP == j.SAP {
+				sumInt, err := strconv.Atoi(j.Sum)
+				if err != nil {
+					logger.Errorf(err.Error())
+					return nil
+				}
+				sum += sumInt
+			}
+		}
+		fmt.Printf("PANACIM SAP SUM: SAP %v, SUM %d\n", i.SAP, sum)
+		panacimComponentstore = append(panacimComponentstore,
+			PanacimComponentStore{
+				SAP: i.SAP,
+				Qty: strconv.Itoa(sum),
+			})
+	}
+	// запись результата в файл
+	panaCIMpath := os.Getenv("panacim")
+	panacimFileRemove := panaCIMpath
+
+	if utils.FileExists(panacimFileRemove) {
+		os.Remove(panacimFileRemove)
+	}
+
+	var partNO string = `PART_NO`
+	var sumPlaceCount string = `SUM_PLACE_COUNT`
+	panacimFile := panaCIMpath
+	if _, err := os.Stat(panacimFile); os.IsNotExist(err) {
+		panaFile, err := os.Create(panacimFile)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		defer panaFile.Close()
+
+		writer := csv.NewWriter(panaFile)
+		writer.Write([]string{partNO, sumPlaceCount})
+		writer.Comma = ','
+		writer.Flush()
+	}
+
+	addPanacimComponentToFile, err := os.OpenFile(panacimFile, os.O_APPEND|os.O_WRONLY, 0644)
+	if err != nil {
+		logger.Errorf(err.Error()) //logger.Errorf(err.Error())
+		return nil
+	}
+	defer addPanacimComponentToFile.Close()
+
+	for _, i := range panacimComponentstore {
+		var result = []string{i.SAP + "," + i.Qty}
+
+		for _, v := range result {
+			_, err = fmt.Fprintln(addPanacimComponentToFile, v)
+			if err != nil {
+				addPanacimComponentToFile.Close()
+				return nil
+			}
+		}
+	}
 	// обработка данных  со скрапом
 	// проверяем, создавался ли файл ранее
 	fileReelIDScrap_unic := "internal/reelid_scrap_unic"
@@ -1725,7 +1933,6 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 		if err.Error() != "sql: no rows in result set" {
 			r.logger.Errorf(err.Error())
 			//return nil, err
-
 		}
 	}
 	defer qr.Close()
@@ -1747,15 +1954,105 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 		logger.Errorf(err.Error())
 	}
 	fmt.Println(qrs)
+
+	reelDataIDScrapStoreAll := []ComponentAllData{}
 	for _, i := range reelIDScrapStore {
 		//fmt.Printf("i.ReelID: %v\n", i.ReelID)
 		for _, j := range qrs {
 			//	fmt.Printf("j.REEL_BARCODE: %v\n", j.REEL_BARCODE)
 			if i.ReelID == j.REEL_BARCODE {
-				fmt.Printf("SAP: %v, ID: %v, Qty: %v, Lot: %v\n", j.PART_NO, i.ReelID, i.Qty, j.LOT_NO)
+				fmt.Printf("SAP SCRAP: %v, ID: %v, Qty: %v, Lot: %v\n", j.PART_NO, i.ReelID, i.Qty, j.LOT_NO)
+				reelDataIDScrapStoreAll = append(reelDataIDScrapStoreAll,
+					ComponentAllData{
+						SAP:    j.PART_NO,
+						ReelID: i.ReelID,
+						Qty:    i.Qty,
+						Lot:    j.LOT_NO,
+					})
 			}
 		}
 	}
+	fmt.Println("reelDataIDScrapStoreAll", reelDataIDScrapStoreAll)
+	checkScrapDoubleLot := map[string]bool{}
+	scrapComponentPartNumberAndLotStore := []WOComponentListPartNumberAndLot{}
+	for _, i := range reelDataIDScrapStoreAll {
+		if checkScrapDoubleLot[i.SAP+i.Lot] {
+
+		} else {
+			checkScrapDoubleLot[i.SAP+i.Lot] = true
+			fmt.Printf("scrap no duble sap %v + lot %v\n", i.SAP, i.Lot)
+			scrapComponentPartNumberAndLotStore = append(scrapComponentPartNumberAndLotStore,
+				WOComponentListPartNumberAndLot{
+					SAP: i.SAP,
+					Lot: i.Lot,
+				})
+		}
+	}
+	fmt.Println("scrapComponentPartNumberAndLotStore", scrapComponentPartNumberAndLotStore)
+	scrapComponentPartNumberAndLotAndSumStore := []WOComponentListPartNumberAndLotAndSum{}
+	for _, i := range scrapComponentPartNumberAndLotStore {
+		var sum int
+		for _, j := range reelDataIDScrapStoreAll {
+			if i.SAP == j.SAP && i.Lot == j.Lot {
+				sumInt, err := strconv.Atoi(j.Qty)
+				if err != nil {
+					logger.Errorf(err.Error())
+					return nil
+				}
+				sum += sumInt
+			}
+		}
+
+		scrapComponentPartNumberAndLotAndSumStore = append(scrapComponentPartNumberAndLotAndSumStore,
+			WOComponentListPartNumberAndLotAndSum{
+				SAP: i.SAP,
+				Lot: i.Lot,
+				Sum: strconv.Itoa(sum),
+			})
+	}
+	fmt.Println("scrapComponentPartNumberAndLotAndSumStore", scrapComponentPartNumberAndLotAndSumStore)
+	scrap_path := os.Getenv("scrap")
+
+	scrap_pathRemove := scrap_path
+	if utils.FileExists(scrap_pathRemove) {
+		os.Remove(scrap_pathRemove)
+	}
+	var scrap_part_number string = `PART_NO`
+	var scrap_sum string = `SUM`
+	var scrap_lot string = `Lot`
+	scrapFile := scrap_path
+	if _, err := os.Stat(scrapFile); os.IsNotExist(err) {
+		scrapFile, err := os.Create(scrapFile)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		defer scrapFile.Close()
+
+		writer := csv.NewWriter(scrapFile)
+		writer.Write([]string{scrap_part_number, scrap_sum, scrap_lot})
+		writer.Comma = ','
+		writer.Flush()
+	}
+
+	addScrapToFile, err := os.OpenFile(scrapFile, os.O_APPEND|os.O_WRONLY, 0644)
+	if err != nil {
+		logger.Errorf(err.Error())
+		return nil
+	}
+	defer addScrapToFile.Close()
+
+	for _, i := range scrapComponentPartNumberAndLotAndSumStore {
+		var result = []string{i.SAP + "," + i.Sum + "," + i.Lot}
+
+		for _, v := range result {
+			_, err = fmt.Fprintln(addScrapToFile, v)
+			if err != nil {
+				addScrapToFile.Close()
+				return nil
+			}
+		}
+	}
+	return nil
 }
 
 func readLines(path string) ([]string, error) {
