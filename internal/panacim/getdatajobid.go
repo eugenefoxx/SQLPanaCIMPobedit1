@@ -1918,6 +1918,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 		fmt.Printf("Scrap, reel_id: %v, sum: %v\n", i[0], sum)
 	}
 	fmt.Printf("reelIDScrapStore: %v\n", reelIDScrapStore)
+
 	valuesText := []string{}
 	for _, r := range reelIDScrapStore {
 
