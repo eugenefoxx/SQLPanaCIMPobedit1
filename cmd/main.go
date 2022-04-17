@@ -245,12 +245,12 @@ func main() {
 		time.Sleep(10 * time.Second)
 		logger.Info("Дергаю info_order")
 		// Вызов модуля SAP для проверки и вставки данных
-		//app_py_info_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/order_info.py"
-		//pysaprfc.PyExec(app_py_info_order)
+		app_py_info_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/order_info.py"
+		pysaprfc.PyExec(app_py_info_order)
 		time.Sleep(10 * time.Second)
 		// Вывоз модуля SAP для выпуска по заказу изделия
-		app_py_output_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/output_order.py"
-		pysaprfc.PyExec(app_py_output_order)
+		//app_py_output_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/output_order.py"
+		//pysaprfc.PyExec(app_py_output_order)
 
 		//f := pysaprfc.PyExecArg("/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/test.py", "Jhon")
 		//fmt.Printf("py - %v\n", f)

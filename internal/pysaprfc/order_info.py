@@ -1,4 +1,5 @@
 import configparser
+from unittest import case
 
 import pyrfc
 import csv
@@ -174,7 +175,7 @@ def main():
                         ]
                     })
                     print(chg)
-                    # logger.warning(parse_response(chg))
+                    logger.warning(parse_response(chg))
         #    elif str('00000000000' + row['PART_NO']) != str(c):
         #        print("not", c)
 
@@ -456,20 +457,21 @@ def get_reserv_num(dict_value):
 
 
 def parse_response(dict_value):
-    for key, value in dict_value.items():
-        if key == 'RETURN':
-            if value[0].get('TYPE', '') == 'E':
-                return 'Error: ' + str(value[0].get('MESSAGE', ''))
-            elif value[0].get('TYPE', '') == 'I':
-                return "Infomation: " + str(value[0].get('MESSAGE', ''))
-            elif value[0].get('TYPE', '') == 'W':
-                return "Warning: " + str(value[0].get('MESSAGE', ''))
-            # elif value[0].get('NUMBER', '') == '469':
-            # print("NOK")
-            # elif value[0].get('NUMBER', '') == '100':
-            # print("OK")
-            else:
-                return "Ответ не получен"
+    for value in dict_value['RETURN']:
+        # if key == 'RETURN':
+        if value.get('TYPE', '') == 'E':
+            return 'Error: ' + str(value.get('MESSAGE', ''))
+        elif value.get('TYPE', '') == 'I':
+            return "Infomation: " + str(value.get('MESSAGE', ''))
+        elif value.get('TYPE', '') == 'W':
+            return "Warning: " + str(value.get('MESSAGE', ''))
+
+        # elif value[0].get('NUMBER', '') == '469':
+        # print("NOK")
+        # elif value[0].get('NUMBER', '') == '100':
+        # print("OK")
+        else:
+            return "Ответ не получен"
 
 
 if __name__ == "__main__":
