@@ -2,6 +2,7 @@ package panacim
 
 import (
 	"context"
+	"database/sql"
 	"encoding/csv"
 	"fmt"
 	"os"
@@ -11,6 +12,23 @@ import (
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/utils"
 )
 
+type panaCIMStorage struct {
+	DB     *sql.DB
+	logger *logging.Logger
+	//mu     *sync.Mutex
+}
+
+func NewPanaCIMRepository(db *sql.DB, logger *logging.Logger) PanaCIMRepository {
+	return &panaCIMStorage{
+		DB:     db,
+		logger: logger,
+	}
+}
+
+func (r *panaCIMStorage) Print() {
+	r.logger.Info("TEST PRINT")
+}
+
 const querySelectInfoInstallJobId_ViewComponent = `
 SELECT 
     [PART_NO]
@@ -19,15 +37,15 @@ SELECT
 FROM [PanaCIM].[dbo].[InfoInstallLastJobId_View]
  group by LOT_NO, PART_NO;`
 
-func (r *PanaCIMStorage) GetPanacimDataComponentsByJobIdSAP(jobid string) ([]InfoInstallLastJobId_View, error) {
-	logger := logging.GetLogger()
+func (r *panaCIMStorage) GetPanacimDataComponentsByJobIdSAP(jobid string) ([]InfoInstallLastJobId_View, error) {
+	//// logger := logging.GetLogger()
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
 	qrDel, err := r.DB.Query(queryDelObjInfoInstallJobId_View)
 	if err != nil {
 		if err.Error() != "sql: no rows in result set" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -36,7 +54,7 @@ func (r *PanaCIMStorage) GetPanacimDataComponentsByJobIdSAP(jobid string) ([]Inf
 	qrFunc, err := r.DB.ExecContext(ctx, queryCreateInfoInstallJobId_View1+jobid+queryCreateInfoInstallJobId_View2)
 	if err != nil {
 		if err.Error() != "sql: function no create" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -45,7 +63,7 @@ func (r *PanaCIMStorage) GetPanacimDataComponentsByJobIdSAP(jobid string) ([]Inf
 	qr, err := r.DB.QueryContext(ctx, querySelectInfoInstallJobId_ViewComponent)
 	if err != nil {
 		if err.Error() != "sql: no rows in result set" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -69,8 +87,8 @@ func (r *PanaCIMStorage) GetPanacimDataComponentsByJobIdSAP(jobid string) ([]Inf
 	return qrs, nil
 }
 
-func (r *PanaCIMStorage) WritePanacimDataComponentsByJobIdSAPToFile(in []InfoInstallLastJobId_View) (err error) {
-	logger := logging.GetLogger()
+func (r *panaCIMStorage) WritePanacimDataComponentsByJobIdSAPToFile(in []InfoInstallLastJobId_View) (err error) {
+	// logger := logging.GetLogger()
 	wo_component_path := os.Getenv("wo_component")
 
 	wo_component_pathRemove := wo_component_path
@@ -85,7 +103,7 @@ func (r *PanaCIMStorage) WritePanacimDataComponentsByJobIdSAPToFile(in []InfoIns
 	if _, err := os.Stat(wo_componentFile); os.IsNotExist(err) {
 		wo_componentFile, err := os.Create(wo_componentFile)
 		if err != nil {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 		}
 		defer wo_componentFile.Close()
 
@@ -97,7 +115,7 @@ func (r *PanaCIMStorage) WritePanacimDataComponentsByJobIdSAPToFile(in []InfoIns
 
 	splitWOComponent, err := os.OpenFile(wo_componentFile, os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
-		logger.Errorf(err.Error())
+		r.logger.Errorf(err.Error())
 		return nil
 	}
 	defer splitWOComponent.Close()
@@ -117,8 +135,8 @@ func (r *PanaCIMStorage) WritePanacimDataComponentsByJobIdSAPToFile(in []InfoIns
 	return nil
 }
 
-func (r *PanaCIMStorage) WriteDataInfoOrderSAP(wo_name, sum string) error {
-	logger := logging.GetLogger()
+func (r *panaCIMStorage) WriteDataInfoOrderSAP(wo_name, sum string) error {
+	// logger := logging.GetLogger()
 	info_orderPath := os.Getenv("info_order")
 
 	dateNow := time.Now()
@@ -137,7 +155,7 @@ func (r *PanaCIMStorage) WriteDataInfoOrderSAP(wo_name, sum string) error {
 	if _, err := os.Stat(info_orderFile); os.IsNotExist(err) {
 		info_order, err := os.Create(info_orderFile)
 		if err != nil {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 		}
 		defer info_order.Close()
 
@@ -150,7 +168,7 @@ func (r *PanaCIMStorage) WriteDataInfoOrderSAP(wo_name, sum string) error {
 	/*
 		splitInfoOrder, err := os.OpenFile(info_orderFile, os.O_APPEND|os.O_WRONLY, 0644)
 		if err != nil {
-			logger.Errorf(err.Error()) //logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error()) //r.logger.Errorf(err.Error())
 			return nil
 		}
 		defer splitInfoOrder.Close()

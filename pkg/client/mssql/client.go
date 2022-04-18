@@ -17,5 +17,5 @@ func NewMSSQL() (db *sql.DB, err error) {
 	}
 	//defer db.Close()
 	//log.Printf("Connected!\n")
-	return //db, nil
+	return db, nil
 }

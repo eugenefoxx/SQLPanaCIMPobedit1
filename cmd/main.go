@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/exec"
 	"strconv"
+	"time"
 
 	_ "github.com/denisenkom/go-mssqldb"
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/panacim"
@@ -36,13 +37,14 @@ func init() {
 
 	err := godotenv.Load()
 	if err != nil {
-		logger.Fatal(err.Error)
+		//logger.Fatal(err.Error)
+		logger.Errorf(err.Error())
 	}
 }
 
 // NPM_910-00473_A_
 func main() {
-
+	start := time.Now()
 	//	logging.Init()
 	logger := logging.GetLogger()
 	var err error
@@ -100,18 +102,21 @@ func main() {
 	//opmopites.MSSQLComposite(db)
 	SelectVersion()
 
-	jobIdStorage := sortworkorders.OperationStorage{
-		DB: db,
-	}
+	jobIdStorage := sortworkorders.NewSortWorkOrdersRepository(db, &logger)
 	rr, err := jobIdStorage.TestQr()
 	if err != nil {
 		logger.Errorf(err.Error())
 	}
 	fmt.Println(rr)
 
-	panacimStorage := panacim.PanaCIMStorage{
-		DB: db,
-	}
+	panacimStorage := panacim.NewPanaCIMRepository(db, &logger)
+
+	//os.Exit(1)
+	/*
+		panacimStorage := panacim.PanaCIMStorage{
+			DB: db,
+			//logger: &logger,
+		}*/
 	// получаем список из трех закрытых WO в моменте
 	doLastListWO, err := panacimStorage.GetLastListWO()
 	if err != nil {
@@ -134,7 +139,7 @@ func main() {
 		logger.Errorf(err.Error())
 	}
 	if res != "" {
-		res := "5436" //"5436"
+		res := "5436" //"5436" 5444
 		// получаем номер актуального JOB_ID
 		logger.Infof(("res - %v"), res)
 
@@ -155,6 +160,18 @@ func main() {
 		}
 		fmt.Printf("product id - %v\n", productIdSlice[0].Product_Id)
 		productid := productIdSlice[0].Product_Id
+		// получаем PATTERN_TYPES_PER_PANEL
+		patternTypesPerPanelSlice, err := panacimStorage.GetPatternTypesPerPanel(productid)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		fmt.Printf("PATTERN_TYPES_PER_PANEL - %s\n", patternTypesPerPanelSlice[0].PATTERN_TYPES_PER_PANEL)
+		patternTypesPerPanelStr := patternTypesPerPanelSlice[0].PATTERN_TYPES_PER_PANEL
+		patternTypesPerPanelInt, err := strconv.Atoi(patternTypesPerPanelStr)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+
 		// получение product_name для рецепта
 		productNameSlice, err := panacimStorage.GetProductName(productid)
 		if err != nil {
@@ -163,11 +180,20 @@ func main() {
 		fmt.Printf("product name NPM - %v\n", productNameSlice[0].ProductName)
 		npm := productNameSlice[0].ProductName
 
-		sumPCB := panacimStorage.GetSumPCBFromU03V2(string(unixSlice[0].StartUnixTimeWO), string(unixSlice[0].EndUnixTimeWO), npm)
-		sumPCBint, err := strconv.Atoi(sumPCB)
+		sumPCBFromU03 := panacimStorage.GetSumPCBFromU03V2(string(unixSlice[0].StartUnixTimeWO), string(unixSlice[0].EndUnixTimeWO), npm)
+		sumPCBFromU03Int, err := strconv.Atoi(sumPCBFromU03)
 		if err != nil {
 			logger.Errorf(err.Error())
 		}
+		sumPCBint := sumPCBFromU03Int / patternTypesPerPanelInt
+
+		sumPCB := strconv.Itoa(sumPCBint)
+
+		//sumPCBint, err := strconv.Atoi(sumPCB)
+		//if err != nil {
+		//	logger.Errorf(err.Error())
+		//}
+
 		fmt.Printf("sumPCB: %v\n", sumPCB)
 		fmt.Printf("product name NPM - %v\n", productNameSlice[0].ProductName)
 		fmt.Printf("starunix: %v\n", unixSlice[0].StartUnixTimeWO)
@@ -457,6 +483,9 @@ func main() {
 			println(err.Error())
 			return
 		} */
+
+	duration := time.Since(start)
+	fmt.Println("Время работы - ", duration)
 
 }
 

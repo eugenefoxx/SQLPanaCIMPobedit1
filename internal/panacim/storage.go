@@ -2,16 +2,44 @@ package panacim
 
 import (
 	"database/sql"
-	"sync"
-
-	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/logging"
 )
 
-type PanaCIMStorage struct {
-	DB     *sql.DB
-	logger logging.Logger
-	mu     *sync.Mutex
+type PanaCIMRepository interface {
+	Print()
+	GetPanacimDataComponentsByJobIdSAP(string) ([]InfoInstallLastJobId_View, error)
+	WritePanacimDataComponentsByJobIdSAPToFile(in []InfoInstallLastJobId_View) (err error)
+	WriteDataInfoOrderSAP(wo_name, sum string) error
+
+	GetLastListWO() ([]LastWOData, error)
+	GetWOName(name string) ([]LastWOData, error)
+	WriteWorkOrderNameToFile(in []LastWOData) (err error)
+	WriteListWOToFile(in []LastWOData) (err error)
+
+	GetSumPattert(jobid string) ([]SumPattern, error)
+	GetPatternForPanel() ([]ProductData, error)
+	GetProductId(jobid string) ([]ProductSetup, error)
+	GetProductName(productid string) ([]ProductData, error)
+	GetRouteId(productid string) ([]ProductSetup, error)
+	GetPanacimDataComponentsByJobId(jobid string) ([]InfoInstallLastJobId_View, error)
+	GetPanacimDataComponentsByJobIdAllParamReelid(jobid string) ([]InfoInstallLastJobId_View, error)
+	WtitePanaCIMDataComponentsToFile(in []InfoInstallLastJobId_View) (err error)
+	WtitePanaCIMDataComponentsToFileUnpackId(in []InfoInstallLastJobId_View) (err error)
+	GetPanaCIMixName(productid string) ([]ProductSetup, error)
+	GetPanaCIMParts(mixname string) ([]SubstituteParts, error)
+	WritePanaCIMPartsToFile(in []SubstituteParts) (err error)
+	GetUnixTimeWO(jobid string) ([]Job_History, error)
+	GetSumPCBFromU03V2(startUnixTimeWO, finishUnixTimeWO, npm string) (sumstrPCBOrder string)
+	GetSumPCBFromU03(startUnixTimeWO, finishUnixTimeWO, npm string) (sumstrPCBOrder string)
+	GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO, npm string) error
+
+	GetPatternTypesPerPanel(product_id string) ([]ProductData, error)
 }
+
+/*type PanaCIMStorage struct {
+	DB     *sql.DB
+	logger *logging.Logger
+	mu     *sync.Mutex
+}*/
 
 type LastWOData struct {
 	WORKORDERID          string         `db:"WORK_ORDER_ID"`
@@ -46,8 +74,10 @@ type SubstituteParts struct {
 
 // [PanaCIM].[dbo].[product_data]
 type ProductData struct {
-	ProductName     string `db:"PRODUCT_NAME"`
-	PatternPerPanel string `db:"PATTERN_COMBINATIONS_PER_PANEL"`
+	ProductName             string `db:"PRODUCT_NAME"`
+	PatternPerPanel         string `db:"PATTERN_COMBINATIONS_PER_PANEL"`
+	Product_ID              string `db:"PRODUCT_ID"`
+	PATTERN_TYPES_PER_PANEL string `db:"PATTERN_TYPES_PER_PANEL"`
 }
 
 type ProductDataLink []ProductData

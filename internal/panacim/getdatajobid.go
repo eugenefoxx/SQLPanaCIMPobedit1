@@ -16,7 +16,6 @@ import (
 	"time"
 
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/filereader"
-	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/logging"
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/utils"
 	cp "github.com/otiai10/copy"
 	"gopkg.in/ini.v1"
@@ -40,15 +39,15 @@ type SumPattern struct {
 	SumPattern string `db:"sumPattern"`
 }
 
-func (r PanaCIMStorage) GetSumPattert(jobid string) ([]SumPattern, error) {
-	logger := logging.GetLogger()
+func (r *panaCIMStorage) GetSumPattert(jobid string) ([]SumPattern, error) {
+	// logger := logging.GetLogger()
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
 	qrDel, err := r.DB.Query(queryDelObj)
 	if err != nil {
 		if err.Error() != "sql: no rows in result set" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -57,7 +56,7 @@ func (r PanaCIMStorage) GetSumPattert(jobid string) ([]SumPattern, error) {
 	qrFunc, err := r.DB.ExecContext(ctx, queryGetSUMPattern+jobid)
 	if err != nil {
 		if err.Error() != "sql: function no create" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -66,7 +65,7 @@ func (r PanaCIMStorage) GetSumPattert(jobid string) ([]SumPattern, error) {
 	qr, err := r.DB.QueryContext(ctx, querySelectSUMPattern)
 	if err != nil {
 		if err.Error() != "sql: no rows in result set" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -107,15 +106,15 @@ WHERE [PRODUCT_ID] = (
 
 const querySelectPatternForPanel = `SELECT * FROM dbo.GetQtyPerPanel();`
 
-func (r PanaCIMStorage) GetPatternForPanel() ([]ProductData, error) {
-	logger := logging.GetLogger()
+func (r *panaCIMStorage) GetPatternForPanel() ([]ProductData, error) {
+	// logger := logging.GetLogger()
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
 	qrDel, err := r.DB.Query(queryDelPCB)
 	if err != nil {
 		if err.Error() != "sql: no rows in result set" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -124,7 +123,7 @@ func (r PanaCIMStorage) GetPatternForPanel() ([]ProductData, error) {
 	qrFunc, err := r.DB.ExecContext(ctx, queryPatternForPanel)
 	if err != nil {
 		if err.Error() != "sql: function no create" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -133,7 +132,7 @@ func (r PanaCIMStorage) GetPatternForPanel() ([]ProductData, error) {
 	qr, err := r.DB.QueryContext(ctx, querySelectPatternForPanel)
 	if err != nil {
 		if err.Error() != "sql: no rows in result set" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -144,6 +143,41 @@ func (r PanaCIMStorage) GetPatternForPanel() ([]ProductData, error) {
 		var qrts ProductData
 		if err := qr.Scan(
 			&qrts.PatternPerPanel,
+		); err != nil {
+			return qrs, err
+		}
+		qrs = append(qrs, qrts)
+	}
+	if err = qr.Err(); err != nil {
+		return qrs, err
+	}
+	return qrs, nil
+}
+
+const querySelectPatternTypesPerPanel = `
+SELECT [PATTERN_TYPES_PER_PANEL]
+FROM [PanaCIM].[dbo].[product_data]
+WHERE PRODUCT_ID = `
+
+// Получаме из БД PatternTypesPerPanel
+func (r *panaCIMStorage) GetPatternTypesPerPanel(product_id string) ([]ProductData, error) {
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	qr, err := r.DB.QueryContext(ctx, querySelectPatternTypesPerPanel+product_id)
+	if err != nil {
+		if err.Error() != "sql: no rows in result set" {
+			r.logger.Errorf(err.Error())
+			return nil, err
+		}
+	}
+	defer qr.Close()
+
+	var qrs []ProductData
+	for qr.Next() {
+		var qrts ProductData
+		if err := qr.Scan(
+			&qrts.PATTERN_TYPES_PER_PANEL,
 		); err != nil {
 			return qrs, err
 		}
@@ -187,8 +221,8 @@ WHERE [SETUP_ID] = (
 
 const querySelectProductId = `SELECT * FROM dbo.GetLastProductId();`
 
-func (r *PanaCIMStorage) GetProductId(jobid string) ([]ProductSetup, error) {
-	logger := logging.GetLogger()
+func (r *panaCIMStorage) GetProductId(jobid string) ([]ProductSetup, error) {
+	// logger := logging.GetLogger()
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -204,7 +238,7 @@ func (r *PanaCIMStorage) GetProductId(jobid string) ([]ProductSetup, error) {
 	qrFunc, err := r.DB.ExecContext(ctx, queryGetSetupId+jobid)
 	if err != nil {
 		if err.Error() != "sql: function no create" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -213,7 +247,7 @@ func (r *PanaCIMStorage) GetProductId(jobid string) ([]ProductSetup, error) {
 	qrDelProduct, err := r.DB.Query(queryDelObjProductId)
 	if err != nil {
 		if err.Error() != "sql: no rows in result set" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -222,7 +256,7 @@ func (r *PanaCIMStorage) GetProductId(jobid string) ([]ProductSetup, error) {
 	qrFuncProductId, err := r.DB.ExecContext(ctx, queryGetProductId)
 	if err != nil {
 		if err.Error() != "sql: function no create" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -231,7 +265,7 @@ func (r *PanaCIMStorage) GetProductId(jobid string) ([]ProductSetup, error) {
 	qr, err := r.DB.QueryContext(ctx, querySelectProductId)
 	if err != nil {
 		if err.Error() != "sql: no rows in result set" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -259,15 +293,15 @@ FROM [PanaCIM].[dbo].[product_data]
 where [PRODUCT_ID] =
 `
 
-func (r *PanaCIMStorage) GetProductName(productid string) ([]ProductData, error) {
-	logger := logging.GetLogger()
+func (r *panaCIMStorage) GetProductName(productid string) ([]ProductData, error) {
+	// logger := logging.GetLogger()
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
 	qr, err := r.DB.QueryContext(ctx, querySelectProductName+productid)
 	if err != nil {
 		if err.Error() != "sql: no rows in result set" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -298,8 +332,8 @@ WHERE PRODUCT_ID = `
 //order by LAST_MODIFIED_TIME desc
 //`
 // Получаем номер линии сборки
-func (r PanaCIMStorage) GetRouteId(productid string) ([]ProductSetup, error) {
-	logger := logging.GetLogger()
+func (r *panaCIMStorage) GetRouteId(productid string) ([]ProductSetup, error) {
+	// logger := logging.GetLogger()
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -317,7 +351,7 @@ func (r PanaCIMStorage) GetRouteId(productid string) ([]ProductSetup, error) {
 	qr, err := r.DB.QueryContext(ctx, querySelectRouteId+productid+`order by LAST_MODIFIED_TIME desc`)
 	if err != nil {
 		if err.Error() != "sql: no rows in result set" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -399,15 +433,15 @@ SELECT
 FROM [PanaCIM].[dbo].[InfoInstallLastJobId_View]
 order by PART_NO;`
 
-func (r PanaCIMStorage) GetPanacimDataComponentsByJobId(jobid string) ([]InfoInstallLastJobId_View, error) {
-	logger := logging.GetLogger()
+func (r *panaCIMStorage) GetPanacimDataComponentsByJobId(jobid string) ([]InfoInstallLastJobId_View, error) {
+	// logger := logging.GetLogger()
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
 	qrDel, err := r.DB.Query(queryDelObjInfoInstallJobId_View)
 	if err != nil {
 		if err.Error() != "sql: no rows in result set" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -416,7 +450,7 @@ func (r PanaCIMStorage) GetPanacimDataComponentsByJobId(jobid string) ([]InfoIns
 	qrFunc, err := r.DB.ExecContext(ctx, queryCreateInfoInstallJobId_View1+jobid+queryCreateInfoInstallJobId_View2)
 	if err != nil {
 		if err.Error() != "sql: function no create" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -425,7 +459,7 @@ func (r PanaCIMStorage) GetPanacimDataComponentsByJobId(jobid string) ([]InfoIns
 	qr, err := r.DB.QueryContext(ctx, querySelectInfoInstallJobId_View)
 	if err != nil {
 		if err.Error() != "sql: no rows in result set" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -449,15 +483,15 @@ func (r PanaCIMStorage) GetPanacimDataComponentsByJobId(jobid string) ([]InfoIns
 }
 
 // Получить данные по id компонента (потребление, остаток, сбросы) на основе предсталния InfoInstallJobId_View
-func (r PanaCIMStorage) GetPanacimDataComponentsByJobIdAllParamReelid(jobid string) ([]InfoInstallLastJobId_View, error) {
-	logger := logging.GetLogger()
+func (r *panaCIMStorage) GetPanacimDataComponentsByJobIdAllParamReelid(jobid string) ([]InfoInstallLastJobId_View, error) {
+	// logger := logging.GetLogger()
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
 	qrDel, err := r.DB.Query(queryDelObjInfoInstallJobId_View)
 	if err != nil {
 		if err.Error() != "sql: no rows in result set" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -466,7 +500,7 @@ func (r PanaCIMStorage) GetPanacimDataComponentsByJobIdAllParamReelid(jobid stri
 	qrFunc, err := r.DB.ExecContext(ctx, queryCreateInfoInstallJobId_View1+jobid+queryCreateInfoInstallJobId_View2)
 	if err != nil {
 		if err.Error() != "sql: function no create" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -475,7 +509,7 @@ func (r PanaCIMStorage) GetPanacimDataComponentsByJobIdAllParamReelid(jobid stri
 	qr, err := r.DB.QueryContext(ctx, querySelecInfoInstallJobId_ViewbyParameter)
 	if err != nil {
 		if err.Error() != "sql: no rows in result set" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -508,8 +542,8 @@ func (r PanaCIMStorage) GetPanacimDataComponentsByJobIdAllParamReelid(jobid stri
 	return qrs, nil
 }
 
-func (r PanaCIMStorage) WtitePanaCIMDataComponentsToFile(in []InfoInstallLastJobId_View) (err error) {
-	logger := logging.GetLogger()
+func (r *panaCIMStorage) WtitePanaCIMDataComponentsToFile(in []InfoInstallLastJobId_View) (err error) {
+	// logger := logging.GetLogger()
 	panaCIMpath := os.Getenv("panacim")
 
 	panacimFileRemove := panaCIMpath
@@ -524,7 +558,7 @@ func (r PanaCIMStorage) WtitePanaCIMDataComponentsToFile(in []InfoInstallLastJob
 	if _, err := os.Stat(panacimFile); os.IsNotExist(err) {
 		panaFile, err := os.Create(panacimFile)
 		if err != nil {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 		}
 		defer panaFile.Close()
 
@@ -536,7 +570,7 @@ func (r PanaCIMStorage) WtitePanaCIMDataComponentsToFile(in []InfoInstallLastJob
 
 	splitPanaCIM, err := os.OpenFile(panacimFile, os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
-		logger.Errorf(err.Error()) //logger.Errorf(err.Error())
+		r.logger.Errorf(err.Error()) //r.logger.Errorf(err.Error())
 		return nil
 	}
 	defer splitPanaCIM.Close()
@@ -557,8 +591,8 @@ func (r PanaCIMStorage) WtitePanaCIMDataComponentsToFile(in []InfoInstallLastJob
 }
 
 // запись потребления id и кол-ва в файл на основе бд panacim
-func (r PanaCIMStorage) WtitePanaCIMDataComponentsToFileUnpackId(in []InfoInstallLastJobId_View) (err error) {
-	logger := logging.GetLogger()
+func (r *panaCIMStorage) WtitePanaCIMDataComponentsToFileUnpackId(in []InfoInstallLastJobId_View) (err error) {
+	// logger := logging.GetLogger()
 	unpack_id_path := os.Getenv("unpack_id")
 
 	unpack_id_pathRemove := unpack_id_path
@@ -572,7 +606,7 @@ func (r PanaCIMStorage) WtitePanaCIMDataComponentsToFileUnpackId(in []InfoInstal
 	if _, err := os.Stat(unpack_idFile); os.IsNotExist(err) {
 		unpack_idFile, err := os.Create(unpack_idFile)
 		if err != nil {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 		}
 		defer unpack_idFile.Close()
 
@@ -584,7 +618,7 @@ func (r PanaCIMStorage) WtitePanaCIMDataComponentsToFileUnpackId(in []InfoInstal
 
 	splitUnpakId, err := os.OpenFile(unpack_idFile, os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
-		logger.Errorf(err.Error())
+		r.logger.Errorf(err.Error())
 		return nil
 	}
 	defer splitUnpakId.Close()
@@ -612,15 +646,15 @@ const querySelectGetMixName2 = `
 order by LAST_MODIFIED_TIME desc
 `
 
-func (r PanaCIMStorage) GetPanaCIMixName(productid string) ([]ProductSetup, error) {
-	logger := logging.GetLogger()
+func (r *panaCIMStorage) GetPanaCIMixName(productid string) ([]ProductSetup, error) {
+	// logger := logging.GetLogger()
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
 	qr, err := r.DB.QueryContext(ctx, querySelectGetMixName1+productid+querySelectGetMixName2)
 	if err != nil {
 		if err.Error() != "sql: no rows in result set" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -649,8 +683,8 @@ FROM [PanaCIM].[dbo].[substitute_parts]
 WHERE [MIX_NAME] = `
 
 // поиск замен в базе по mix_name
-func (r PanaCIMStorage) GetPanaCIMParts(mixname string) ([]SubstituteParts, error) {
-	logger := logging.GetLogger()
+func (r *panaCIMStorage) GetPanaCIMParts(mixname string) ([]SubstituteParts, error) {
+	// logger := logging.GetLogger()
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -658,7 +692,7 @@ func (r PanaCIMStorage) GetPanaCIMParts(mixname string) ([]SubstituteParts, erro
 	qr, err := r.DB.QueryContext(ctx, querySelecGetParts+"'"+mixname+"'")
 	if err != nil {
 		if err.Error() != "sql: no rows in result set" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -681,8 +715,8 @@ func (r PanaCIMStorage) GetPanaCIMParts(mixname string) ([]SubstituteParts, erro
 	return qrs, nil
 }
 
-func (r PanaCIMStorage) WritePanaCIMPartsToFile(in []SubstituteParts) (err error) {
-	logger := logging.GetLogger()
+func (r *panaCIMStorage) WritePanaCIMPartsToFile(in []SubstituteParts) (err error) {
+	// logger := logging.GetLogger()
 	substitutepath := os.Getenv("substitute")
 
 	substituteFileRemove := substitutepath
@@ -697,7 +731,7 @@ func (r PanaCIMStorage) WritePanaCIMPartsToFile(in []SubstituteParts) (err error
 	if _, err := os.Stat(substituteFile); os.IsNotExist(err) {
 		substituteFile, err := os.Create(substituteFile)
 		if err != nil {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 		}
 		defer substituteFile.Close()
 
@@ -709,7 +743,7 @@ func (r PanaCIMStorage) WritePanaCIMPartsToFile(in []SubstituteParts) (err error
 
 	splitPanaCIMParts, err := os.OpenFile(substituteFile, os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
-		logger.Errorf(err.Error()) //logger.Errorf(err.Error())
+		r.logger.Errorf(err.Error()) //r.logger.Errorf(err.Error())
 		return nil
 	}
 	defer splitPanaCIMParts.Close()
@@ -743,15 +777,15 @@ FROM [PanaCIM].[dbo].[job_history]
 where [JOB_ID] = `
 
 // получаем старт и конец сборки WO в unix-формате
-func (r PanaCIMStorage) GetUnixTimeWO(jobid string) ([]Job_History, error) {
-	logger := logging.GetLogger()
+func (r *panaCIMStorage) GetUnixTimeWO(jobid string) ([]Job_History, error) {
+	// logger := logging.GetLogger()
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
 	qr, err := r.DB.QueryContext(ctx, querySelectUnixTimeWO+jobid+`order by END_TIME desc`)
 	if err != nil {
 		if err.Error() != "sql: no rows in result set" {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 			return nil, err
 		}
 	}
@@ -831,14 +865,14 @@ var (
 	layoutDate string = "2006/01/02,15:04:05"
 )
 
-func (r PanaCIMStorage) GetSumPCBFromU03V2(startUnixTimeWO, finishUnixTimeWO, npm string) (sumstrPCBOrder string) {
-	logger := logging.GetLogger()
+func (r *panaCIMStorage) GetSumPCBFromU03V2(startUnixTimeWO, finishUnixTimeWO, npm string) (sumstrPCBOrder string) {
+	// logger := logging.GetLogger()
 	npmToUp := strings.ToUpper(npm)
 	// конвертация unix времени страта и завершения сборки WO
 
 	tStartWO, err := strconv.ParseInt(startUnixTimeWO, 10, 64)
 	if err != nil {
-		logger.Panic(err)
+		r.logger.Panic(err)
 		panic(err)
 	}
 	tmStartWO := time.Unix(tStartWO, 0)
@@ -1022,7 +1056,7 @@ func (r PanaCIMStorage) GetSumPCBFromU03V2(startUnixTimeWO, finishUnixTimeWO, np
 													if _, err := os.Stat(fileRemovePCB); os.IsNotExist(err) {
 														pcbFile, err := os.Create(fileRemovePCB)
 														if err != nil {
-															logger.Errorf(err.Error())
+															r.logger.Errorf(err.Error())
 														}
 														defer pcbFile.Close()
 													}
@@ -1032,7 +1066,7 @@ func (r PanaCIMStorage) GetSumPCBFromU03V2(startUnixTimeWO, finishUnixTimeWO, np
 													}
 													filepcbRW, err := os.OpenFile(filepcb, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
 													if err != nil {
-														logger.Errorf(err.Error())
+														r.logger.Errorf(err.Error())
 														return
 													}
 													defer filepcbRW.Close()
@@ -1056,7 +1090,7 @@ func (r PanaCIMStorage) GetSumPCBFromU03V2(startUnixTimeWO, finishUnixTimeWO, np
 													// читаю файл построчно
 													getnumberpcb, err := readLines(filepcb)
 													if err != nil {
-														logger.Errorf(err.Error())
+														r.logger.Errorf(err.Error())
 													}
 													// убираю дублированные номера
 													resnumberpcb := removeDuplicatesinfile(getnumberpcb)
@@ -1083,13 +1117,13 @@ func (r PanaCIMStorage) GetSumPCBFromU03V2(startUnixTimeWO, finishUnixTimeWO, np
 	return sumstrPCBOrder
 }
 
-func (r *PanaCIMStorage) GetSumPCBFromU03(startUnixTimeWO, finishUnixTimeWO, npm string) (sumstrPCBOrder string) {
-	logger := logging.GetLogger()
+func (r *panaCIMStorage) GetSumPCBFromU03(startUnixTimeWO, finishUnixTimeWO, npm string) (sumstrPCBOrder string) {
+	// logger := logging.GetLogger()
 
 	npmToUp := strings.ToUpper(npm)
 	tStartWO, err := strconv.ParseInt(startUnixTimeWO, 10, 64)
 	if err != nil {
-		logger.Fatalf(err.Error()) //panic(err)
+		r.logger.Fatalf(err.Error()) //panic(err)
 	}
 	tmStartWO := time.Unix(tStartWO, 0)
 	//fmt.Println("tmStartWO:", tmStartWO)
@@ -1102,13 +1136,13 @@ func (r *PanaCIMStorage) GetSumPCBFromU03(startUnixTimeWO, finishUnixTimeWO, npm
 
 	tFinishWO, err := strconv.ParseInt(finishUnixTimeWO, 10, 64)
 	if err != nil {
-		logger.Fatalf(err.Error()) //panic(err)
+		r.logger.Fatalf(err.Error()) //panic(err)
 	}
 	tmFinishWO := time.Unix(tFinishWO, 0)
 	//fmt.Println("tmFinishWO: ", tmFinishWO)
 	p_tmFinishWO, _ := time.Parse(layoutDate, tmFinishWO.Format(layoutDate))
 	fmt.Println("p_tmFinishWO: ", p_tmFinishWO)
-	//logger.Println("p_tmFinishWO: ", p_tmFinishWO)
+	//r.logger.Println("p_tmFinishWO: ", p_tmFinishWO)
 	// добавляем +3 ч 15 мин от GMT
 	//chH_tmFinishWO := tmFinishWO.Add(time.Hour * 3)
 	//chM_tmFinishWO := chH_tmFinishWO.Add(time.Minute * 15)
@@ -1118,20 +1152,20 @@ func (r *PanaCIMStorage) GetSumPCBFromU03(startUnixTimeWO, finishUnixTimeWO, npm
 	folderToCopy := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/u03/processed_copy/"
 	err = cp.Copy(folderFrom, folderToCopy)
 	if err != nil {
-		logger.Errorf(err.Error())
+		r.logger.Errorf(err.Error())
 	}
 
 	// получить список папок в скопированной директории
 	files, err := ioutil.ReadDir(folderToCopy)
 	if err != nil {
-		logger.Fatalf(err.Error()) //log.Fatal(err)
+		r.logger.Fatalf(err.Error()) //log.Fatal(err)
 	}
 	// создаем копию директории и разархивируем архивы, которые там есть
 	for _, f := range files {
 		if f.IsDir() {
 			folder, err := ioutil.ReadDir(folderToCopy + f.Name())
 			if err != nil {
-				logger.Fatalf(err.Error())
+				r.logger.Fatalf(err.Error())
 			}
 			for _, g := range folder {
 				if !g.IsDir() {
@@ -1142,14 +1176,14 @@ func (r *PanaCIMStorage) GetSumPCBFromU03(startUnixTimeWO, finishUnixTimeWO, npm
 						// Open compressed file
 						gzipFile, err := os.Open(folderToCopy + f.Name() + "/" + g.Name())
 						if err != nil {
-							logger.Fatalf(err.Error())
+							r.logger.Fatalf(err.Error())
 						}
 
 						// Create a gzip reader on top of the file reader
 						// Again, it could be any type reader though
 						gzipReader, err := gzip.NewReader(gzipFile)
 						if err != nil {
-							logger.Fatalf(err.Error())
+							r.logger.Fatalf(err.Error())
 						}
 						//defer gzipReader.Close()
 
@@ -1166,17 +1200,17 @@ func (r *PanaCIMStorage) GetSumPCBFromU03(startUnixTimeWO, finishUnixTimeWO, npm
 						//fmt.Println("outfileWriter:", &outfileWriter)
 
 						if err != nil {
-							// r.logger.Fatalf(err.Error())
+							// r.r.logger.Fatalf(err.Error())
 							//fmt.Printf("error: %v\n", err)
-							logger.Printf("error: %v\n", err)
-							logger.Debugf(err.Error())
-							//r.logger.Errorf(err.Error())
+							r.logger.Printf("error: %v\n", err)
+							r.logger.Debugf(err.Error())
+							//r.r.logger.Errorf(err.Error())
 						}
 
 						// Copy contents of gzipped file to output file
 						_, err = io.Copy(outfileWriter, gzipReader)
 						if err != nil {
-							logger.Fatalf(err.Error())
+							r.logger.Fatalf(err.Error())
 						}
 						gzipReader.Close()
 						outfileWriter.Close()
@@ -1188,7 +1222,7 @@ func (r *PanaCIMStorage) GetSumPCBFromU03(startUnixTimeWO, finishUnixTimeWO, npm
 
 	iniFolders, err := ioutil.ReadDir(folderToCopy)
 	if err != nil {
-		logger.Fatalf(err.Error())
+		r.logger.Fatalf(err.Error())
 	}
 	sumPCBOrder := 0
 	checkDubleCode := map[string]bool{}
@@ -1196,7 +1230,7 @@ func (r *PanaCIMStorage) GetSumPCBFromU03(startUnixTimeWO, finishUnixTimeWO, npm
 		if ff.IsDir() {
 			iniFolder, err := ioutil.ReadDir(folderToCopy + ff.Name())
 			if err != nil {
-				logger.Fatalf(err.Error())
+				r.logger.Fatalf(err.Error())
 			}
 			for _, gg := range iniFolder {
 				if !gg.IsDir() {
@@ -1219,7 +1253,7 @@ func (r *PanaCIMStorage) GetSumPCBFromU03(startUnixTimeWO, finishUnixTimeWO, npm
 						}, folderToCopy+"/"+ff.Name()+"/"+gg.Name())
 						if err != nil {
 							// fmt.Printf("Fail to read file: %v", err)
-							logger.Printf("Fail to read file: %v", err)
+							r.logger.Printf("Fail to read file: %v", err)
 							os.Exit(1)
 						}
 						dataFile := cfg.Section("Index").Key("Date").Value()
@@ -1245,7 +1279,7 @@ func (r *PanaCIMStorage) GetSumPCBFromU03(startUnixTimeWO, finishUnixTimeWO, npm
 								// записываем данные в файл
 								if err := ioutil.WriteFile("/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/u03/out", writeByte, 0644); err != nil {
 									// fmt.Printf("%v", err)
-									logger.Errorf(err.Error())
+									r.logger.Errorf(err.Error())
 								}
 
 								filepcb := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/u03/pcb"
@@ -1255,18 +1289,18 @@ func (r *PanaCIMStorage) GetSumPCBFromU03(startUnixTimeWO, finishUnixTimeWO, npm
 								if _, err := os.Stat(fileRemovePCB); os.IsNotExist(err) {
 									pcbFile, err := os.Create(fileRemovePCB)
 									if err != nil {
-										logger.Errorf(err.Error())
+										r.logger.Errorf(err.Error())
 									}
 									defer pcbFile.Close()
 								}
 
 								e_pcb := os.Remove(fileRemovePCB)
 								if e_pcb != nil {
-									logger.Errorf(e_pcb.Error()) // log.Fatal(e_pcb)
+									r.logger.Errorf(e_pcb.Error()) // log.Fatal(e_pcb)
 								}
 								filepcbRW, err := os.OpenFile(filepcb, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
 								if err != nil {
-									logger.Errorf(err.Error())
+									r.logger.Errorf(err.Error())
 									return
 								}
 								defer filepcbRW.Close()
@@ -1275,7 +1309,7 @@ func (r *PanaCIMStorage) GetSumPCBFromU03(startUnixTimeWO, finishUnixTimeWO, npm
 								if _, err := os.Stat(outcheck); os.IsNotExist(err) {
 									outFile, err := os.Create(outcheck)
 									if err != nil {
-										r.logger.Errorf(err.Error())
+										r.r.logger.Errorf(err.Error())
 									}
 									defer outFile.Close()
 								}*/
@@ -1306,12 +1340,12 @@ func (r *PanaCIMStorage) GetSumPCBFromU03(startUnixTimeWO, finishUnixTimeWO, npm
 
 								/*e_out := os.Remove(outcheck)
 								if e_out != nil {
-									r.logger.Errorf(e_out.Error())
+									r.r.logger.Errorf(e_out.Error())
 								}*/
 
 								getnumberpcb, err := readLines(filepcb)
 								if err != nil {
-									logger.Errorf(err.Error())
+									r.logger.Errorf(err.Error())
 								}
 
 								resnumberpcb := removeDuplicatesinfile(getnumberpcb)
@@ -1383,8 +1417,8 @@ SELECT [PART_NO]
 FROM [PanaCIM].[dbo].[reel_data]
 where REEL_BARCODE = `
 
-func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO, npm string) error {
-	logger := logging.GetLogger()
+func (r *panaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO, npm string) error {
+	// logger := logging.GetLogger()
 	npmToUp := strings.ToUpper(npm)
 
 	ctx, cancel := context.WithCancel(context.Background())
@@ -1393,7 +1427,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 
 	tStartWO, err := strconv.ParseInt(startUnixTimeWO, 10, 64)
 	if err != nil {
-		logger.Fatal(err)
+		r.logger.Fatal(err)
 	}
 	tmStartWO := time.Unix(tStartWO, 0)
 	p_tmStartWO, _ := time.Parse(layoutDate, tmStartWO.Format(layoutDate))
@@ -1401,7 +1435,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 
 	tFinishWO, err := strconv.ParseInt(finishUnixTimeWO, 10, 64)
 	if err != nil {
-		logger.Fatal(err)
+		r.logger.Fatal(err)
 	}
 	tmFinishWO := time.Unix(tFinishWO, 0)
 	p_tmFinishWO, _ := time.Parse(layoutDate, tmFinishWO.Format(layoutDate))
@@ -1413,40 +1447,40 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 	if _, err := os.Stat(fileReelId); os.IsNotExist(err) {
 		reelidFile, err := os.Create(fileReelId)
 		if err != nil {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 		}
 		defer reelidFile.Close()
 	}
 	// удаляем, если ранее был создан
 	rm_reedid := os.Remove(fileReelId)
 	if rm_reedid != nil {
-		logger.Fatalf("%v\n", rm_reedid)
+		r.logger.Fatalf("%v\n", rm_reedid)
 	}
 
 	fileReedIdScrap := "internal/reel_id_scrap"
 	if _, err := os.Stat(fileReedIdScrap); os.IsNotExist(err) {
 		reedIdScrapFile, err := os.Create(fileReedIdScrap)
 		if err != nil {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 		}
 		defer reedIdScrapFile.Close()
 	}
 
 	rm_reedIdScrapFile := os.Remove(fileReedIdScrap)
 	if rm_reedIdScrapFile != nil {
-		logger.Fatalf("%v\n", rm_reedIdScrapFile)
+		r.logger.Fatalf("%v\n", rm_reedIdScrapFile)
 	}
 
 	//checkDubleComponent := map[string]bool{}
 	inputCoreFolder, err := ioutil.ReadDir(resourcePath)
 	if err != nil {
-		logger.Fatal(err)
+		r.logger.Fatal(err)
 	}
 	for _, npmf := range inputCoreFolder {
 		if npmf.IsDir() {
 			processedf, err := ioutil.ReadDir(resourcePath + npmf.Name())
 			if err != nil {
-				logger.Fatal(err)
+				r.logger.Fatal(err)
 			}
 			for _, processed := range processedf {
 				fmt.Println("COMPONENT NPM-1 Great!!!")
@@ -1454,14 +1488,14 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 
 					dataf, err := ioutil.ReadDir(resourcePath + npmf.Name() + "/" + processed.Name())
 					if err != nil {
-						logger.Fatal(err)
+						r.logger.Fatal(err)
 					}
 					for _, data := range dataf {
 						fmt.Printf("COMPONENT %v Great!!!\n", data.Name())
 						if data.IsDir() {
 							fileu03f, err := ioutil.ReadDir(resourcePath + npmf.Name() + "/" + processed.Name() + "/" + data.Name())
 							if err != nil {
-								logger.Fatal(err)
+								r.logger.Fatal(err)
 							}
 							for _, fileu03 := range fileu03f {
 								if !fileu03.IsDir() {
@@ -1505,14 +1539,14 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 
 											fileReelIdRW, err := os.OpenFile(fileReelId, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
 											if err != nil {
-												logger.Errorf(err.Error())
+												r.logger.Errorf(err.Error())
 												return err
 											}
 											//defer fileReelIdRW.Close()
 
 											fileReedIdScrapRW, err := os.OpenFile(fileReedIdScrap, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
 											if err != nil {
-												logger.Errorf(err.Error())
+												r.logger.Errorf(err.Error())
 												return err
 											}
 											//defer fileReedIdScrapRW.Close()
@@ -1567,19 +1601,19 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 	if _, err := os.Stat(file_reelid_unic); os.IsNotExist(err) {
 		reelid_unicFile, err := os.Create(file_reelid_unic)
 		if err != nil {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 		}
 		defer reelid_unicFile.Close()
 	}
 
 	rm_reelid_unicFile := os.Remove(file_reelid_unic)
 	if rm_reelid_unicFile != nil {
-		logger.Fatalf("%v\n", rm_reelid_unicFile)
+		r.logger.Fatalf("%v\n", rm_reelid_unicFile)
 	}
 	// читаю файл построчно
 	get_reel_id, err := readLines(fileReelId)
 	if err != nil {
-		logger.Errorf(err.Error())
+		r.logger.Errorf(err.Error())
 	}
 	// убираю дублированные номера
 	rmdreelid_unic := removeDuplicatesinfile(get_reel_id)
@@ -1594,7 +1628,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 	for _, data := range rmdreelid_unic {
 		_, err := datawriter.WriteString(data + "\n")
 		if err != nil {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 		}
 	}
 
@@ -1622,7 +1656,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 	//fileReelIDData := "internal/testReelId"
 	//reelIdData, err := os.Create(fileReelIDData)
 	//if err != nil {
-	//	logger.Errorf(err.Error())
+	//	r.logger.Errorf(err.Error())
 	//	}
 	//defer reelIdData.Close()
 	//writer := csv.NewWriter(reelIdData)
@@ -1642,7 +1676,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 	if _, err := os.Stat(unpack_idFile); os.IsNotExist(err) {
 		unpack_idFile, err := os.Create(unpack_idFile)
 		if err != nil {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 		}
 		defer unpack_idFile.Close()
 
@@ -1655,7 +1689,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 	// создать файл internal/pysaprfc/data/unpack_id.csv из слайса reelIdStore
 	addDataComponentsUnpackId, err := os.OpenFile(unpack_idFile, os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
-		logger.Errorf(err.Error())
+		r.logger.Errorf(err.Error())
 		return err
 	}
 	defer addDataComponentsUnpackId.Close()
@@ -1694,13 +1728,13 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 			&qrts.REEL_BARCODE,
 			&qrts.LOT_NO,
 		); err != nil {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 		}
 		qrsRI = append(qrsRI, qrts)
 	}
 	if err = qrReelId.Err(); err != nil {
 		//return qrs, err
-		logger.Errorf(err.Error())
+		r.logger.Errorf(err.Error())
 	}
 	componentDataStore := []ComponentAllData{}
 	for _, i := range reelIdStore {
@@ -1733,7 +1767,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 			if i.SAP == j.SAP && i.Lot == j.Lot {
 				sumInt, err := strconv.Atoi(j.Qty)
 				if err != nil {
-					logger.Errorf(err.Error())
+					r.logger.Errorf(err.Error())
 					return nil
 				}
 				sum += sumInt
@@ -1759,7 +1793,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 	if _, err := os.Stat(wo_componentFile); os.IsNotExist(err) {
 		wo_componentFile, err := os.Create(wo_componentFile)
 		if err != nil {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 		}
 		defer wo_componentFile.Close()
 
@@ -1771,7 +1805,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 
 	addWOComponentFile, err := os.OpenFile(wo_componentFile, os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
-		logger.Errorf(err.Error())
+		r.logger.Errorf(err.Error())
 		return nil
 	}
 	defer addWOComponentFile.Close()
@@ -1809,7 +1843,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 			if i.SAP == j.SAP {
 				sumInt, err := strconv.Atoi(j.Sum)
 				if err != nil {
-					logger.Errorf(err.Error())
+					r.logger.Errorf(err.Error())
 					return nil
 				}
 				sum += sumInt
@@ -1836,7 +1870,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 	if _, err := os.Stat(panacimFile); os.IsNotExist(err) {
 		panaFile, err := os.Create(panacimFile)
 		if err != nil {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 		}
 		defer panaFile.Close()
 
@@ -1848,7 +1882,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 
 	addPanacimComponentToFile, err := os.OpenFile(panacimFile, os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
-		logger.Errorf(err.Error()) //logger.Errorf(err.Error())
+		r.logger.Errorf(err.Error()) //r.logger.Errorf(err.Error())
 		return nil
 	}
 	defer addPanacimComponentToFile.Close()
@@ -1870,19 +1904,19 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 	if _, err := os.Stat(fileReelIDScrap_unic); os.IsExist(err) {
 		reelid_scrap_unicFile, err := os.Create(fileReelIDScrap_unic)
 		if err != nil {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 		}
 		defer reelid_scrap_unicFile.Close()
 	}
 	/*
 		rm_reelid_scrap_unicFile := os.Remove(fileReelIDScrap_unic)
 		if rm_reelid_scrap_unicFile != nil {
-			logger.Fatalf("%v\n", rm_reelid_scrap_unicFile)
+			r.logger.Fatalf("%v\n", rm_reelid_scrap_unicFile)
 		}*/
 	// читаю файл построчно
 	get_reel_id_scrap, err := readLines(fileReedIdScrap)
 	if err != nil {
-		logger.Errorf(err.Error())
+		r.logger.Errorf(err.Error())
 	}
 	// убираю дублированные номера
 	rmreel_id_scrap := removeDuplicatesinfile(get_reel_id_scrap)
@@ -1897,7 +1931,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 	for _, data := range rmreel_id_scrap {
 		_, err := datawriterScrap.WriteString(data + "\n")
 		if err != nil {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 		}
 	}
 
@@ -1946,13 +1980,13 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 			&qrts.REEL_BARCODE,
 			&qrts.LOT_NO,
 		); err != nil {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 		}
 		qrs = append(qrs, qrts)
 	}
 	if err = qr.Err(); err != nil {
 		//return qrs, err
-		logger.Errorf(err.Error())
+		r.logger.Errorf(err.Error())
 	}
 	fmt.Println(qrs)
 
@@ -1997,7 +2031,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 			if i.SAP == j.SAP && i.Lot == j.Lot {
 				sumInt, err := strconv.Atoi(j.Qty)
 				if err != nil {
-					logger.Errorf(err.Error())
+					r.logger.Errorf(err.Error())
 					return nil
 				}
 				sum += sumInt
@@ -2025,7 +2059,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 	if _, err := os.Stat(scrapFile); os.IsNotExist(err) {
 		scrapFile, err := os.Create(scrapFile)
 		if err != nil {
-			logger.Errorf(err.Error())
+			r.logger.Errorf(err.Error())
 		}
 		defer scrapFile.Close()
 
@@ -2037,7 +2071,7 @@ func (r PanaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO
 
 	addScrapToFile, err := os.OpenFile(scrapFile, os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
-		logger.Errorf(err.Error())
+		r.logger.Errorf(err.Error())
 		return nil
 	}
 	defer addScrapToFile.Close()
