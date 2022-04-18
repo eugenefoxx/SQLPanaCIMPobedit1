@@ -266,16 +266,16 @@ func main() {
 		//}
 
 		// вызов модуля SAP для распаковки ео
-		// unpack_id_pyrfc := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/unpack_id.py"
-		// pysaprfc.PyExec(unpack_id_pyrfc)
+		//unpack_id_pyrfc := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/unpack_id.py"
+		//pysaprfc.PyExec(unpack_id_pyrfc)
 
 		// Вызов модуля SAP для проверки и вставки данных
 		//app_py_info_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/order_info.py"
-		// pysaprfc.PyExec(app_py_info_order)
+		//pysaprfc.PyExec(app_py_info_order)
 
 		// Вывоз модуля SAP для выпуска по заказу изделия
-		//app_py_output_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/output_order.py"
-		//pysaprfc.PyExec(app_py_output_order)
+		app_py_output_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/output_order.py"
+		pysaprfc.PyExec(app_py_output_order)
 
 		//f := pysaprfc.PyExecArg("/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/test.py", "Jhon")
 		//fmt.Printf("py - %v\n", f)
