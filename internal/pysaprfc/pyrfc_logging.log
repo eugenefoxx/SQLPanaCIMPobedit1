@@ -282,3 +282,6 @@
 2022-04-17 01:05:57,828 - order_info - WARNING - None
 2022-04-17 01:05:57,921 - order_info - WARNING - None
 2022-04-17 01:05:58,013 - order_info - WARNING - None
+2022-04-19 16:17:12,081 - test_ping_sappyrfc - INFO - Parsing cfg
+2022-04-19 16:17:12,082 - test_ping_sappyrfc - INFO - Connecting to SAP RFC...
+2022-04-19 16:17:12,265 - test_ping_sappyrfc - INFO - {'ECHOTEXT': 'Hello SAP!', 'RESPTEXT': 'SAP R/3 Rel. 750   Sysid: UST      Date: 20220419   Time: 162221   Logon_Data: 400/21717T/E'}

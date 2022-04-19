@@ -43,7 +43,7 @@ func init() {
 
 // NPM_910-00473_A_
 func main() {
-
+	start := time.Now()
 	//	logging.Init()
 	logger := logging.GetLogger()
 	var err error
@@ -242,12 +242,12 @@ func main() {
 		// вызов модуля SAP для распаковки ео
 		// unpack_id_pyrfc := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/unpack_id.py"
 		// pysaprfc.PyExec(unpack_id_pyrfc)
-		time.Sleep(10 * time.Second)
-		logger.Info("Дергаю info_order")
+		//time.Sleep(10 * time.Second)
+		//logger.Info("Дергаю info_order")
 		// Вызов модуля SAP для проверки и вставки данных
-		app_py_info_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/order_info.py"
-		pysaprfc.PyExec(app_py_info_order)
-		time.Sleep(10 * time.Second)
+		//app_py_info_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/order_info.py"
+		//pysaprfc.PyExec(app_py_info_order)
+		//time.Sleep(10 * time.Second)
 		// Вывоз модуля SAP для выпуска по заказу изделия
 		//app_py_output_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/output_order.py"
 		//pysaprfc.PyExec(app_py_output_order)
@@ -458,6 +458,9 @@ func main() {
 			println(err.Error())
 			return
 		} */
+
+	duration := time.Since(start)
+	fmt.Println("Время работы - ", duration)
 
 }
 
