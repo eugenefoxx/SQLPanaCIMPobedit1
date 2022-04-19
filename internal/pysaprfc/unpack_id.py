@@ -58,6 +58,8 @@ def main():
             })
 
         print(output)
+        logger.info("Unpack ID: ", output)
+
         connection.close()
 
     except CommunicationError:

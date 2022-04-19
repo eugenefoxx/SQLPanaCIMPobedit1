@@ -42,8 +42,8 @@ def main():
         with open('/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/1000862_work_order_name.csv', newline='') as csvfile:
             # with open('/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test1_work_order_name.csv', newline='') as csvfile:
             # with open('/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_work_order_name.csv', newline='') as csvfile:
-            spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
-            for row in spamreader:
+            wonamereader = csv.reader(csvfile, delimiter=',', quotechar='|')
+            for row in wonamereader:
                 work_order = '' .join(row)
 
         orderSAP = '00000' + work_order  # 000001000825 000001000836
@@ -74,13 +74,8 @@ def main():
         resSAPorder = [{'MATNR': sub['MATNR'], 'RSPOS': sub['RSPOS']}
                        for sub in ordp]
 
-        # print(rrrr)
-        print("type", type(resSAPorder))
+        #print("type", type(resSAPorder))
         print("resSAPorder:", resSAPorder)
-        for key in resSAPorder:
-            if key['MATNR'] == '000000000001009223':
-                print(key['RSPOS'])
-            # print(key, '->', rrrr[key])
         print("_________info___________")
         print(order_info)
 
@@ -91,51 +86,12 @@ def main():
         resmtlrs = [sub['MATNR'] for sub in ordp]
         print("resmtlrs: " + str(resmtlrs))
 
-        # valueProduct = '10'
-
-        rowsinfoOrder = []
-        with open(infoOrder, newline='') as file:
-            csvreader = csv.DictReader(file, delimiter=',')
-            for row in csvreader:
-                rowsinfoOrder.append(row)
-        print("rowsinfoOrder:", rowsinfoOrder)
-        for c in rowsinfoOrder:
-            print("Product:", productsap)
-            print("Order", '00000' + c['WO'])
-            print("Qty", c['Qty'])
-
-        for pf in resmtlrs:
-            if pf.__contains__('0000000000031'):
-                print("31*", pf)
-                # chg = connection.call('Z_IEXT_PRODORD_CHGRES', **{
-                #    'UCODE': '21717',
-                #    'PCODE': 'NEWPASSWORD1',
-                #    'RESITEMS': {u'LINE_ID': 1, u'MATERIAL': pf, u'PLANT': 'SL00', u'STGE_LOC': '7813',
-                #                 u'MOVE_TYPE': '261', u'ENTRY_QNT': row['SUM'], u'ENTRY_UOM': 'ST',
-                #                 u'ORDERID': orderSAP, u'RESERV_NO': reserv, u'RES_ITEM': c['RSPOS']},
-                # })
-            if not pf.__contains__('0000000000031'):
-                print("not have 31*")
-                # break
-
-        for i in resmtlrs:
-            if i.__contains__('0000000000031'):
-                print("i 31*: ", i)
-            if not i.__contains__('0000000000031'):
-                print("not i: ", i)
-
-        for pcb in resmtlrs:
-            if pcb.__contains__('200-'):
-                print("pcb:", pcb)
-            if not pcb.__contains__('200-'):
-                print("not pcb:", pcb)
-                break
-
         # убираем, если есть полуфабрикат из листа
         arrPRODORD_INFO_Component = []
         for pf in resmtlrs:
             if not pf.__contains__('0000000000031'):
                 arrPRODORD_INFO_Component.append(pf)
+
         rowsPanaData = []
         with open(wo_component, newline='') as file:
             # csvreader = csv.reader(file, delimiter=',')
@@ -174,6 +130,7 @@ def main():
                         ]
                     })
                     print(chg)
+                    logger.info(chg)
                     # logger.warning(parse_response(chg))
         #    elif str('00000000000' + row['PART_NO']) != str(c):
         #        print("not", c)
@@ -185,12 +142,6 @@ def main():
             for row in csvreader:
                 arrComponentFromPanaCIM.append('00000000000' + row['PART_NO'])
         print("arrComponentFromPanaCIM -", arrComponentFromPanaCIM)
-
-        dict_of_lists_pana = defaultdict(list)
-        for record in csv.DictReader(open(wo_component)):
-            for key, val in record.items():
-                dict_of_lists_pana[key].append(val)
-        print("dict_of_lists_pana:", dict_of_lists_pana)
 
         # повторно читаем информацию по заказу для добавления на дробление сап и партии
         order_info = connection.call('Z_IEXT_PRODORD_INFO', **{
@@ -209,8 +160,8 @@ def main():
             resSAPorder2[i['MATNR']] = {"sum": i["BDMNG"], "lot": i["CHARG"]}
         # resSAPorder2 = [{'Lot': sub['CHARG']} for sub in ordp]
         print("resSAPorder2:", resSAPorder2)
-        resarrComponentFromPanaCIM = []
-        print("rowsPanaData: ", rowsPanaData)
+        #resarrComponentFromPanaCIM = []
+        #print("rowsPanaData: ", rowsPanaData)
 
         # добавлем в SAP заказ компонент, согласно PanaCIM, если его там нет
         for i in rowsPanaData:  # arrComponentFromPanaCIM
@@ -220,7 +171,7 @@ def main():
             if str('00000000000' + i["PART_NO"]) in resSAPorder2.keys():
                 #  добавляем позицию исходя из списка Панасим
                 if i["Lot"] != resSAPorder2['00000000000' + i["PART_NO"]]["lot"]:
-                    print(f"Lot {i['Lot']} {i['PART_NO']} fucked")
+                    print(f"Lot {i['Lot']} {i['PART_NO']} component will add")
                     addcomp = connection.call('Z_IEXT_PRODORD_CHGRES', **{
                         'UCODE': '21717',
                         'PCODE': 'NEWPASSWORD1',
@@ -248,17 +199,6 @@ def main():
 
                 print(f"{i['PART_NO']} not found")
                 # resarrComponentFromPanaCIM.append(i)
-
-        print(resarrComponentFromPanaCIM)
-        with open(wo_component, newline='') as file:
-            csvreader = csv.DictReader(file, delimiter=',')
-            for row in csvreader:
-                for i in resarrComponentFromPanaCIM:
-                    if i == '00000000000' + row['PART_NO']:
-                        print("insert unknown sap in order", '00000000000' +
-                              row['PART_NO'], '00000000000' + row['SUM'])
-
-        print("resmtlrs", resmtlrs)
 
         # поиск компонентов, которые отсутствуют в cписке Panacim
 
@@ -299,13 +239,6 @@ def main():
         #  Вставка партии в добавленные строки
         sap_order = order_info['RESITEMS']
         print("Состояние проверки измененного заказа", sap_order)
-        # Не правильно тут делать ключ для парт-номера
-        resSAPorder3 = {}
-        for i in sap_order:
-            # resSAPorder3[i['MATNR']] = {"sum": i["BDMNG"], "batch": i["CHARG"]}
-            resSAPorder3[i['CHARG']] = {"sum": i["BDMNG"], "matrn": i["MATNR"]}
-        # resSAPorder2 = [{'Lot': sub['CHARG']} for sub in ordp]
-        print("resSAPorder3:", resSAPorder3)
 
         good_order = []
         bad_order = []
@@ -361,37 +294,6 @@ def main():
                     else:
                         print(
                             f"Part number {i['PART_NO']} was not found in SAPOrder")
-        # for item in ordp:  # rowsPanaData
-        #     match = False
-        #     for i in rowsPanaData:  # ordp
-        #         if item['MATNR'] == str('00000000000' + i['PART_NO']) and item['CHARG'] == i['Lot']:
-        #             match = True
-        #             print('all good')
-        #             break
-        #         else:
-        #             match = False
-        #     if not match:
-        #         print(f"cannot find a match for part_number {i['PART_NO']}, lot {i['Lot']}")
-        #         chg = connection.call('Z_IEXT_PRODORD_CHGRES', **{
-        #             'UCODE': '21717',
-        #             'PCODE': 'NEWPASSWORD1',
-        #             'RESITEMS': [
-        #                 {
-        #                     u'LINE_ID': '2',
-        #                     u'MATERIAL': '00000000000' + i['PART_NO'],
-        #                     u'PLANT': 'SL00',
-        #                     u'STGE_LOC': '7813',
-        #                     u'BATCH': i['Lot'],
-        #                     u'MOVE_TYPE': '261',
-        #                     u'ENTRY_QNT': i['SUM'],
-        #                     u'ENTRY_UOM': 'ST',
-        #                     u'ORDERID': orderSAP,
-        #                     u'RESERV_NO': reserv,
-        #                     u'RES_ITEM': item['RSPOS'],
-        #                 }
-        #             ]
-        #         })
-        #         print(chg)
 
         order_info = connection.call('Z_IEXT_PRODORD_INFO', **{
             'AUFNR': orderSAP,  # 000001000825
@@ -401,33 +303,6 @@ def main():
         )
         ordp = order_info['RESITEMS']
         print("Состояние проверки измененного заказа 2", ordp)
-
-        #    for i in rowsPanaData:
-
-        #        if str('00000000000' + i["PART_NO"]) in resSAPorder3.keys():
-        #            if resSAPorder3[str('00000000000' + i["PART_NO"])]["batch"] == '':
-        #                print("found not lot:", str('00000000000' + i["PART_NO"]), i['Lot'])
-        #                print(f"{i['PART_NO']}, {i['lot']}")
-        #                chg = connection.call('Z_IEXT_PRODORD_CHGRES', **{
-        #                    'UCODE': '21717',
-        #                    'PCODE': 'NEWPASSWORD1',
-        #                    'RESITEMS': [
-        #                        {
-        #                            u'LINE_ID': '2',
-        #                            u'MATERIAL': '00000000000' + i['PART_NO'],
-        #                            u'PLANT': 'SL00',
-        #                            u'STGE_LOC': '7813',
-        #                            u'BATCH': i['Lot'],
-        #                            u'MOVE_TYPE': '261',
-        #                            u'ENTRY_QNT': i['SUM'],
-        #                            u'ENTRY_UOM': 'ST',
-        #                            u'ORDERID': orderSAP,
-        #                            u'RESERV_NO': reserv,
-        #                            u'RES_ITEM': resSAPorder3['RSPOS'],
-        #                        }
-        #                    ]
-        #                })
-        #                print(chg)
 
         connection.close()
 

@@ -16,28 +16,29 @@ def main():
     # fl.close()
     # logging.basicConfig(filename="logging.log", level=logging.INFO)
     global paramsATHDRLEVELS, paramsGOODSMOVEMENTS, SAP_ORDER
-    logger = logging.getLogger("output_order")
-    logger.setLevel(logging.INFO)
-
-    # create the logging file handler
-    fh = logging.FileHandler(
-        "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/pyrfc_logging.log")
-    formatter = logging.Formatter(
-        '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    fh.setFormatter(formatter)
-
-    # add handler to logger object
-    logger.addHandler(fh)
-
-    logger.info("Parsing cfg")
-    config = configparser.ConfigParser()
-    config.read(
-        "/ home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/sapnwrfc.cfg")
-    config.sections()
-    params_connection = config['connection']
-    logger.info("Connecting to SAP RFC...")
-
     try:
+        logger = logging.getLogger("output_order")
+        logger.setLevel(logging.INFO)
+
+        # create the logging file handler
+        fh = logging.FileHandler(
+            "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/pyrfc_logging.log")
+        formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        fh.setFormatter(formatter)
+
+        # add handler to logger object
+        logger.addHandler(fh)
+
+        logger.info("Parsing cfg")
+        config = configparser.ConfigParser()
+        config.read(
+            "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/sapnwrfc.cfg")
+        config.sections()
+        params_connection = config['connection']
+        logger.info("Connecting to SAP RFC...")
+
+    # try:
 
         # while True:
         connection = pyrfc.Connection(**params_connection)
@@ -48,9 +49,15 @@ def main():
        #     'WEEK_GET_FIRST_DAY', **{'WEEK': '201825'})
        # print(resultTime)
 
-        infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/info_order.csv'
+        # infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/info_order.csv'
+        infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/1000862_info_order.csv'
+        # infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test1_info_order.csv'
+        # infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_info_order.csv'
         # 'info_material_order.csv'
-        infomaterialOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/wo_component.csv'
+        # infomaterialOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/wo_component.csv'
+        infomaterialOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/wo_component_1000862.csv'
+        # infomaterialOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test1_wo_component.csv'
+        # infomaterialOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_wo_component.csv'
 
         rowsinfoOrder = []
         with open(infoOrder, newline='') as file:
@@ -177,6 +184,8 @@ def main():
         print(parse_response(outputtedorder))
 
         connection.close()
+    # except KeyError:
+    #    logger.error.
 
     except CommunicationError:
         print("Could not connect to server.")
