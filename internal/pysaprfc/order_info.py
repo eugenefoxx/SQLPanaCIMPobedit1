@@ -1,9 +1,14 @@
+from cmath import log
 import configparser
+import os
 
 import pyrfc
 import csv
+from os.path import exists
 from collections import defaultdict
 from pyrfc import Connection
+from datetime import datetime
+import shutil
 
 from pyrfc import ABAPApplicationError, ABAPRuntimeError, LogonError, CommunicationError, ExternalRuntimeError
 import logging
@@ -23,13 +28,13 @@ def main():
     # add handler to logger object
     logger.addHandler(fh)
 
-    logger.info("Parsing cfg")
+    logger.info(f"Parsing cfg")
     config = configparser.ConfigParser()
     config.read(
         "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/sapnwrfc.cfg")
     config.sections()
     params_connection = config['connection']
-    logger.info("Connecting to SAP RFC...")
+    logger.info(f"Connecting to SAP RFC...")
 
     try:
         connection = pyrfc.Connection(**params_connection)
@@ -37,26 +42,36 @@ def main():
       #  print(result)
         logger.info("Connection to SAP RFC creating.")
 
+        ttime = datetime.now()
+
         work_order = None
         # with open('/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/work_order_name.csv', newline='') as csvfile:
-        with open('/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/1000862_work_order_name.csv', newline='') as csvfile:
-            # with open('/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test1_work_order_name.csv', newline='') as csvfile:
-            # with open('/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_work_order_name.csv', newline='') as csvfile:
+        # with open('/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/1000862_work_order_name.csv', newline='') as csvfile:
+        # with open('/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test1_work_order_name.csv', newline='') as csvfile:
+        with open('/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_work_order_name.csv', newline='') as csvfile:
             wonamereader = csv.reader(csvfile, delimiter=',', quotechar='|')
             for row in wonamereader:
                 work_order = '' .join(row)
 
         orderSAP = '00000' + work_order  # 000001000825 000001000836
+
+        dataArchive = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_archive/"
         # wo_component.csv wo_component_1000836.csv
         # 'wo_component_1000862.csv'
         # wo_component = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/wo_component.csv'
-        wo_component = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/wo_component_1000862.csv'
+        # wo_component = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/wo_component_1000862.csv'
         # wo_component = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test1_wo_component.csv'
-        # wo_component = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_wo_component.csv'
+        # wo_component = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_2_wo_component.csv'
+        wo_component = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test3_wo_component.csv"
+        # wo_component = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test4_wo_component.csv"
+
+        # scrap = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/scrap.csv"
+        # scrap = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test3_wo_component_scrap.csv"
+        # scrap = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test4_wo_component_scrap.csv"
 
         #infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/info_order.csv'
-        infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/1000862_info_order.csv'
-        # infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test1_info_order.csv'
+        # infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/1000862_info_order.csv'
+        infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test1_info_order.csv'
         # infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_info_order.csv'
 
         order_info = connection.call('Z_IEXT_PRODORD_INFO', **{
@@ -66,12 +81,14 @@ def main():
         }
         )
         ordp = order_info['RESITEMS']
+        logger.info(f"Z_IEXT_PRODORD_INFO/RESITEMS: {order_info['RESITEMS']}")
         productsap = order_info['PRODUCT']
+        logger.info(f"Z_IEXT_PRODORD_INFO/PRODUCT: {order_info['PRODUCT']}")
         print("productsap", productsap)
         print(order_info['RESITEMS'])
         print("_________inforesSAPorder___________")
 
-        resSAPorder = [{'MATNR': sub['MATNR'], 'RSPOS': sub['RSPOS']}
+        resSAPorder = [{'MATNR': sub['MATNR'], 'RSPOS': sub['RSPOS'], 'MATKL': sub['MATKL'], 'ERFMG': sub['ERFMG']}
                        for sub in ordp]
 
         #print("type", type(resSAPorder))
@@ -91,6 +108,32 @@ def main():
         for pf in resmtlrs:
             if not pf.__contains__('0000000000031'):
                 arrPRODORD_INFO_Component.append(pf)
+
+        # если заказ стадии 2, ставим полуфабрикату 1 стадии склад
+        for rowMaterial in resSAPorder:
+            if rowMaterial['MATNR'].__contains__('0000000000031'):
+                chgMatr = connection.call('Z_IEXT_PRODORD_CHGRES', **{
+                    'UCODE': '21717',
+                    'PCODE': 'NEWPASSWORD1',
+                    'RESITEMS': [
+                        {
+                            u'LINE_ID': '2',
+                            u'MATERIAL': rowMaterial['MATNR'],
+                            u'PLANT': 'SL00',
+                            u'STGE_LOC': '7813',
+                            # u'BATCH': row['Lot'],
+                            u'MOVE_TYPE': '261',
+                            # u'ENTRY_QNT': row['SUM'],
+                            u'ENTRY_UOM': 'ST',
+                            u'ORDERID': orderSAP,
+                            u'RESERV_NO': reserv,
+                            u'RES_ITEM': rowMaterial['RSPOS'],
+                        }
+                    ]
+                })
+                print(f"chgMatr {chgMatr}")
+                logger.info(
+                    f"Выставляем склад полуфабрикату в стадии 2: {chgMatr}")
 
         rowsPanaData = []
         with open(wo_component, newline='') as file:
@@ -130,7 +173,7 @@ def main():
                         ]
                     })
                     print(chg)
-                    logger.info(chg)
+                    logger.info(f"Z_IEXT_PRODORD_CHGRES 1: {chg}")
                     # logger.warning(parse_response(chg))
         #    elif str('00000000000' + row['PART_NO']) != str(c):
         #        print("not", c)
@@ -151,6 +194,7 @@ def main():
         }
         )
         ordp = order_info['RESITEMS']
+        logger.info(f"Z_IEXT_PRODORD_INFO/RESITEMS: ", ordp)
 
         # resSAPorder2 = [{'MATNR': sub['MATNR'], 'BDMNG': sub['BDMNG'], 'CHARG': sub['CHARG']} for sub in ordp]
         # resSAPorder2 = [{'PART_NO': sub['MATNR'], 'SUM': sub['BDMNG'], 'Lot': sub['CHARG']} for sub in ordp]
@@ -192,12 +236,32 @@ def main():
                         ]
                     })
                     print(addcomp)
+                    logger.info(f"Z_IEXT_PRODORD_CHGRES 2: {addcomp}")
             else:
                 # for c in resmtlrs:
                 #  if '00000000000' + i['PART_NO'] != c['MATNR']:
                 # print("component not have in sap_order:", i['PART_NO'], i['SUM'], i['Lot'])
 
-                print(f"{i['PART_NO']} not found")
+                print(f"{i['PART_NO']} {i['Lot']} not found")
+                addcompNotFound = connection.call('Z_IEXT_PRODORD_CHGRES', **{
+                    'UCODE': '21717',
+                    'PCODE': 'NEWPASSWORD1',
+                    'RESITEMS': [
+                        {
+                            'LINE_ID': '1',
+                            'MATERIAL': '00000000000' + i['PART_NO'],
+                            'PLANT': 'SL00',
+                            'STGE_LOC': '7813',
+                            'BATCH': i['Lot'],
+                            'MOVE_TYPE': '261',
+                            'ENTRY_QNT': i['SUM'],
+                            'ENTRY_UOM': 'ST',
+                            'ORDERID': orderSAP,
+                        }
+                    ]
+                })
+                print(f"addcompNotFound: {addcompNotFound}")
+                logger.info(f"addcompNotFound: {addcompNotFound}")
                 # resarrComponentFromPanaCIM.append(i)
 
         # поиск компонентов, которые отсутствуют в cписке Panacim
@@ -207,7 +271,10 @@ def main():
             # ch = str(i['MATNR']).removeprefix('00000000000')
             # print("ch:", ch)
             # arrComponentFromPanaCIM
-            if i['MATNR'] not in arrComponentFromPanaCIM and not i['MATNR'].__contains__('0000000000031'):
+            # 10502    Паяльные материалы    Материалы и сырье\Пайка\Паяльные материалы
+            # 11204    Печатные платы    Материалы и сырье\Соединит.и изолир.комп.\Печатные платы
+            if i['MATNR'] not in arrComponentFromPanaCIM and not i['MATNR'].__contains__(
+                    '0000000000031') and i['MATKL'] != '11004' and i['MATKL'] != '10502' and i['ERFMG'] < 0:
                 print("not in", i['MATNR'])
                 zerocomp = connection.call('Z_IEXT_PRODORD_CHGRES', **{
                     'UCODE': '21717',
@@ -228,7 +295,7 @@ def main():
                     ]
                 })
                 print(zerocomp)
-                logger.info(zerocomp)
+                logger.info(f"Z_IEXT_PRODORD_CHGRES 3: {zerocomp}")
 
         order_info = connection.call('Z_IEXT_PRODORD_INFO', **{
             'AUFNR': orderSAP,  # 000001000825
@@ -260,6 +327,7 @@ def main():
                     break
                 elif item["MATNR"] == '00000000000' + i["PART_NO"] and not item["CHARG"] == i["Lot"]:
                     match = False
+
             if not match:
                 for item in bad_order:
                     if '00000000000' + i["PART_NO"] == item["MATNR"] and item['RSPOS'] not in rspos_black_list:
@@ -287,6 +355,8 @@ def main():
                             ]
                         })
                         print(chg)
+                        logger.info(
+                            f"Z_IEXT_PRODORD_CHGRES: Вставка партии в добавленные строки: {chg}")
                         break
 
                     elif item['RSPOS'] in rspos_black_list:
@@ -303,6 +373,51 @@ def main():
         )
         ordp = order_info['RESITEMS']
         print("Состояние проверки измененного заказа 2", ordp)
+
+        dir = os.path.join(dataArchive+orderSAP)
+        if not os.path.exists(dir):
+            os.mkdir(dir)
+
+        # чтение файла по скрапу
+        # rowsScrap = []
+        # file_existScrap = os.path.exists(scrap)
+        # if file_existScrap:
+        #    with open(scrap, newline='') as scrapFile:
+        #        csvreader = csv.DictReader(scrapFile, delimiter=',')
+        #        for row in csvreader:
+        #            rowsScrap.append(row)
+
+            # добавляем в SAP заказ компоненты из списка по scrap
+        #    for i in rowsScrap:
+        #        addScrap = connection.call('Z_IEXT_PRODORD_CHGRES', **{
+        #            'UCODE': '21717',
+        #            'PCODE': 'NEWPASSWORD1',
+        #            'RESITEMS': [
+        #                {
+        #                    'LINE_ID': '1',
+        #                    'MATERIAL': '00000000000' + i['PART_NO'],
+        #                    'PLANT': 'SL00',
+        #                    'STGE_LOC': '7813',
+        #                    'BATCH': i['Lot'],
+        #                    'MOVE_TYPE': '261',
+        #                    'ENTRY_QNT': i['SUM'],
+        #                    'ENTRY_UOM': 'ST',
+        #                    'ORDERID': orderSAP,
+        #                }
+        #            ]
+        #        })
+        #        print(f"add srap: {addScrap}")
+        #        logger.info(f"add srap: {addScrap}")
+
+        #    src_path = scrap
+        #    dst_path = dataArchive + orderSAP+"/scrap"+str(ttime)+".csv"
+        #    shutil.move(src_path, dst_path)
+
+        file_existwocomp = os.path.exists(wo_component)
+        if file_existwocomp:
+            src_path = wo_component
+            dst_path = dataArchive + orderSAP+"/wo_component"+str(ttime)+".csv"
+            shutil.move(src_path, dst_path)
 
         connection.close()
 
@@ -324,28 +439,34 @@ def main():
 
 
 def get_reserv_num(dict_value):
-    for key, value in dict_value.items():
-        if key == 'RESITEMS':
-            res = value[0].get('RSNUM', '')
-            return res
+    if not dict_value:
+        return "Ответ не получен"
+    else:
+        for key, value in dict_value.items():
+            if key == 'RESITEMS':
+                res = value[0].get('RSNUM', '')
+                return res
 
 
 def parse_response(dict_value):
-    for value in dict_value['RETURN']:
-        # if key == 'RETURN':
-        if value.get('TYPE', '') == 'E':
-            return 'Error: ' + str(value.get('MESSAGE', ''))
-        elif value.get('TYPE', '') == 'I':
-            return "Infomation: " + str(value.get('MESSAGE', ''))
-        elif value.get('TYPE', '') == 'W':
-            return "Warning: " + str(value.get('MESSAGE', ''))
+    if not dict_value:
+        return "Ответ не получен"
+    else:
+        for value in dict_value['RETURN']:
+            # if key == 'RETURN':
+            if value.get('TYPE', '') == 'E':
+                return 'Error: ' + str(value.get('MESSAGE', ''))
+            elif value.get('TYPE', '') == 'I':
+                return "Infomation: " + str(value.get('MESSAGE', ''))
+            elif value.get('TYPE', '') == 'W':
+                return "Warning: " + str(value.get('MESSAGE', ''))
 
-        # elif value[0].get('NUMBER', '') == '469':
-        # print("NOK")
-        # elif value[0].get('NUMBER', '') == '100':
-        # print("OK")
-        else:
-            return "Ответ не получен"
+            # elif value[0].get('NUMBER', '') == '469':
+            #  print("NOK")
+            # elif value[0].get('NUMBER', '') == '100':
+            # print("OK")
+            # else:
+            #    return "Ответ не получен"
 
 
 # def parse_response(dict_value):

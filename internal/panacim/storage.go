@@ -33,6 +33,8 @@ type PanaCIMRepository interface {
 	GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO, npm string) error
 
 	GetPatternTypesPerPanel(product_id string) ([]ProductData, error)
+
+	CompareDataID() (response bool, err error)
 }
 
 /*type PanaCIMStorage struct {

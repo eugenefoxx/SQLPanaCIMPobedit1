@@ -134,7 +134,7 @@ func (r *panaCIMStorage) WriteWorkOrderNameToFile(in []LastWOData) (err error) {
 	for _, i := range in {
 		var result = []string{i.WORKORDERNAME}
 		for _, v := range result {
-			_, err := fmt.Fprintf(splitWOName, v)
+			_, err := fmt.Fprintln(splitWOName, v)
 			if err != nil {
 				splitWOName.Close()
 				return nil

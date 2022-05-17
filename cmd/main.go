@@ -139,7 +139,7 @@ func main() {
 		logger.Errorf(err.Error())
 	}
 	if res != "" {
-		res := "5445" //"5436" 5444
+		res := "5436" //"5436" 5444
 		// получаем номер актуального JOB_ID
 		logger.Infof(("res - %v"), res)
 
@@ -264,34 +264,56 @@ func main() {
 		//if err := panacimStorage.WritePanacimDataComponentsByJobIdSAPToFile(wo_componentSlice); err != nil {
 		//	logger.Errorf(err.Error())
 		//}
-		/*
-			// Блок SAP Python RFC
-			// вызов модуля SAP для распаковки ео
-			unpack_id_pyrfc := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/unpack_id.py"
-			err = pysaprfc.PyExec(unpack_id_pyrfc)
-			if err != nil {
-				logger.Errorf(err.Error())
-				//logger.Fatalf(err.Error())
-			}
-			time.Sleep(5 * time.Second)
-			// Вызов модуля SAP для проверки и вставки данных
-			app_py_info_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/order_info.py"
-			err = pysaprfc.PyExec(app_py_info_order)
-			if err != nil {
-				logger.Errorf(err.Error())
-				//logger.Fatalf(err.Error())
-			}
-			time.Sleep(5 * time.Second)
-			// Вывоз модуля SAP для выпуска по заказу изделия
-			app_py_output_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/output_order.py"
-			err = pysaprfc.PyExec(app_py_output_order)
-			if err != nil {
-				logger.Errorf(err.Error())
-				//logger.Fatalf(err.Error())
-			}
-			time.Sleep(5 * time.Second)
-			// Конец Блок SAP Python RFC
-		*/
+
+		// Блок SAP Python RFC
+		// получить срез данных из SAP по ео материала
+		get_sap_id_info := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/huinfo.py"
+		err = pysaprfc.PyExec(get_sap_id_info)
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		// запуск метода сверки данных по ID между PanaCIM и SAP
+		check_status, err := panacimStorage.CompareDataID()
+		if err != nil {
+			logger.Errorf(err.Error())
+		}
+		fmt.Println("Проверка на соотвествие ЕО")
+		if !check_status {
+			logger.Errorf("завершение работы из-за не верного результат %v", check_status)
+			os.Exit(1)
+		}
+		time.Sleep(5 * time.Second)
+		fmt.Println("Завершение проверки на соотвествие ЕО")
+
+		// вызов модуля SAP для распаковки ео
+		unpack_id_pyrfc := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/unpack_id.py"
+		err = pysaprfc.PyExec(unpack_id_pyrfc)
+		if err != nil {
+			logger.Errorf(err.Error())
+			//logger.Fatalf(err.Error())
+		}
+		time.Sleep(5 * time.Second)
+
+		// Вызов модуля SAP для проверки и вставки данных
+		app_py_info_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/order_info.py"
+		err = pysaprfc.PyExec(app_py_info_order)
+		if err != nil {
+			logger.Errorf(err.Error())
+			//logger.Fatalf(err.Error())
+		}
+
+		time.Sleep(5 * time.Second)
+
+		// Вывоз модуля SAP для выпуска по заказу изделия
+		app_py_output_order := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/output_order.py"
+		err = pysaprfc.PyExec(app_py_output_order)
+		if err != nil {
+			logger.Errorf(err.Error())
+			//logger.Fatalf(err.Error())
+		}
+		time.Sleep(5 * time.Second)
+		// Конец Блок SAP Python RFC
+
 		//f := pysaprfc.PyExecArg("/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/test.py", "Jhon")
 		//fmt.Printf("py - %v\n", f)
 		mixnameSlice, err := panacimStorage.GetPanaCIMixName(productid)

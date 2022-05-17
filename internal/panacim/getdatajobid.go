@@ -1477,13 +1477,14 @@ func (r *panaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeW
 		r.logger.Fatal(err)
 	}
 	for _, npmf := range inputCoreFolder {
+		fmt.Printf("Folder npmf %v\n", npmf.Name())
 		if npmf.IsDir() {
 			processedf, err := ioutil.ReadDir(resourcePath + npmf.Name())
 			if err != nil {
 				r.logger.Fatal(err)
 			}
 			for _, processed := range processedf {
-				fmt.Println("COMPONENT NPM-1 Great!!!")
+				fmt.Printf("Folder processed %v Great!!!\n", processed.Name())
 				if processed.IsDir() {
 
 					dataf, err := ioutil.ReadDir(resourcePath + npmf.Name() + "/" + processed.Name())
@@ -1491,7 +1492,7 @@ func (r *panaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeW
 						r.logger.Fatal(err)
 					}
 					for _, data := range dataf {
-						fmt.Printf("COMPONENT %v Great!!!\n", data.Name())
+						fmt.Printf("Folder data %v Great!!!\n", data.Name())
 						if data.IsDir() {
 							fileu03f, err := ioutil.ReadDir(resourcePath + npmf.Name() + "/" + processed.Name() + "/" + data.Name())
 							if err != nil {
@@ -1558,7 +1559,7 @@ func (r *panaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeW
 													ReelID: i[13],
 													F:      i[14],
 												}
-												if data.F == "0" {
+												if data.F == "0" && data.ReelID != "" {
 													var result = []string{data.ReelID}
 													for _, v := range result {
 														_, err := fmt.Fprintln(fileReelIdRW, v)
@@ -1569,8 +1570,9 @@ func (r *panaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeW
 													}
 												}
 												// запись reel_id со скрапом
-												if data.F == "2" {
+												if data.F == "2" && data.ReelID != "" {
 													var result = []string{data.ReelID}
+													fmt.Printf("testcheck: %v, %v\n", data.ReelID, fileu03.Name())
 													for _, v := range result {
 														_, err := fmt.Fprintln(fileReedIdScrapRW, v)
 														if err != nil {
@@ -1900,7 +1902,12 @@ func (r *panaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeW
 	}
 	// обработка данных  со скрапом
 	// проверяем, создавался ли файл ранее
-	fileReelIDScrap_unic := "internal/reelid_scrap_unic"
+	//fileReelIDScrap_unic := "internal/reelid_scrap_unic"
+	fileReelIDScrap_unic := os.Getenv("reelid_scrap_unic")
+
+	if utils.FileExists(fileReelIDScrap_unic) {
+		os.Remove(fileReelIDScrap_unic)
+	}
 	if _, err := os.Stat(fileReelIDScrap_unic); os.IsExist(err) {
 		reelid_scrap_unicFile, err := os.Create(fileReelIDScrap_unic)
 		if err != nil {
@@ -1952,6 +1959,50 @@ func (r *panaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeW
 		fmt.Printf("Scrap, reel_id: %v, sum: %v\n", i[0], sum)
 	}
 	fmt.Printf("reelIDScrapStore: %v\n", reelIDScrapStore)
+
+	// запись ео материала с кол-вом для распаковки
+	unpack_id__scrap_path := os.Getenv("unpack_id_scrap")
+	unpackIDFileRemove := unpack_id__scrap_path
+
+	if utils.FileExists(unpackIDFileRemove) {
+		os.Remove(unpackIDFileRemove)
+	}
+
+	var idScrap string = `id`
+	var qtyScrap string = `qty`
+	unpackIDScrapFile := unpack_id__scrap_path
+	if _, err := os.Stat(unpackIDScrapFile); os.IsNotExist(err) {
+		unpackIDScrapFile, err := os.Create(unpackIDScrapFile)
+		if err != nil {
+			r.logger.Errorf(err.Error())
+		}
+		defer unpackIDScrapFile.Close()
+
+		writer := csv.NewWriter(unpackIDScrapFile)
+		writer.Write([]string{idScrap, qtyScrap})
+		writer.Comma = ','
+		writer.Flush()
+
+	}
+
+	addUnpackIDScrapFile, err := os.OpenFile(unpackIDScrapFile, os.O_APPEND|os.O_WRONLY, 0644)
+	if err != nil {
+		r.logger.Errorf(err.Error()) //r.logger.Errorf(err.Error())
+		return nil
+	}
+	defer addUnpackIDScrapFile.Close()
+
+	for _, i := range reelIDScrapStore {
+		var result = []string{i.ReelID + "," + i.Qty}
+
+		for _, v := range result {
+			_, err := fmt.Fprintln(addUnpackIDScrapFile, v)
+			if err != nil {
+				addUnpackIDScrapFile.Close()
+				return nil
+			}
+		}
+	}
 
 	valuesText := []string{}
 	for _, r := range reelIDScrapStore {

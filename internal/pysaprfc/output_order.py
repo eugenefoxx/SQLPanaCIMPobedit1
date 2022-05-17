@@ -1,5 +1,9 @@
 import configparser
 import csv
+import os
+from os.path import exists
+from datetime import datetime
+import shutil
 
 import pyrfc
 
@@ -36,8 +40,9 @@ def main():
             "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/sapnwrfc.cfg")
         config.sections()
         params_connection = config['connection']
-        logger.info("Connecting to SAP RFC...")
+        logger.info(f"Connecting to SAP RFC...")
 
+        ttime = datetime.now()
     # try:
 
         # while True:
@@ -48,16 +53,22 @@ def main():
        # resultTime = connection.call(
        #     'WEEK_GET_FIRST_DAY', **{'WEEK': '201825'})
        # print(resultTime)
-
+        dataArchive = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_archive/"
         # infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/info_order.csv'
-        infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/1000862_info_order.csv'
+        # infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/1000862_info_order.csv'
         # infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test1_info_order.csv'
         # infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_info_order.csv'
+        infoOrder = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test3_info_order.csv"
+
+        scrap = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test3_wo_component_scrap.csv"
+        # scrap = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test4_wo_component_scrap.csv"
+
+        # infoOrder = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test4_info_order.csv"
         # 'info_material_order.csv'
         # infomaterialOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/wo_component.csv'
-        infomaterialOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/wo_component_1000862.csv'
+        # infomaterialOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/wo_component_1000862.csv'
         # infomaterialOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test1_wo_component.csv'
-        # infomaterialOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_wo_component.csv'
+        # infomaterialOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_2_wo_component.csv'
 
         rowsinfoOrder = []
         with open(infoOrder, newline='') as file:
@@ -83,15 +94,16 @@ def main():
             print("i", i)
             SAP_ORDER = i
         # print("sap order", rowsinfoOrder['WO'])
+        print(SAP_ORDER)
 
-        infoMaterialOrder = []
-        with open(infomaterialOrder, newline='') as fileMaterial:
-            csvreader = csv.DictReader(fileMaterial, delimiter=',')
-            for row in csvreader:
-                infoMaterialOrder.append(row)
+        # infoMaterialOrder = []
+        # with open(infomaterialOrder, newline='') as fileMaterial:
+        #    csvreader = csv.DictReader(fileMaterial, delimiter=',')
+        #    for row in csvreader:
+        #        infoMaterialOrder.append(row)
 
         order_info = connection.call('Z_IEXT_PRODORD_INFO', **{
-            'AUFNR': '00000' + SAP_ORDER,
+            'AUFNR': '00000' + SAP_ORDER,  # '00000' + SAP_ORDER,
             # '000001000836', # str('00000' + str(sapORDER)),  # '00000' + row['WO'],  # orderSAP,  # 000001000825
             'UCODE': '21717',
             'PCODE': 'NEWPASSWORD1',
@@ -99,14 +111,18 @@ def main():
         )
         productsap = order_info['PRODUCT']
         print("productsap", productsap)
+        logger.info(f"{productsap}")
         sap_order = order_info['RESITEMS']
         print("sap_order", sap_order)
+        logger.info(f"{sap_order}")
+
         # breakpoint()
         paramsGOODSMOVEMENTS = []
         for row in rowsinfoOrder:
             paramsGOODSMOVEMENTS.append({
                 'MATERIAL': productsap,  # '000000000003100302',
                 'PLANT': 'SL00',
+                'STGE_LOC': '7813',
                 'MOVE_TYPE': '131',
                 'ENTRY_QNT': row['Qty'],  # '1',
                 'ENTRY_UOM': 'ST',
@@ -130,12 +146,54 @@ def main():
                 'RESERV_NO': matr['RSNUM'],  # '0000031904',  # Номер резерва
                 'RES_ITEM': matr['RSPOS'],  # '0020',  # Номер позиции резерва
                 'PLANT': 'SL00',
-                'ORDERID': '00000' + SAP_ORDER,  # '000001000825',
+                'ORDERID': '00000' + SAP_ORDER,  # '000001000825', '00000' + SAP_ORDER
                 'WITHDRAWN': 'X',  # фиксированное значение
                 'REF_DOC_IT': '0001',  # фиксированное значение
             })
         print("Added second and after records in paramsGOODSMOVEMENTS",
               paramsGOODSMOVEMENTS)
+
+        # добавление скрапа из файла
+        rowsScrap = []
+        file_existScrap = os.path.exists(scrap)
+        if file_existScrap:
+            with open(scrap, newline='') as scrapFile:
+                csvreader = csv.DictReader(scrapFile, delimiter=',')
+                for row in csvreader:
+                    rowsScrap.append(row)
+
+            # добавляем в SAP заказ компоненты из списка по scrap
+            for i in rowsScrap:
+                paramsGOODSMOVEMENTS.append({
+                    # '000000000002003411',
+                    'MATERIAL': '00000000000'+i['PART_NO'],
+                    'ENTRY_QNT': i['SUM'],  # '1',
+                    'ENTRY_UOM': 'ST',
+                    'STGE_LOC': '7813',
+                    'BATCH': i['Lot'],  # '1000001747',
+                    'MOVE_TYPE': 'Z61',
+                    'SPEC_STOCK': '',  # Индикатор особого запаса
+                    'WBS_ELEM': '',  # СПП-элемент
+                    'NO_MORE_GR': '',  # = 'X' если конечное подтверждение
+                    # '0000031904',  # Номер резерва
+                    # 'RESERV_NO': matr['RSNUM'],
+                    # '0020',  # Номер позиции резерва
+                    # 'RES_ITEM': matr['RSPOS'],
+                    'PLANT': 'SL00',
+                    'ORDERID': '00000' + SAP_ORDER,  # '000001000825', '00000' + SAP_ORDER
+                    'WITHDRAWN': 'X',  # фиксированное значение
+                    'REF_DOC_IT': '0001',  # фиксированное значение
+                })
+
+                print(
+                    f"add srap in paramsGOODSMOVEMENTS: {paramsGOODSMOVEMENTS}")
+                logger.info(
+                    f"add srap in paramsGOODSMOVEMENTS: {paramsGOODSMOVEMENTS}")
+
+            src_path = scrap
+            dst_path = dataArchive + SAP_ORDER+"/scrap"+str(ttime)+".csv"
+            shutil.move(src_path, dst_path)
+
         # breakpoint()
         # for row in rowsinfoOrder:
         #     for matr in sap_order:  # infoMaterialOrder:
@@ -178,10 +236,17 @@ def main():
         )
 
         print(outputtedorder)
+        logger.info(f"{outputtedorder}")
 
         parse_response(outputtedorder)
-        logger.warning(parse_response(outputtedorder))
+        logger.warning(parse_response(f"{outputtedorder}"))
         print(parse_response(outputtedorder))
+
+        file_exist = os.path.exists(infoOrder)
+        if file_exist:
+            src_path = infoOrder
+            dst_path = dataArchive + SAP_ORDER+"/info_order"+str(ttime)+".csv"
+            shutil.move(src_path, dst_path)
 
         connection.close()
     # except KeyError:
@@ -222,21 +287,24 @@ def main():
 
 
 def parse_response(dict_value):
-    for value in dict_value['RETURN']:
-        # if key == 'RETURN':
-        if value.get('TYPE', '') == 'E':
-            return 'Error: ' + str(value.get('MESSAGE', ''))
-        elif value.get('TYPE', '') == 'I':
-            return "Infomation: " + str(value.get('MESSAGE', ''))
-        elif value.get('TYPE', '') == 'W':
-            return "Warning: " + str(value.get('MESSAGE', ''))
+    if not dict_value:
+        return "Сообщения нет"
+    else:
+        for value in dict_value['RETURN']:
+            # if key == 'RETURN':
+            if value.get('TYPE', '') == 'E':
+                return 'Error: ' + str(value.get('MESSAGE', ''))
+            elif value.get('TYPE', '') == 'I':
+                return "Infomation: " + str(value.get('MESSAGE', ''))
+            elif value.get('TYPE', '') == 'W':
+                return "Warning: " + str(value.get('MESSAGE', ''))
 
-        # elif value[0].get('NUMBER', '') == '469':
-        # print("NOK")
-        # elif value[0].get('NUMBER', '') == '100':
-        # print("OK")
-        else:
-            return "Ответ не получен"
+            # elif value[0].get('NUMBER', '') == '469':
+            # print("NOK")
+            # elif value[0].get('NUMBER', '') == '100':
+            # print("OK")
+            # else:
+            #    return "Ответ не получен"
 
 
 if __name__ == "__main__":
