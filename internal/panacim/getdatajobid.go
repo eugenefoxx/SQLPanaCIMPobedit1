@@ -13,6 +13,7 @@ import (
 	"path/filepath"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/filereader"
@@ -542,6 +543,109 @@ func (r *panaCIMStorage) GetPanacimDataComponentsByJobIdAllParamReelid(jobid str
 	return qrs, nil
 }
 
+const querySelectGetWOComponent = `
+SELECT 
+[PART_NO]
+, SUM([PLACE_COUNT]) AS SUM_PLACE_COUNT
+,LOT_NO
+FROM [PanaCIM].dbo.InfoInstallLastJobId_View
+group by PART_NO, LOT_NO;`
+
+// Получить из БД PanaCIM состав списания парт-номер, сумма, лот
+func (r *panaCIMStorage) GetPanaCIMDBWOComponent(jobid string) ([]InfoInstallLastJobId_View, error) {
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	qrDel, err := r.DB.Query(queryDelObjInfoInstallJobId_View)
+	if err != nil {
+		if err.Error() != "sql: no rows in result set" {
+			r.logger.Errorf(err.Error())
+			return nil, err
+		}
+	}
+	defer qrDel.Close()
+
+	qrFunc, err := r.DB.ExecContext(ctx, queryCreateInfoInstallJobId_View1+jobid+queryCreateInfoInstallJobId_View2)
+	if err != nil {
+		if err.Error() != "sql: function no create" {
+			r.logger.Errorf(err.Error())
+			return nil, err
+		}
+	}
+	defer qrFunc.RowsAffected()
+
+	qr, err := r.DB.QueryContext(ctx, querySelectGetWOComponent)
+	if err != nil {
+		if err.Error() != "sql: no rows in result set" {
+			r.logger.Errorf(err.Error())
+			return nil, err
+		}
+	}
+	defer qr.Close()
+
+	var qrs []InfoInstallLastJobId_View
+	for qr.Next() {
+		var qrts InfoInstallLastJobId_View
+		if err := qr.Scan(
+			&qrts.PartNo,
+			&qrts.SumPlaceCount,
+			&qrts.Lot,
+		); err != nil {
+			return qrs, err
+		}
+		qrs = append(qrs, qrts)
+	}
+	if err = qr.Err(); err != nil {
+		return qrs, err
+	}
+	return qrs, nil
+}
+
+func (r *panaCIMStorage) WritePanaCIMDBWOComponentToFile(in []InfoInstallLastJobId_View) (err error) {
+	wo_componentPath := os.Getenv("wo_component")
+
+	if utils.FileExists(wo_componentPath) {
+		os.Remove(wo_componentPath)
+	}
+
+	var partNO string = `PART_NO`
+	var sum string = `SUM`
+	var lot string = `Lot`
+
+	if _, err := os.Stat(wo_componentPath); os.IsNotExist(err) {
+		wo_comp_c, err := os.Create(wo_componentPath)
+		if err != nil {
+			r.logger.Errorf(err.Error())
+		}
+		defer wo_comp_c.Close()
+
+		writer := csv.NewWriter(wo_comp_c)
+		writer.Write([]string{partNO, sum, lot})
+		writer.Comma = ','
+		writer.Flush()
+	}
+
+	splitWOComponent, err := os.OpenFile(wo_componentPath, os.O_APPEND|os.O_WRONLY, 0644)
+	if err != nil {
+		r.logger.Errorf(err.Error())
+		return nil
+	}
+	defer splitWOComponent.Close()
+
+	for _, i := range in {
+		var result = []string{i.PartNo + "," + i.SumPlaceCount + "," + i.Lot}
+		for _, v := range result {
+			_, err = fmt.Fprintln(splitWOComponent, v)
+			if err != nil {
+				splitWOComponent.Close()
+				return nil
+			}
+		}
+	}
+	return nil
+
+}
+
 func (r *panaCIMStorage) WtitePanaCIMDataComponentsToFile(in []InfoInstallLastJobId_View) (err error) {
 	// logger := logging.GetLogger()
 	panaCIMpath := os.Getenv("panacim")
@@ -630,6 +734,207 @@ func (r *panaCIMStorage) WtitePanaCIMDataComponentsToFileUnpackId(in []InfoInsta
 			_, err = fmt.Fprintln(splitUnpakId, v)
 			if err != nil {
 				splitUnpakId.Close()
+				return nil
+			}
+		}
+	}
+	return nil
+}
+
+const querySelectGetScrapID = `
+SELECT 
+reel_barcode
+, ([PICKUP_COUNT] - [PLACE_COUNT]) AS Delta
+FROM [PanaCIM].dbo.InfoInstallLastJobId_View
+WHERE ([PICKUP_COUNT] - [PLACE_COUNT]) > 0
+order by reel_barcode`
+
+// Получить из БД PanaCIM состав списания
+func (r *panaCIMStorage) GetPanaCIMDBScrapID(jobid string) ([]InfoInstallLastJobId_View, error) {
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	qrDel, err := r.DB.Query(queryDelObjInfoInstallJobId_View)
+	if err != nil {
+		if err.Error() != "sql: no rows in result set" {
+			r.logger.Errorf(err.Error())
+			return nil, err
+		}
+	}
+	defer qrDel.Close()
+
+	qrFunc, err := r.DB.ExecContext(ctx, queryCreateInfoInstallJobId_View1+jobid+queryCreateInfoInstallJobId_View2)
+	if err != nil {
+		if err.Error() != "sql: function no create" {
+			r.logger.Errorf(err.Error())
+			return nil, err
+		}
+	}
+	defer qrFunc.RowsAffected()
+
+	qr, err := r.DB.QueryContext(ctx, querySelectGetScrapID)
+	if err != nil {
+		if err.Error() != "sql: no rows in result set" {
+			r.logger.Errorf(err.Error())
+			return nil, err
+		}
+	}
+	defer qr.Close()
+
+	var qrs []InfoInstallLastJobId_View
+	for qr.Next() {
+		var qrts InfoInstallLastJobId_View
+		if err := qr.Scan(
+			&qrts.ReelBarcode,
+			&qrts.Delta,
+		); err != nil {
+			return qrs, err
+		}
+		qrs = append(qrs, qrts)
+	}
+	if err = qr.Err(); err != nil {
+		return qrs, err
+	}
+	return qrs, nil
+}
+
+// запись результата GetPanaCIMDBScrapID в файл
+func (r *panaCIMStorage) WritePanaCIMDBScrapIDToFile(in []InfoInstallLastJobId_View) (err error) {
+	scrapIDPath := os.Getenv("unpack_id_scrap")
+	if utils.FileExists(scrapIDPath) {
+		os.Remove(scrapIDPath)
+	}
+
+	var reel_id string = `id`
+	var qty string = `qty`
+	if _, err := os.Stat(scrapIDPath); os.IsNotExist(err) {
+		scrap_id_f, err := os.Create(scrapIDPath)
+		if err != nil {
+			r.logger.Errorf(err.Error())
+		}
+		defer scrap_id_f.Close()
+
+		writer := csv.NewWriter(scrap_id_f)
+		writer.Write([]string{reel_id, qty})
+		writer.Comma = ','
+		writer.Flush()
+	}
+
+	splitScrapID, err := os.OpenFile(scrapIDPath, os.O_APPEND|os.O_WRONLY, 0644)
+	if err != nil {
+		r.logger.Errorf(err.Error())
+		return nil
+	}
+	defer splitScrapID.Close()
+
+	for _, i := range in {
+		var result = []string{i.ReelBarcode + "," + i.Delta}
+		for _, v := range result {
+			_, err = fmt.Fprintln(splitScrapID, v)
+			if err != nil {
+				splitScrapID.Close()
+				return nil
+			}
+		}
+	}
+	return nil
+}
+
+const querySelectGetScrapSumANDLot = `
+SELECT
+[PART_NO]
+, SUM([PICKUP_COUNT] - [PLACE_COUNT]) AS SUM_PLACE_COUNT
+, LOT_NO
+FROM [PanaCIM].dbo.InfoInstallLastJobId_View
+WHERE ([PICKUP_COUNT] - [PLACE_COUNT]) > 0
+group by PART_NO, LOT_NO;`
+
+// Получить из БД PanaCIM состав парт-номер, сумма, лот на скрап
+func (r *panaCIMStorage) GetPanaCIMDBScrap(jobid string) ([]InfoInstallLastJobId_View, error) {
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	qrDel, err := r.DB.Query(queryDelObjInfoInstallJobId_View)
+	if err != nil {
+		if err.Error() != "sql: no rows in result set" {
+			r.logger.Errorf(err.Error())
+			return nil, err
+		}
+	}
+	defer qrDel.Close()
+
+	qrFunc, err := r.DB.ExecContext(ctx, queryCreateInfoInstallJobId_View1+jobid+queryCreateInfoInstallJobId_View2)
+	if err != nil {
+		if err.Error() != "sql: function no create" {
+			r.logger.Errorf(err.Error())
+			return nil, err
+		}
+	}
+	defer qrFunc.RowsAffected()
+
+	qr, err := r.DB.QueryContext(ctx, querySelectGetScrapSumANDLot)
+	if err != nil {
+		if err.Error() != "sql: no rows in result set" {
+			r.logger.Errorf(err.Error())
+			return nil, err
+		}
+	}
+	defer qr.Close()
+
+	var qrs []InfoInstallLastJobId_View
+	for qr.Next() {
+		var qrts InfoInstallLastJobId_View
+		if err := qr.Scan(
+			&qrts.PartNo,
+			&qrts.SumPlaceCount,
+			&qrts.Lot,
+		); err != nil {
+			return qrs, err
+		}
+		qrs = append(qrs, qrts)
+	}
+	if err = qr.Err(); err != nil {
+		return qrs, err
+	}
+	return qrs, nil
+}
+
+func (r *panaCIMStorage) WritePanaCIMDBScrapToFile(in []InfoInstallLastJobId_View) (err error) {
+	scrapPath := os.Getenv("scrap")
+	if utils.FileExists(scrapPath) {
+		os.Remove(scrapPath)
+	}
+
+	var partNO string = `PART_NO`
+	var sum string = `SUM`
+	var lot string = `Lot`
+
+	if _, err := os.Stat(scrapPath); os.IsNotExist(err) {
+		scrap_c, err := os.Create(scrapPath)
+		if err != nil {
+			r.logger.Errorf(err.Error())
+		}
+		defer scrap_c.Close()
+
+		writer := csv.NewWriter(scrap_c)
+		writer.Write([]string{partNO, sum, lot})
+		writer.Comma = ','
+		writer.Flush()
+	}
+
+	splitScrap, err := os.OpenFile(scrapPath, os.O_APPEND|os.O_WRONLY, 0644)
+	if err != nil {
+		r.logger.Errorf(err.Error())
+		return nil
+	}
+	defer splitScrap.Close()
+
+	for _, i := range in {
+		var result = []string{i.PartNo + "," + i.SumPlaceCount + "," + i.Lot}
+		for _, v := range result {
+			_, err = fmt.Fprintln(splitScrap, v)
+			if err != nil {
+				splitScrap.Close()
 				return nil
 			}
 		}
@@ -865,6 +1170,10 @@ var (
 	layoutDate string = "2006/01/02,15:04:05"
 )
 
+type PatternStore struct {
+	Code string
+}
+
 func (r *panaCIMStorage) GetSumPCBFromU03V2(startUnixTimeWO, finishUnixTimeWO, npm string) (sumstrPCBOrder string) {
 	// logger := logging.GetLogger()
 	npmToUp := strings.ToUpper(npm)
@@ -876,6 +1185,8 @@ func (r *panaCIMStorage) GetSumPCBFromU03V2(startUnixTimeWO, finishUnixTimeWO, n
 		panic(err)
 	}
 	tmStartWO := time.Unix(tStartWO, 0)
+
+	//tmmStartWO := tmStartWO.Add(time.Minute * 3)
 	p_tmStartWO, _ := time.Parse(layoutDate, tmStartWO.Format(layoutDate))
 	fmt.Println("p_tmStartWO:", p_tmStartWO)
 
@@ -886,90 +1197,113 @@ func (r *panaCIMStorage) GetSumPCBFromU03V2(startUnixTimeWO, finishUnixTimeWO, n
 	tmFinishWO := time.Unix(tFinishWO, 0)
 	p_tmFinishWO, _ := time.Parse(layoutDate, tmFinishWO.Format(layoutDate))
 	fmt.Println("p_tmFinishWO: ", p_tmFinishWO)
+	/*
+		folderFromPanaNPM_1 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resourcePanaCIM/NPM-1/"
+		folderFromPanaNPM_2 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resourcePanaCIM/NPM-2/"
+		folderFromPanaNPM_3 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resourcePanaCIM/NPM-3/"
+		folderFromPanaNPM_4 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resourcePanaCIM/NPM-4/"
 
-	folderFromPanaNPM_1 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resourcePanaCIM/NPM-1/"
-	folderFromPanaNPM_2 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resourcePanaCIM/NPM-2/"
-	folderFromPanaNPM_3 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resourcePanaCIM/NPM-3/"
-	folderFromPanaNPM_4 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resourcePanaCIM/NPM-4/"
+		folderToCopyNPM_1 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resource/NPM-1/"
+		folderToCopyNPM_2 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resource/NPM-2/"
+		folderToCopyNPM_3 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resource/NPM-3/"
+		folderToCopyNPM_4 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resource/NPM-4/"
+	*/
+	folderFromPanaNPM_1 := "/mnt/npm-1/"
+	folderFromPanaNPM_2 := "/mnt/npm-2/"
+	folderFromPanaNPM_3 := "/mnt/npm-3/"
+	folderFromPanaNPM_4 := "/mnt/npm-4/"
 
-	folderToCopyNPM_1 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resource/NPM-1/"
-	folderToCopyNPM_2 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resource/NPM-2/"
-	folderToCopyNPM_3 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resource/NPM-3/"
-	folderToCopyNPM_4 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resource/NPM-4/"
+	folderToCopyNPM_1 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/npm/NPM-1/processed/"
+	folderToCopyNPM_2 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/npm/NPM-2/processed/"
+	folderToCopyNPM_3 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/npm/NPM-3/processed/"
+	folderToCopyNPM_4 := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/npm/NPM-4/processed/"
 
+	//wg := sync.WaitGroup{}
+	//wg.Add(2)
+	//go func() {
 	err = cp.Copy(folderFromPanaNPM_1, folderToCopyNPM_1)
 	if err != nil {
 		log.Println(err)
 	}
+
 	err = cp.Copy(folderFromPanaNPM_2, folderToCopyNPM_2)
 	if err != nil {
 		log.Println(err)
 	}
+
 	err = cp.Copy(folderFromPanaNPM_3, folderToCopyNPM_3)
 	if err != nil {
 		log.Println(err)
 	}
+
 	err = cp.Copy(folderFromPanaNPM_4, folderToCopyNPM_4)
 	if err != nil {
 		log.Println(err)
 	}
+	//	wg.Done()
+	//}()
 
 	// получить список папок в скопированной директории
-	resourcePath := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resource/"
+	//resourcePath := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resource/"
+	resourcePath := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/npm/"
 	f_resource, err := ioutil.ReadDir(resourcePath)
 	if err != nil {
 		log.Panicln(err)
 	}
 	// Разархивирование архивов, если они есть
-	for _, r := range f_resource {
-		if r.IsDir() {
-			folder, err := ioutil.ReadDir(resourcePath + r.Name())
-			if err != nil {
-				log.Panicln(err)
-			}
-			fmt.Println("folder Resource: ", resourcePath+r.Name())
-			for _, r2 := range folder {
-				if r2.IsDir() {
-					processed, err := ioutil.ReadDir(filepath.FromSlash(resourcePath + r.Name() + "/" + r2.Name()))
-					if err != nil {
-						log.Panicln(err)
-					}
-					fmt.Println("folder Resource2: ", resourcePath+r.Name()+"/"+r2.Name())
-					for _, r3 := range processed {
-						dataFolders, err := ioutil.ReadDir(resourcePath + r.Name() + "/" + r2.Name() + "/" + r3.Name())
+	wg := sync.WaitGroup{}
+	wg.Add(2)
+	go func() {
+		for _, r := range f_resource {
+			if r.IsDir() {
+				folder, err := ioutil.ReadDir(resourcePath + r.Name())
+				if err != nil {
+					log.Panicln(err)
+				}
+				fmt.Println("folder Resource: ", resourcePath+r.Name())
+				for _, r2 := range folder {
+					if r2.IsDir() {
+						processed, err := ioutil.ReadDir(filepath.FromSlash(resourcePath + r.Name() + "/" + r2.Name()))
 						if err != nil {
 							log.Panicln(err)
 						}
-						for _, r4 := range dataFolders {
-							if !r4.IsDir() {
-								if strings.Contains(r4.Name(), ".gz") {
-									// Open compressed file
-									gzipFile, err := os.Open(resourcePath + r.Name() + "/" + r2.Name() + "/" + r3.Name() + "/" + r4.Name())
-									if err != nil {
-										log.Fatal(err)
-									}
-									// Create a gzip reader on top of the file reader
-									// Again, it could be any type reader though
-									gzipReader, err := gzip.NewReader(gzipFile)
-									if err != nil {
-										log.Fatal(err)
-									}
-									//defer gzipReader.Close()
-									writeToFile := strings.Trim(r4.Name(), ".gz")
-									// Uncompress to a writer. We'll use a file writer
-									outfileWriter, err := os.Create(resourcePath + r.Name() + "/" + r2.Name() + "/" + r3.Name() + "/" + writeToFile)
-									if err != nil {
-										log.Fatal(err)
-									}
-									//defer outfileWriter.Close()
+						fmt.Println("folder Resource2: ", resourcePath+r.Name()+"/"+r2.Name())
+						for _, r3 := range processed {
+							dataFolders, err := ioutil.ReadDir(resourcePath + r.Name() + "/" + r2.Name() + "/" + r3.Name())
+							if err != nil {
+								log.Panicln(err)
+							}
+							for _, r4 := range dataFolders {
+								if !r4.IsDir() {
+									if strings.Contains(r4.Name(), ".gz") {
+										// Open compressed file
+										gzipFile, err := os.Open(resourcePath + r.Name() + "/" + r2.Name() + "/" + r3.Name() + "/" + r4.Name())
+										if err != nil {
+											log.Fatal(err)
+										}
+										// Create a gzip reader on top of the file reader
+										// Again, it could be any type reader though
+										gzipReader, err := gzip.NewReader(gzipFile)
+										if err != nil {
+											log.Fatal(err)
+										}
+										//defer gzipReader.Close()
+										writeToFile := strings.Trim(r4.Name(), ".gz")
+										// Uncompress to a writer. We'll use a file writer
+										outfileWriter, err := os.Create(resourcePath + r.Name() + "/" + r2.Name() + "/" + r3.Name() + "/" + writeToFile)
+										if err != nil {
+											log.Fatal(err)
+										}
+										//defer outfileWriter.Close()
 
-									// Copy contents of gzipped file to output file
-									_, err = io.Copy(outfileWriter, gzipReader)
-									if err != nil {
-										log.Fatal(err)
+										// Copy contents of gzipped file to output file
+										_, err = io.Copy(outfileWriter, gzipReader)
+										if err != nil {
+											log.Fatal(err)
+										}
+										gzipReader.Close()
+										outfileWriter.Close()
 									}
-									gzipReader.Close()
-									outfileWriter.Close()
 								}
 							}
 						}
@@ -977,7 +1311,8 @@ func (r *panaCIMStorage) GetSumPCBFromU03V2(startUnixTimeWO, finishUnixTimeWO, n
 				}
 			}
 		}
-	}
+		wg.Done()
+	}()
 
 	sumPCBOrder := 0
 	checkDuble := map[string]bool{}
@@ -985,120 +1320,213 @@ func (r *panaCIMStorage) GetSumPCBFromU03V2(startUnixTimeWO, finishUnixTimeWO, n
 	if err != nil {
 		log.Fatal(err)
 	}
-	for _, npmf := range inputCoreFolder {
-		if npmf.IsDir() {
-			// расчет кол-ва плат
-			if npmf.Name() == "NPM-1" {
-				fmt.Println("NPM-1 Great!!!")
-				processedf, err := ioutil.ReadDir(resourcePath + npmf.Name())
-				if err != nil {
-					log.Fatal(err)
-				}
-				for _, processed := range processedf {
-					fmt.Println("2 NPM-1 Great!!!")
-					if processed.IsDir() {
-						dataf, err := ioutil.ReadDir(resourcePath + npmf.Name() + "/" + processed.Name())
-						if err != nil {
-							log.Fatal(err)
-						}
-						for _, data := range dataf {
-							fmt.Println("3 NPM-1 Great!!!")
-							if data.IsDir() {
-								fileu03f, err := ioutil.ReadDir(resourcePath + npmf.Name() + "/" + processed.Name() + "/" + data.Name())
-								if err != nil {
-									log.Fatal(err)
-								}
-								for _, fileu03 := range fileu03f {
-									if !fileu03.IsDir() {
-										//fmt.Println("Finish")
-										if strings.Contains(fileu03.Name(), ".u03") && !strings.Contains(fileu03.Name(), ".gz") {
-											cfg, err := ini.LoadSources(ini.LoadOptions{
-												UnparseableSections: []string{
-													//	"Index",
-													//	"Information",
 
-													"BRecg",
-													"BRecgCalc",
-													"ElapseTimeRecog",
-													"SBoard",
-													"HeightCorrect",
-													"MountNormalTrace",
-													"MountLatestReel",
-													"MountExchangeReel",
-													"MountQualityTrace"},
-											}, resourcePath+"/"+npmf.Name()+"/"+processed.Name()+"/"+data.Name()+"/"+fileu03.Name())
-											if err != nil {
-												fmt.Printf("Fail to read file: %v", err)
-												os.Exit(1)
-											}
-											dataFile := cfg.Section("Index").Key("Date").String()
-											pdataFile, _ := time.Parse(layoutDate, dataFile)
-											if (pdataFile.After(p_tmStartWO) && pdataFile.Before(p_tmFinishWO)) &&
-												(strings.EqualFold(strings.ToUpper(cfg.Section("Information").Key("LotName").String()), strings.ToUpper(npmToUp))) {
-												// проверка на дубль в файлах по ключу Code checkDuble[cfg.Section("Information").Key("Code").String()] == true
-												if checkDuble[cfg.Section("Information").Key("Code").String()] {
-													fmt.Println("Code Double: ", cfg.Section("Information").Key("Code").String())
-												} else {
-													checkDuble[cfg.Section("Information").Key("Code").String()] = true
-													// получаем данные по указаннной секции
-													readSection := cfg.Section("MountQualityTrace").Body()
-													// конвертируем в байты
-													writeByte := []byte(readSection)
-													// записываем данные в файл
-													if err := ioutil.WriteFile("internal/out", writeByte, 0644); err != nil {
-														fmt.Printf("%v", err)
-													}
-													// Пересоздаю данный файл, чтобы его сумму хранить дальше в памяти
-													filepcb := "internal/pcb"
+	storagPattern := []PatternStore{}
 
-													fileRemovePCB := "internal/pcb"
+	go func() {
+		for _, npmf := range inputCoreFolder {
+			if npmf.IsDir() {
+				// расчет кол-ва плат
+				if npmf.Name() == "NPM-1" {
+					fmt.Println("NPM-1 Great!!!")
+					processedf, err := ioutil.ReadDir(resourcePath + npmf.Name())
+					if err != nil {
+						log.Fatal(err)
+					}
+					for _, processed := range processedf {
+						fmt.Println("2 NPM-1 Great!!!")
+						if processed.IsDir() {
+							dataf, err := ioutil.ReadDir(resourcePath + npmf.Name() + "/" + processed.Name())
+							if err != nil {
+								log.Fatal(err)
+							}
+							for _, data := range dataf {
+								fmt.Println("3 NPM-1 Great!!!")
+								if data.IsDir() {
+									fileu03f, err := ioutil.ReadDir(resourcePath + npmf.Name() + "/" + processed.Name() + "/" + data.Name())
+									if err != nil {
+										log.Fatal(err)
+									}
+									for _, fileu03 := range fileu03f {
+										if !fileu03.IsDir() {
+											//fmt.Println("Finish")
+											if strings.Contains(fileu03.Name(), ".u03") && !strings.Contains(fileu03.Name(), ".gz") {
+												cfg, err := ini.LoadSources(ini.LoadOptions{
+													UnparseableSections: []string{
+														//	"Index",
+														//	"Information",
 
-													if _, err := os.Stat(fileRemovePCB); os.IsNotExist(err) {
-														pcbFile, err := os.Create(fileRemovePCB)
-														if err != nil {
-															r.logger.Errorf(err.Error())
-														}
-														defer pcbFile.Close()
+														"BRecg",
+														"BRecgCalc",
+														"ElapseTimeRecog",
+														"SBoard",
+														"HeightCorrect",
+														"MountNormalTrace",
+														"MountLatestReel",
+														"MountExchangeReel",
+														"MountQualityTrace"},
+												}, resourcePath+"/"+npmf.Name()+"/"+processed.Name()+"/"+data.Name()+"/"+fileu03.Name())
+												if err != nil {
+													fmt.Printf("Fail to read file: %v", err)
+													r.logger.Errorf("Fail to read file: %v", err)
+													os.Exit(1)
+												}
+												dataFile := cfg.Section("Index").Key("Date").String()
+												pdataFile, _ := time.Parse(layoutDate, dataFile)
+												// p_tmStartWO.Add(-3*time.Minute) - уменьшаю стартовое время на 3 минуты
+												if (pdataFile.After(p_tmStartWO.Add(-3*time.Minute)) && pdataFile.Before(p_tmFinishWO.Add(3*time.Minute))) &&
+													(strings.EqualFold(strings.ToUpper(cfg.Section("Information").Key("LotName").String()), strings.ToUpper(npmToUp))) {
+													if checkDuble[cfg.Section("Information").Key("Code").String()] {
+														fmt.Println("Code Double: ", cfg.Section("Information").Key("Code").String())
+													} else {
+														checkDuble[cfg.Section("Information").Key("Code").String()] = true
+														storagPattern = append(storagPattern, PatternStore{Code: cfg.Section("Information").Key("Code").String()})
 													}
-													e_pcb := os.Remove(fileRemovePCB)
-													if e_pcb != nil {
-														log.Fatal(e_pcb)
-													}
-													filepcbRW, err := os.OpenFile(filepcb, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
-													if err != nil {
-														r.logger.Errorf(err.Error())
-														return
-													}
-													defer filepcbRW.Close()
 
-													numberPCBs := filereader.Readfileseekerspace("internal/out")
-													for _, i := range numberPCBs {
-														data := U03{
-															B: i[0],
-														}
-														if data.B != "0" {
-															var result = []string{data.B}
-															for _, v := range result {
-																_, err = fmt.Fprintln(filepcbRW, v)
+													//fmt.Printf("Pattern Store: %v", storagPattern)
+
+													// проверка на дубль в файлах по ключу Code checkDuble[cfg.Section("Information").Key("Code").String()] == true
+													/*if checkDuble[cfg.Section("Information").Key("Code").String()] {
+															fmt.Println("Code Double: ", cfg.Section("Information").Key("Code").String())
+														} else {
+															checkDuble[cfg.Section("Information").Key("Code").String()] = true
+															fmt.Println("Code Single: \n", cfg.Section("Information").Key("Code").String())
+															// получаем данные по указаннной секции
+															readSection := cfg.Section("MountQualityTrace").Body()
+															// конвертируем в байты
+															writeByte := []byte(readSection)
+															// записываем данные в файл
+															if err := ioutil.WriteFile("internal/out", writeByte, 0644); err != nil {
+																fmt.Printf("%v", err)
+															}
+															// Пересоздаю данный файл, чтобы его сумму хранить дальше в памяти
+															filepcb := "internal/pcb"
+
+															fileRemovePCB := "internal/pcb"
+
+															if _, err := os.Stat(fileRemovePCB); os.IsNotExist(err) {
+																pcbFile, err := os.Create(fileRemovePCB)
 																if err != nil {
-																	filepcbRW.Close()
-																	return
+																	r.logger.Errorf(err.Error())
+																}
+																defer pcbFile.Close()
+															}
+															e_pcb := os.Remove(fileRemovePCB)
+															if e_pcb != nil {
+																log.Fatal(e_pcb)
+															}
+															filepcbRW, err := os.OpenFile(filepcb, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
+															if err != nil {
+																r.logger.Errorf(err.Error())
+																return
+															}
+															defer filepcbRW.Close()
+
+															numberPCBs := filereader.Readfileseekerspace("internal/out")
+															for _, i := range numberPCBs {
+																data := U03{
+																	B: i[0],
+																}
+																if data.B != "0" {
+																	var result = []string{data.B}
+																	for _, v := range result {
+																		_, err = fmt.Fprintln(filepcbRW, v)
+																		if err != nil {
+																			filepcbRW.Close()
+																			return
+																		}
+																	}
 																}
 															}
+															// читаю файл построчно
+															getnumberpcb, err := readLines(filepcb)
+															if err != nil {
+																r.logger.Errorf(err.Error())
+															}
+															// убираю дублированные номера
+															resnumberpcb := removeDuplicatesinfile(getnumberpcb)
+															// считаю уникальные номера плат и записываю в счетчик sumPCBOrder
+															sumTest := 0
+															for i := 0; i < len(resnumberpcb); i++ {
+																//for _, i := range resnumberpcb {
+																//fmt.Println("t ", i)
+																sumPCBOrder++
+																sumTest++
+
+															}
+															fmt.Printf("\nCode: %s, Sum: %v\n", cfg.Section("Information").Key("Code").String(), sumTest)
 														}
-													}
-													// читаю файл построчно
-													getnumberpcb, err := readLines(filepcb)
-													if err != nil {
-														r.logger.Errorf(err.Error())
-													}
-													// убираю дублированные номера
-													resnumberpcb := removeDuplicatesinfile(getnumberpcb)
-													// считаю уникальные номера плат и записываю в счетчик sumPCBOrder
-													for i := 0; i < len(resnumberpcb); i++ {
-														//for _, i := range resnumberpcb {
-														//fmt.Println("t ", i)
-														sumPCBOrder++
+
+													}*/
+
+													for _, i := range storagPattern {
+														if i.Code == cfg.Section("Information").Key("Code").String() {
+															// получаем данные по указаннной секции
+															readSection := cfg.Section("MountQualityTrace").Body()
+															// конвертируем в байты
+															writeByte := []byte(readSection)
+															// записываем данные в файл
+															if err := ioutil.WriteFile("internal/out", writeByte, 0644); err != nil {
+																fmt.Printf("%v", err)
+															}
+															// Пересоздаю данный файл, чтобы его сумму хранить дальше в памяти
+															filepcb := "internal/pcb"
+
+															fileRemovePCB := "internal/pcb"
+
+															if _, err := os.Stat(fileRemovePCB); os.IsNotExist(err) {
+																pcbFile, err := os.Create(fileRemovePCB)
+																if err != nil {
+																	r.logger.Errorf(err.Error())
+																}
+																defer pcbFile.Close()
+															}
+															e_pcb := os.Remove(fileRemovePCB)
+															if e_pcb != nil {
+																log.Fatal(e_pcb)
+															}
+															filepcbRW, err := os.OpenFile(filepcb, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
+															if err != nil {
+																r.logger.Errorf(err.Error())
+																return
+															}
+															defer filepcbRW.Close()
+
+															numberPCBs := filereader.Readfileseekerspace("internal/out")
+															for _, i := range numberPCBs {
+																data := U03{
+																	B: i[0],
+																}
+																if data.B != "0" {
+																	var result = []string{data.B}
+																	for _, v := range result {
+																		_, err = fmt.Fprintln(filepcbRW, v)
+																		if err != nil {
+																			filepcbRW.Close()
+																			return
+																		}
+																	}
+																}
+															}
+															// читаю файл построчно
+															getnumberpcb, err := readLines(filepcb)
+															if err != nil {
+																r.logger.Errorf(err.Error())
+															}
+															// убираю дублированные номера
+															resnumberpcb := removeDuplicatesinfile(getnumberpcb)
+															// считаю уникальные номера плат и записываю в счетчик sumPCBOrder
+															sumTest := 0
+															for i := 0; i < len(resnumberpcb); i++ {
+																//for _, i := range resnumberpcb {
+																//fmt.Println("t ", i)
+																sumPCBOrder++
+																sumTest++
+
+															}
+															fmt.Printf("\nCode: %s, Sum: %v\n", cfg.Section("Information").Key("Code").String(), sumTest)
+														}
+														//fmt.Printf("test sum")
 													}
 												}
 											}
@@ -1111,7 +1539,11 @@ func (r *panaCIMStorage) GetSumPCBFromU03V2(startUnixTimeWO, finishUnixTimeWO, n
 				}
 			}
 		}
-	}
+		wg.Done()
+	}()
+
+	wg.Wait()
+
 	sumstrPCBOrder = strconv.Itoa(sumPCBOrder)
 
 	return sumstrPCBOrder
@@ -1261,7 +1693,7 @@ func (r *panaCIMStorage) GetSumPCBFromU03(startUnixTimeWO, finishUnixTimeWO, npm
 						lotnameToUpper := strings.ToUpper(cfg.Section("Information").Key("LotName").String())
 						// if cfg.Section("Information").Key("LotName").String() == "NPM_915-00211_A_S"
 
-						if (strings.EqualFold(lotnameToUpper, npmToUp)) && (pdataFile.After(p_tmStartWO) && pdataFile.Before(p_tmFinishWO)) {
+						if (strings.EqualFold(lotnameToUpper, npmToUp)) && (pdataFile.After(p_tmStartWO.Add(-3*time.Minute)) && pdataFile.Before(p_tmFinishWO.Add(3*time.Minute))) {
 							// проверка на дубль в файлах по ключу Code
 							if checkDubleCode[cfg.Section("Information").Key("Code").String()] {
 								fmt.Println("Duble Code: ", cfg.Section("Information").Key("Code").String())
@@ -1444,6 +1876,14 @@ func (r *panaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeW
 	resourcePath := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/source/resource/"
 	// проверяем, не создавался ли ранее файл reel_id
 	fileReelId := "internal/reel_id"
+	// удаляем, если ранее был создан
+	if utils.FileExists(fileReelId) {
+		os.Remove(fileReelId)
+	}
+	/*rm_reedid := os.Remove(fileReelId)
+	if rm_reedid != nil {
+		r.logger.Fatalf("%v\n", rm_reedid)
+	}*/
 	if _, err := os.Stat(fileReelId); os.IsNotExist(err) {
 		reelidFile, err := os.Create(fileReelId)
 		if err != nil {
@@ -1451,13 +1891,12 @@ func (r *panaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeW
 		}
 		defer reelidFile.Close()
 	}
-	// удаляем, если ранее был создан
-	rm_reedid := os.Remove(fileReelId)
-	if rm_reedid != nil {
-		r.logger.Fatalf("%v\n", rm_reedid)
-	}
 
 	fileReedIdScrap := "internal/reel_id_scrap"
+	// удаляем, если ранее был создан
+	if utils.FileExists(fileReedIdScrap) {
+		os.Remove(fileReedIdScrap)
+	}
 	if _, err := os.Stat(fileReedIdScrap); os.IsNotExist(err) {
 		reedIdScrapFile, err := os.Create(fileReedIdScrap)
 		if err != nil {
@@ -1466,10 +1905,10 @@ func (r *panaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeW
 		defer reedIdScrapFile.Close()
 	}
 
-	rm_reedIdScrapFile := os.Remove(fileReedIdScrap)
+	/*rm_reedIdScrapFile := os.Remove(fileReedIdScrap)
 	if rm_reedIdScrapFile != nil {
 		r.logger.Fatalf("%v\n", rm_reedIdScrapFile)
-	}
+	}*/
 
 	//checkDubleComponent := map[string]bool{}
 	inputCoreFolder, err := ioutil.ReadDir(resourcePath)
@@ -1522,7 +1961,7 @@ func (r *panaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeW
 										}
 										dataFile := cfg.Section("Index").Key("Date").String()
 										pdataFile, _ := time.Parse(layoutDate, dataFile)
-										if (pdataFile.After(p_tmStartWO) && pdataFile.Before(p_tmFinishWO)) &&
+										if (pdataFile.After(p_tmStartWO.Add(-3*time.Minute)) && pdataFile.Before(p_tmFinishWO.Add(3*time.Minute))) &&
 											(strings.EqualFold(strings.ToUpper(cfg.Section("Information").Key("LotName").String()), strings.ToUpper(npmToUp))) {
 											// проверка на дубль в файлах по ключу Code checkDuble[cfg.Section("Information").Key("Code").String()] == true
 											//if checkDubleComponent[cfg.Section("Information").Key("Code").String()] {
@@ -1580,6 +2019,13 @@ func (r *panaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeW
 															return err
 														}
 													}
+													/*if data.ReelID == "1000487433" {
+														fmt.Printf("1000487433 YYYYYYYYYYYYYYYYY - %v, %v\n", data.ReelID, fileu03.Name())
+													}*/
+												}
+
+												if data.F != "2" && data.ReelID != "" && data.F != "0" {
+													fmt.Printf("testcheck no name: %v, %v, %v\n", data.F, data.ReelID, fileu03.Name())
 												}
 
 												//}
@@ -1599,6 +2045,10 @@ func (r *panaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeW
 	}
 
 	file_reelid_unic := "internal/reelid_unic"
+
+	if utils.FileExists(file_reelid_unic) {
+		os.Remove(file_reelid_unic)
+	}
 	//var reelid_unicFile *os.File
 	if _, err := os.Stat(file_reelid_unic); os.IsNotExist(err) {
 		reelid_unicFile, err := os.Create(file_reelid_unic)
@@ -1608,10 +2058,11 @@ func (r *panaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeW
 		defer reelid_unicFile.Close()
 	}
 
-	rm_reelid_unicFile := os.Remove(file_reelid_unic)
+	/*rm_reelid_unicFile := os.Remove(file_reelid_unic)
 	if rm_reelid_unicFile != nil {
 		r.logger.Fatalf("%v\n", rm_reelid_unicFile)
-	}
+	}*/
+
 	// читаю файл построчно
 	get_reel_id, err := readLines(fileReelId)
 	if err != nil {
@@ -1655,6 +2106,9 @@ func (r *panaCIMStorage) GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeW
 		fmt.Printf("reel_id: %v, sum: %v\n", i[0], sum)
 	}
 	fmt.Printf("reelIdStore: %v\n", reelIdStore)
+	/*if len(reelIdStore) == 0 {
+		r.logger.Errorf("reelIdStore is empty, %v", err.Error())
+	}*/
 	//fileReelIDData := "internal/testReelId"
 	//reelIdData, err := os.Create(fileReelIDData)
 	//if err != nil {
@@ -2162,7 +2616,7 @@ func removeDuplicatesinfile(elements []string) []string { // change string to in
 	result := []string{}             // change string to int here if required
 
 	for v := range elements {
-		if encountered[elements[v]] == true {
+		if encountered[elements[v]] {
 			// Do not add duplicate.
 		} else {
 			// Record this element as an encountered element.

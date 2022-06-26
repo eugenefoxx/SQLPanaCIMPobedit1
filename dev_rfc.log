@@ -2768,3 +2768,2607 @@ NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 
 	The UUID daemon (uuidd) is not active.
 Please ask your system administrator to activate uuidd according to SAP note 1391070.
 
+
+**** Log file opened at 2022-05-17 18:04:36.569288 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-17 18:04:36.569647 [140587083900736] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-17 18:06:15.782696 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-17 18:06:15.782868 [140642328614720] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-17 18:09:27.857224 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-17 18:09:27.857418 [140033825568576] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-17 18:11:04.531550 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-17 18:11:04.531602 [139979539040064] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-17 18:11:13.219047 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-17 18:11:13.219105 [139904040421184] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-17 18:11:23.022109 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-17 18:11:23.022185 [140685986322240] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-18 14:00:03.805482 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-18 14:00:03.806387 [139731938867008] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-18 14:01:47.201371 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-18 14:01:47.201568 [140306700818240] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-18 14:01:55.902659 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-18 14:01:55.902712 [140318814619456] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-18 14:46:31.217683 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-18 14:46:31.217885 [140551597131584] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-18 14:48:17.014733 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-18 14:48:17.014902 [139648525682496] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-18 14:48:25.996195 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-18 14:48:25.996251 [140627147134784] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-18 14:48:35.741601 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-18 14:48:35.741655 [140255149717312] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-19 13:23:41.164194 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-19 13:23:41.164478 [140074349102912] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-19 13:25:40.607823 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-19 13:25:40.608023 [140264016578368] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-19 13:25:48.952594 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-19 13:25:48.952648 [140203362490176] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-19 13:25:57.414835 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-19 13:25:57.414945 [139833057716032] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-19 14:58:00.973263 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-19 14:58:00.973630 [140207414077248] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-19 15:02:06.928387 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-19 15:02:06.929608 [140661014153024] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-19 15:02:16.812402 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-19 15:02:16.823642 [140532350609216] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-19 15:02:27.870266 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-19 15:02:27.871939 [140510455412544] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-23 14:37:35.756717 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-23 14:37:35.757052 [140655586387776] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-23 14:40:02.609393 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-23 14:40:02.609696 [140073630115648] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-23 14:40:11.511190 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-23 14:40:11.511252 [140063977924416] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-23 14:40:20.483212 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-23 14:40:20.483274 [140449128945472] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-23 14:53:53.417328 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-23 14:53:53.417973 [139659505080128] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-23 14:54:28.249964 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-23 14:54:28.250046 [139809313908544] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-23 14:56:39.890812 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-23 14:56:39.891138 [140658484561728] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-23 14:56:48.841886 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-23 14:56:48.841968 [140345223685952] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-23 14:56:58.505417 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-23 14:56:58.505475 [140128605284160] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-24 16:17:03.009322 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-24 16:17:03.009690 [140327326443328] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-24 16:19:07.724247 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-24 16:19:07.724522 [140660047112000] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-24 16:19:16.165856 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-24 16:19:16.165910 [140703140759360] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-24 16:19:24.624001 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-24 16:19:24.624078 [140295451346752] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-24 16:21:39.851253 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-24 16:21:39.851317 [140161324144448] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-24 16:23:32.241704 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-24 16:23:32.242060 [140351499499328] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-24 16:23:40.501277 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-24 16:23:40.501346 [140637649368896] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-24 16:23:50.066765 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-24 16:23:50.066825 [139659740444480] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-24 17:57:53.831923 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-24 17:57:53.832282 [139943126583104] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 12:01:16.110659 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 12:01:16.111046 [140193925547840] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 12:23:50.867917 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 12:23:50.868144 [139971617212224] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 12:38:35.172431 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 12:38:35.172718 [140628454127424] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 12:38:49.500448 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 12:38:49.500497 [140611837945664] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 12:39:13.588961 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 12:39:13.589023 [139960685504320] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 12:39:24.463336 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 12:39:24.463415 [140024744011584] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 12:44:43.215330 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 12:44:43.215542 [140002245695296] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 12:51:20.148607 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 12:51:20.148928 [140289056175936] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 13:44:08.621862 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 13:44:08.622171 [139808499959616] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 13:53:16.404497 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 13:53:16.404753 [140448465766208] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 13:57:49.081919 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 13:57:49.082292 [140051628222272] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 14:04:08.689198 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 14:04:08.689551 [140530914559808] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 14:22:28.440132 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 14:22:28.440481 [139765759883072] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 14:29:53.508324 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 14:29:53.508754 [140137231484736] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 14:36:10.856619 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 14:36:10.856933 [140158029961024] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 14:42:34.990627 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 14:42:34.990898 [139634244351808] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 14:48:23.369137 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 14:48:23.369468 [139629719689024] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 14:54:39.434436 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 14:54:39.434848 [140318183520064] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 15:11:45.467699 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 15:11:45.468015 [140463899608896] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 17:24:24.802202 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 17:24:24.802492 [140590907909952] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-25 18:01:07.270275 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-25 18:01:07.270728 [140687678728000] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-26 14:57:29.022240 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: main
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-26 14:57:29.022550 [139956114241472] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-26 14:57:29.116253 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-26 14:57:29.116341 [140605614954304] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-26 14:58:06.968549 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: main
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-26 14:58:06.968599 [139895676274624] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-26 14:58:07.027128 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-26 14:58:07.027203 [139701865273152] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-26 15:11:54.952746 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: main
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-26 15:11:54.953014 [140709661120448] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-26 15:11:55.026355 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-26 15:11:55.026470 [139769172621120] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-26 15:14:12.089067 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: main
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-26 15:14:12.089120 [139839399446464] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-26 15:14:12.142114 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-26 15:14:12.142202 [140485427005248] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-26 16:24:51.552247 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-26 16:24:51.552711 [140433626752832] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-26 16:58:27.451273 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-26 16:58:27.451694 [139718951909184] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-26 17:08:24.444218 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-26 17:08:24.444586 [140120500348736] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-26 17:20:21.960835 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-26 17:20:21.961260 [140108665624384] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-26 17:28:12.993915 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-26 17:28:12.994334 [140202536171328] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-27 17:29:57.531502 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-27 17:29:57.532050 [140443700143936] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-27 17:36:23.651613 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-27 17:36:23.652027 [139807976884032] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-30 12:18:54.346466 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-30 12:18:54.346801 [139863357175616] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-30 13:34:12.096448 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-30 13:34:12.096631 [140050741909312] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-30 13:34:31.630033 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-30 13:34:31.630098 [140350669674304] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-30 15:50:28.263066 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-30 15:50:28.263427 [139942173828928] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-30 15:55:21.433984 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-30 15:55:21.434306 [140521387980608] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-30 16:02:02.912798 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-30 16:02:02.913124 [140528222152512] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-30 17:14:33.664779 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-30 17:14:33.665036 [139752687019840] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-31 15:05:58.974554 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-31 15:05:58.974648 [139860934498112] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-31 15:08:47.248720 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-31 15:08:47.249030 [139694550198080] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-05-31 18:02:38.751329 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-05-31 18:02:38.751537 [139756261631808] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-01 13:35:02.956725 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-01 13:35:02.957078 [139824035198784] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-01 13:39:28.744715 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-01 13:39:28.744893 [140172366583616] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 13:25:51.143469 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: main
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 13:25:51.143882 [140198793799616] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 13:25:51.203160 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 13:25:51.203254 [140328964814656] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 13:27:18.868961 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 13:27:18.869012 [140146387355456] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 13:29:48.547304 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: main
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 13:29:48.547400 [139638873180096] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 13:29:48.668222 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 13:29:48.670703 [140136178038592] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 13:31:47.279582 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 13:31:47.282134 [139637146429248] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 13:44:45.622118 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: main
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 13:44:45.622179 [139892985509824] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 13:44:45.704340 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 13:44:45.704415 [140212270012224] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 13:46:34.805904 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 13:46:34.808650 [140668086527808] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 13:47:53.623831 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: main
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 13:47:53.623911 [139748278364096] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 13:47:53.689806 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 13:47:53.689924 [140614914651968] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 13:50:26.746022 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 13:50:26.746372 [139951906576192] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 13:54:35.724651 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: main
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 13:54:35.724706 [139920213891008] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 13:54:35.808351 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 13:54:35.808612 [140345123063616] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 13:56:40.870584 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 13:56:40.898357 [139682463799104] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 14:16:35.001889 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: main
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 14:16:35.001962 [140005346293696] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 14:16:35.066698 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 14:16:35.066952 [139971991942976] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 14:18:52.030598 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 14:18:52.031077 [140046682220352] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 14:21:12.827715 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: main
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 14:21:12.827784 [140249136842688] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 14:21:12.877618 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 14:21:12.877784 [140464704431936] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 14:23:31.252752 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 14:23:31.268507 [140310692058944] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 14:37:00.988400 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: main
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 14:37:00.988484 [140509262587840] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 14:37:01.052325 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 14:37:01.052390 [140346448557888] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 14:39:07.904386 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 14:39:07.904707 [140630408144704] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 16:57:39.245508 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: main
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 16:57:39.245992 [140203526354880] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 16:57:39.366596 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 16:57:39.366684 [140717923944256] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-02 17:00:09.033104 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-02 17:00:09.034385 [139732720015168] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-03 13:12:10.186415 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-03 13:12:10.187140 [139791836481344] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-03 13:14:08.050105 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-03 13:14:08.051782 [140192703412032] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-03 13:14:17.269845 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-03 13:14:17.291869 [140630724511552] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-03 13:14:24.670061 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-03 13:14:24.670139 [139625943787328] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-03 17:26:00.026949 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-03 17:26:00.027407 [140528670074688] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-03 17:29:10.333559 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-03 17:29:10.333839 [140151432496960] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-03 17:29:19.819378 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-03 17:29:19.819470 [140623219173184] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-11 21:40:10.265214 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-11 21:40:10.266086 [139692717037376] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-11 21:44:20.002725 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-11 21:44:20.003003 [139621584541504] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-11 21:47:11.881875 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-11 21:47:11.882276 [139735700985664] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-11 21:50:10.828468 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-11 21:50:10.829605 [140580159178560] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-11 21:57:40.285209 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-11 21:57:40.285512 [140164303726400] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-11 21:59:19.799754 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-11 21:59:19.799977 [140542979659584] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-11 21:59:28.835814 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-11 21:59:28.835868 [139823404173120] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-11 21:59:39.494490 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-11 21:59:39.494549 [140524143671104] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 14:58:11.735102 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 14:58:11.735305 [140009937659712] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 21:41:06.831964 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 21:41:06.832161 [140636540278592] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 21:45:17.919756 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 21:45:17.919961 [140640803264320] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 21:45:58.005456 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 21:45:58.005575 [140098881804096] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 21:47:10.593270 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 21:47:10.593338 [140004654585664] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 21:49:57.512339 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 21:49:57.512629 [140379070031680] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 21:51:09.220389 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 21:51:09.220618 [140002524321600] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 21:52:38.832514 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 21:52:38.832689 [139680281032512] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 21:55:20.062293 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 21:55:20.062474 [140418151221056] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 22:00:59.666981 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 22:00:59.667159 [139961268578112] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 22:15:04.218640 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 22:15:04.218941 [140687776151360] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 22:19:16.515085 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 22:19:16.515278 [140412735289152] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 22:22:43.564345 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 22:22:43.564550 [140361113188160] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 22:25:34.038290 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 22:25:34.038510 [139705572394816] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 23:12:19.017904 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 23:12:19.017970 [140129294374720] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 23:14:50.291999 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 23:14:50.292365 [140416722458432] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 23:17:53.741259 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 23:17:53.741449 [140164230948672] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 23:31:12.855998 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 23:31:12.856421 [139676058752832] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 23:33:27.052616 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 23:33:27.052865 [139964431271744] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 23:36:43.895938 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 23:36:43.896315 [140130689795904] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 23:39:11.187162 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 23:39:11.187779 [140377385559872] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 23:42:59.669447 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 23:42:59.670308 [139994281043776] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 23:48:42.536180 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 23:48:42.536450 [139846332208960] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 23:49:59.832242 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 23:49:59.832336 [139674703464256] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 23:52:33.792767 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 23:52:33.792946 [140603493316416] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-13 23:54:52.855500 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-13 23:54:52.855699 [140094775977792] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 00:03:35.760927 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 00:03:35.761117 [139930031105856] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 00:07:05.222117 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 00:07:05.222392 [139678701446976] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 00:11:16.804966 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 00:11:16.805276 [140200097912640] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 00:12:41.381768 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 00:12:41.381832 [140610245039936] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 00:13:34.644015 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 00:13:34.644089 [140221501204288] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 00:28:44.712941 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 00:28:44.713133 [140621607393088] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 00:34:47.652694 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 00:34:47.652882 [139802151540544] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 00:38:07.933689 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 00:38:07.933972 [139891710232384] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 00:44:12.006691 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 00:44:12.006958 [140242624182080] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 00:45:22.353542 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 00:45:22.353748 [139787441166144] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 00:48:01.711312 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 00:48:01.711496 [139876730795840] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 00:48:15.968156 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 00:48:15.968275 [140259304929088] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 01:02:00.492594 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 01:02:00.495412 [140278946584384] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 01:06:50.391700 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 01:06:50.391930 [139969255241536] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 01:08:48.514723 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 01:08:48.514925 [140361526646592] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 01:11:22.688843 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 01:11:22.689040 [139976804312896] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 01:13:56.272465 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 01:13:56.272685 [140318640371520] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 01:22:11.430893 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 01:22:11.431125 [140005939808064] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 01:23:38.650569 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 01:23:38.650636 [140163896321856] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 01:26:26.851570 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 01:26:26.851962 [140335613155136] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 01:28:59.974162 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 01:28:59.974365 [140253546530624] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 01:31:15.044632 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 01:31:15.044758 [140446275110720] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 01:34:53.793630 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 01:34:53.799506 [140393362782016] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-14 01:37:43.025834 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-14 01:37:43.026106 [139896779917120] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 13:54:11.243901 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 13:54:11.244349 [139837495572288] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 13:56:22.667024 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 13:56:22.667302 [140249800853312] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 13:56:31.296453 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 13:56:31.296508 [140654481725248] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 13:56:40.408907 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 13:56:40.408969 [139892509280064] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 14:18:52.574962 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 14:18:52.577540 [140563872761664] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 14:20:43.457455 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 14:20:43.457755 [139900430538560] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 14:20:52.563611 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 14:20:52.563694 [140125098944320] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 14:20:57.741392 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 14:20:57.741534 [140420538373952] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 15:10:25.594068 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 15:10:25.594409 [140566584166208] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 15:11:58.223120 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 15:11:58.223608 [140501582198592] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 15:12:07.194809 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 15:12:07.194874 [139649154467648] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 15:12:16.626216 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 15:12:16.626281 [139884406368064] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 15:18:16.010854 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 15:18:16.011294 [140541108197184] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 15:19:50.212631 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 15:19:50.213325 [139983631755072] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 15:19:59.327109 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 15:19:59.327182 [140715441059648] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 15:20:10.588519 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 15:20:10.588574 [139871071516480] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 16:55:20.088851 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 16:55:20.089273 [140088505694016] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 16:58:55.720090 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 16:58:55.723571 [139794274150208] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 17:07:42.192252 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 17:07:42.192647 [140479133640512] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-15 17:11:22.994246 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-15 17:11:22.994540 [139683408246592] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-16 03:55:13.592456 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-16 03:55:13.592637 [140430774294336] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-16 12:06:47.932331 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-16 12:06:47.932660 [140205640210240] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-16 12:09:48.061361 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-16 12:09:48.061540 [140671090833216] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-16 12:09:56.474149 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-16 12:09:56.474228 [139705884649280] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-16 12:10:05.416963 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-16 12:10:05.417026 [139966156838720] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-16 12:14:59.681240 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-16 12:14:59.681317 [140083784574784] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-16 12:17:40.313568 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-16 12:17:40.313760 [140071523624768] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-16 12:17:49.197039 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-16 12:17:49.197103 [140476875228992] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-16 12:17:59.976531 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-16 12:17:59.976592 [140182264440640] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-16 16:40:22.182437 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-16 16:40:22.203221 [140656636032832] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-16 16:40:58.619824 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-16 16:40:58.619914 [139743352280896] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-16 16:43:50.179237 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-16 16:43:50.179430 [140381706151744] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-16 16:43:58.567204 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-16 16:43:58.567266 [140416508749632] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-16 16:44:07.418673 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-16 16:44:07.419002 [140627970062144] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-16 16:48:39.783373 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-16 16:48:39.783570 [140087971792704] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-16 16:50:57.993597 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-16 16:50:57.993792 [139905999923008] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-16 16:51:07.047965 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-16 16:51:07.048052 [140393516164928] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+
+
+**** Log file opened at 2022-06-16 16:51:17.790159 UTC+03:00 (GMT), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 6, Compiled on Feb  6 2020 09:04:28
+ CPIC library: 753.2019.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 525
+ Current working directory: /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1, Program: python3
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 5.10.0-10-amd64
+ Hostname: debian, IP address: 127.0.1.1, IPv6 address: fe80::922b:34ff:fe5e:6520
+
+2022-06-16 16:51:17.791038 [140168780195648] >> Error entry
+	The UUID daemon (uuidd) is not active.
+Please ask your system administrator to activate uuidd according to SAP note 1391070.
+

@@ -22,6 +22,19 @@ type PanaCIMRepository interface {
 	GetRouteId(productid string) ([]ProductSetup, error)
 	GetPanacimDataComponentsByJobId(jobid string) ([]InfoInstallLastJobId_View, error)
 	GetPanacimDataComponentsByJobIdAllParamReelid(jobid string) ([]InfoInstallLastJobId_View, error)
+	// получить wo_component из db
+	GetPanaCIMDBWOComponent(jobid string) ([]InfoInstallLastJobId_View, error)
+	// запись результата GetPanaCIMDBWOComponent в файл
+	WritePanaCIMDBWOComponentToFile(in []InfoInstallLastJobId_View) (err error)
+	// Получить из БД PanaCIM состав списания по ID в скрап
+	GetPanaCIMDBScrapID(jobid string) ([]InfoInstallLastJobId_View, error)
+	// запись результата GetPanaCIMDBScrapID в файл
+	WritePanaCIMDBScrapIDToFile(in []InfoInstallLastJobId_View) (err error)
+	// Получить из БД PanaCIM состав парт-номер, сумма, лот на скрап
+	GetPanaCIMDBScrap(jobid string) ([]InfoInstallLastJobId_View, error)
+	// запись результата GetPanaCIMDBScrap в файл
+	WritePanaCIMDBScrapToFile(in []InfoInstallLastJobId_View) (err error)
+
 	WtitePanaCIMDataComponentsToFile(in []InfoInstallLastJobId_View) (err error)
 	WtitePanaCIMDataComponentsToFileUnpackId(in []InfoInstallLastJobId_View) (err error)
 	GetPanaCIMixName(productid string) ([]ProductSetup, error)
@@ -33,8 +46,10 @@ type PanaCIMRepository interface {
 	GetSumComponentFromU03(startUnixTimeWO, finishUnixTimeWO, npm string) error
 
 	GetPatternTypesPerPanel(product_id string) ([]ProductData, error)
-
-	CompareDataID() (response bool, err error)
+	// сверка данных ЕО на основе SAP и машинных файлов U03
+	CompareDataID(spp interface{}) (response bool, err error)
+	// сверка данных ЕО на основе SAP и DB PanaCIM
+	CompareDataIDFromDB(spp interface{}, jobid string) (response bool, err error)
 }
 
 /*type PanaCIMStorage struct {

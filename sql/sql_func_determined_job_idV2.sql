@@ -199,11 +199,33 @@ SELECT
 FROM [PanaCIM].[dbo].[InfoInstallLastJobId_View]
 order by PART_NO;
 
+SELECT 
+[PART_NO]
+, SUM([PLACE_COUNT]) AS SUM_PLACE_COUNT
+,LOT_NO
+FROM [PanaCIM].dbo.InfoInstallLastJobId_View
+group by PART_NO, LOT_NO;
+
 SELECT
     [PART_NO]
         , SUM([PLACE_COUNT]) AS SUM_PLACE_COUNT
 FROM [PanaCIM].[dbo].[InfoInstallLastJobId_View]
 group by PART_NO;
+
+SELECT 
+reel_barcode
+, ([PICKUP_COUNT] - [PLACE_COUNT]) AS Delta
+FROM [PanaCIM].dbo.InfoInstallLastJobId_View
+WHERE ([PICKUP_COUNT] - [PLACE_COUNT]) > 0
+order by reel_barcode
+-- список скрапа парт-номер, сумма, лот
+SELECT
+[PART_NO]
+, SUM([PICKUP_COUNT] - [PLACE_COUNT]) AS SUM_PLACE_COUNT
+, LOT_NO
+FROM [PanaCIM].dbo.InfoInstallLastJobId_View
+WHERE ([PICKUP_COUNT] - [PLACE_COUNT]) > 0
+group by PART_NO, LOT_NO;
 
 
 --SELECT * FROM dbo.GetLastJobId();

@@ -42,21 +42,25 @@ def main():
     #    result = connection.call('STFC_CONNECTION', REQUTEXT=u'Hello SAP!')
     #    print(result)
         work_order = None
-        # work_order_name_f = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/work_order_name.csv"
-        work_order_name_f = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test3_work_order_name.csv"
-        # work_order_name_f = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test4_work_order_name.csv"
+
+        # work_order_name_f = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_spp_5/test1_work_order_name.csv"
+        work_order_name_f = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_spp_5/test2_work_order_name.csv"
 
         dataArchive = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_archive/"
         # id_test_1000836.csv
-        # file_unpack_id = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/unpack_id.csv"
-        # file_unpack_id = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test1_unpack_id.csv"
-        # file_unpack_id = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_2_unpack_id.csv"
-        file_unpack_id = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test3_unpack_id.csv"
-        # file_unpack_id = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test4_unpack_id.csv"
 
-        # file_unpack_id_scrap = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/unpack_id_scrap.csv"
-        file_unpack_id_scrap = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test3_unpack_id_scrap.csv"
-        # file_unpack_id_scrap = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test4_unpack_id_scrap.csv"
+        # file_unpack_id = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_spp_5/test1_unpack_id.csv"
+        file_unpack_id = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_spp_5/test2_unpack_id.csv"
+
+        #file_unpack_id_scrap = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_spp_5/test1_unpack_id_scrap.csv"
+        file_unpack_id_scrap = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_spp_5/test2_unpack_id_scrap.csv"
+
+        with open(work_order_name_f, newline='') as csvfile:
+            wonamereader = csv.reader(
+                csvfile, delimiter=',', quotechar='|')
+            for row in wonamereader:
+                work_order = '' .join(row)
+            orderSAP = work_order
 
         # чтение списка выгруженных ЕО на редактирование
         rows = []
@@ -74,9 +78,11 @@ def main():
                 'ITEMUNPACK': {u'PACK_QTY': i[1]},
 
             })
+            print(output)
+            logger.info(f"Unpack ID: {output}")
 
-        print(output)
-        logger.info(f"Unpack ID: {output}")
+        # print(output)
+        # logger.info(f"Unpack ID: {output}")
 
         rowsScrap = []
         file_exist_id_scrap = os.path.exists(file_unpack_id_scrap)
@@ -85,8 +91,8 @@ def main():
                 csvreader = csv.reader(fileScrap, delimiter=',')
                 header = next(csvreader)
                 for rowScrap in csvreader:
-                    rowScrap.append(rowsScrap)
-            for s in rowScrap:
+                    rowsScrap.append(rowScrap)
+            for s in rowsScrap:
                 outputScrap = connection.call('Z_IEXT_HU_UNPACKSNGLPOS', **{
                     'UCODE': '21717',
                     'PCODE': 'NEWPASSWORD1',
@@ -95,12 +101,6 @@ def main():
                 })
                 print(f"Unpack ID Scrap: {outputScrap}")
                 logger.info(f"Unpack ID Scrap: {outputScrap}")
-            with open(work_order_name_f, newline='') as csvfile:
-                wonamereader = csv.reader(
-                    csvfile, delimiter=',', quotechar='|')
-                for row in wonamereader:
-                    work_order = '' .join(row)
-            orderSAP = work_order
 
         dir = os.path.join(
             dataArchive+orderSAP)
@@ -114,7 +114,7 @@ def main():
             shutil.move(src_path, dst_path)
         file_exist_scrap = os.path.exists(file_unpack_id_scrap)
         if file_exist_scrap:
-            src_path = file_exist_scrap
+            src_path = file_unpack_id_scrap
             dst_path = dataArchive + \
                 orderSAP+"/unpack_id_scrap_"+str(ttime)+".csv"
             shutil.move(src_path, dst_path)

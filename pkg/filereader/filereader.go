@@ -13,22 +13,24 @@ var (
 //	logger *logging.Logger
 )
 
-func Readfileseeker(name string) [][]string {
+func Readfileseeker(name string) (cr [][]string, err error) {
 	logger := logging.GetLogger()
 	f, err := os.Open(name)
 	if err != nil {
 		//	fmt.Println(err)
 		logger.Println(err.Error())
+		return nil, err
 	}
 	defer f.Close()
 
-	cr, err := readseeker(f)
+	cr, err = readseeker(f)
 	if err != nil {
 		//log.Fatalf("error read %s", err)
 		logger.Fatalf("error read %s", err)
+		//logger.Errorf("error read %s", err.Error())
+		return nil, err
 	}
-
-	return cr
+	return cr, nil
 }
 
 func Readfileseekerspace(name string) [][]string {
@@ -72,6 +74,7 @@ func readseeker(rs io.ReadSeeker) ([][]string, error) {
 		//	os.Exit(1)
 		//log.Fatal(err)
 		logger.Fatalf("error read %s", err)
+		//logger.Errorf("error read %s", err.Error())
 	}
 
 	return CSVdata, nil

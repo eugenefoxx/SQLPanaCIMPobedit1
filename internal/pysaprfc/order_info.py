@@ -36,6 +36,8 @@ def main():
     params_connection = config['connection']
     logger.info(f"Connecting to SAP RFC...")
 
+    global wbs_el
+
     try:
         connection = pyrfc.Connection(**params_connection)
       #  result = connection.call('STFC_CONNECTION', REQUTEXT=u'Hello SAP!')
@@ -45,25 +47,21 @@ def main():
         ttime = datetime.now()
 
         work_order = None
-        # with open('/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/work_order_name.csv', newline='') as csvfile:
-        # with open('/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/1000862_work_order_name.csv', newline='') as csvfile:
-        # with open('/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test1_work_order_name.csv', newline='') as csvfile:
-        with open('/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_work_order_name.csv', newline='') as csvfile:
+
+        # work_order_name_f = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_spp_5/test1_work_order_name.csv"
+        work_order_name_f = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_spp_5/test2_work_order_name.csv"
+
+        with open(work_order_name_f, newline='') as csvfile:
             wonamereader = csv.reader(csvfile, delimiter=',', quotechar='|')
             for row in wonamereader:
                 work_order = '' .join(row)
-
+        orderSAPFolder = work_order
         orderSAP = '00000' + work_order  # 000001000825 000001000836
 
         dataArchive = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_archive/"
-        # wo_component.csv wo_component_1000836.csv
-        # 'wo_component_1000862.csv'
-        # wo_component = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/wo_component.csv'
-        # wo_component = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/wo_component_1000862.csv'
-        # wo_component = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test1_wo_component.csv'
-        # wo_component = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_2_wo_component.csv'
-        wo_component = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test3_wo_component.csv"
-        # wo_component = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test4_wo_component.csv"
+
+        # wo_component = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_spp_5/test1_wo_component.csv"
+        wo_component = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_spp_5/test2_wo_component.csv"
 
         # scrap = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/scrap.csv"
         # scrap = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test3_wo_component_scrap.csv"
@@ -88,13 +86,16 @@ def main():
         print(order_info['RESITEMS'])
         print("_________inforesSAPorder___________")
 
-        resSAPorder = [{'MATNR': sub['MATNR'], 'RSPOS': sub['RSPOS'], 'MATKL': sub['MATKL'], 'ERFMG': sub['ERFMG']}
+        resSAPorder = [{'MATNR': sub['MATNR'], 'RSPOS': sub['RSPOS'], 'MATKL': sub['MATKL'], 'ERFMG': sub['ERFMG'], 'POSID': sub['POSID']}
                        for sub in ordp]
 
         #print("type", type(resSAPorder))
         print("resSAPorder:", resSAPorder)
         print("_________info___________")
         print(order_info)
+
+        for i in resSAPorder:
+            wbs_el = i['POSID']
 
         print("reserv number:", get_reserv_num(order_info))
         reserv = get_reserv_num(order_info)
@@ -128,6 +129,7 @@ def main():
                             u'ORDERID': orderSAP,
                             u'RESERV_NO': reserv,
                             u'RES_ITEM': rowMaterial['RSPOS'],
+                            # u'WBS_ELEM': rowMaterial['POSID'],
                         }
                     ]
                 })
@@ -169,6 +171,7 @@ def main():
                                 u'ORDERID': orderSAP,
                                 u'RESERV_NO': reserv,
                                 u'RES_ITEM': c['RSPOS'],
+                                # u'WBS_ELEM': c['POSID'],
                             }
                         ]
                     })
@@ -194,14 +197,15 @@ def main():
         }
         )
         ordp = order_info['RESITEMS']
-        logger.info(f"Z_IEXT_PRODORD_INFO/RESITEMS: ", ordp)
+        logger.info(f"Z_IEXT_PRODORD_INFO/RESITEMS: {ordp}")
 
         # resSAPorder2 = [{'MATNR': sub['MATNR'], 'BDMNG': sub['BDMNG'], 'CHARG': sub['CHARG']} for sub in ordp]
         # resSAPorder2 = [{'PART_NO': sub['MATNR'], 'SUM': sub['BDMNG'], 'Lot': sub['CHARG']} for sub in ordp]
 
         resSAPorder2 = {}
         for i in ordp:
-            resSAPorder2[i['MATNR']] = {"sum": i["BDMNG"], "lot": i["CHARG"]}
+            resSAPorder2[i['MATNR']] = {
+                "sum": i["BDMNG"], "lot": i["CHARG"], "wbs_elem": i["POSID"]}
         # resSAPorder2 = [{'Lot': sub['CHARG']} for sub in ordp]
         print("resSAPorder2:", resSAPorder2)
         #resarrComponentFromPanaCIM = []
@@ -230,6 +234,7 @@ def main():
                                 u'ENTRY_QNT': i['SUM'],
                                 u'ENTRY_UOM': 'ST',
                                 u'ORDERID': orderSAP,
+                                # u'WBS_ELEM': wbs_el,
                                 #    u'RESERV_NO': reserv,
                                 #    u'RES_ITEM': c['RSPOS'],
                             }
@@ -257,6 +262,7 @@ def main():
                             'ENTRY_QNT': i['SUM'],
                             'ENTRY_UOM': 'ST',
                             'ORDERID': orderSAP,
+                            # 'WBS_ELEM': wbs_el,
                         }
                     ]
                 })
@@ -291,6 +297,7 @@ def main():
                             u'ORDERID': orderSAP,
                             u'RESERV_NO': reserv,
                             u'RES_ITEM': i['RSPOS'],
+                            # u'WBS_ELEM': rowMaterial['POSID'],
                         }
                     ]
                 })
@@ -351,6 +358,7 @@ def main():
                                     u'ORDERID': orderSAP,
                                     u'RESERV_NO': reserv,
                                     u'RES_ITEM': item['RSPOS'],
+                                    # u'WBS_ELEM': item['POSID'],
                                 }
                             ]
                         })
@@ -374,7 +382,7 @@ def main():
         ordp = order_info['RESITEMS']
         print("Состояние проверки измененного заказа 2", ordp)
 
-        dir = os.path.join(dataArchive+orderSAP)
+        dir = os.path.join(dataArchive+orderSAPFolder)
         if not os.path.exists(dir):
             os.mkdir(dir)
 
@@ -416,7 +424,15 @@ def main():
         file_existwocomp = os.path.exists(wo_component)
         if file_existwocomp:
             src_path = wo_component
-            dst_path = dataArchive + orderSAP+"/wo_component"+str(ttime)+".csv"
+            dst_path = dataArchive + orderSAPFolder + \
+                "/wo_component_"+str(ttime)+".csv"
+            shutil.move(src_path, dst_path)
+
+        file_exist_wo_name = os.path.exists(work_order_name_f)
+        if file_exist_wo_name:
+            src_path = work_order_name_f
+            dst_path = dataArchive + orderSAPFolder + \
+                "/work_order_name_"+str(ttime)+".csv"
             shutil.move(src_path, dst_path)
 
         connection.close()

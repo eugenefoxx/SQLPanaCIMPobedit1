@@ -145,6 +145,7 @@ func (r *panaCIMStorage) WriteDataInfoOrderSAP(wo_name, sum string) error {
 
 	info_orderRemove := info_orderPath
 	if utils.FileExists(info_orderRemove) {
+		r.logger.Println("Удаляю info_order.csv")
 		os.Remove(info_orderRemove)
 	}
 

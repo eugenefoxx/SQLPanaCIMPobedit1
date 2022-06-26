@@ -4,6 +4,7 @@ import os
 from os.path import exists
 from datetime import datetime
 import shutil
+from decimal import *
 
 import pyrfc
 
@@ -20,30 +21,32 @@ def main():
     # fl.close()
     # logging.basicConfig(filename="logging.log", level=logging.INFO)
     global paramsATHDRLEVELS, paramsGOODSMOVEMENTS, SAP_ORDER
-    try:
-        logger = logging.getLogger("output_order")
-        logger.setLevel(logging.INFO)
-
-        # create the logging file handler
-        fh = logging.FileHandler(
-            "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/pyrfc_logging.log")
-        formatter = logging.Formatter(
-            '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-        fh.setFormatter(formatter)
-
-        # add handler to logger object
-        logger.addHandler(fh)
-
-        logger.info("Parsing cfg")
-        config = configparser.ConfigParser()
-        config.read(
-            "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/sapnwrfc.cfg")
-        config.sections()
-        params_connection = config['connection']
-        logger.info(f"Connecting to SAP RFC...")
-
-        ttime = datetime.now()
     # try:
+    logger = logging.getLogger("output_order")
+    logger.setLevel(logging.INFO)
+
+    # create the logging file handler
+    fh = logging.FileHandler(
+        "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/pyrfc_logging.log")
+    formatter = logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    fh.setFormatter(formatter)
+
+    # add handler to logger object
+    logger.addHandler(fh)
+
+    logger.info("Parsing cfg")
+    config = configparser.ConfigParser()
+    config.read(
+        "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/sapnwrfc.cfg")
+    config.sections()
+    params_connection = config['connection']
+    logger.info(f"Connecting to SAP RFC...")
+
+    global wbs_el
+
+    ttime = datetime.now()
+    try:
 
         # while True:
         connection = pyrfc.Connection(**params_connection)
@@ -54,21 +57,12 @@ def main():
        #     'WEEK_GET_FIRST_DAY', **{'WEEK': '201825'})
        # print(resultTime)
         dataArchive = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_archive/"
-        # infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/info_order.csv'
-        # infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/1000862_info_order.csv'
-        # infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test1_info_order.csv'
-        # infoOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_info_order.csv'
-        infoOrder = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test3_info_order.csv"
 
-        scrap = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test3_wo_component_scrap.csv"
-        # scrap = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test4_wo_component_scrap.csv"
+        # infoOrder = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_spp_5/test1_info_order.csv"
+        infoOrder = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_spp_5/test2_info_order.csv"
 
-        # infoOrder = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_v2/test4_info_order.csv"
-        # 'info_material_order.csv'
-        # infomaterialOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data/wo_component.csv'
-        # infomaterialOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/wo_component_1000862.csv'
-        # infomaterialOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test1_wo_component.csv'
-        # infomaterialOrder = '/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test/test2_2_wo_component.csv'
+        # scrap = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_spp_5/test1_wo_component_scrap.csv"
+        scrap = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_spp_5/test2_wo_component_scrap.csv"
 
         rowsinfoOrder = []
         with open(infoOrder, newline='') as file:
@@ -111,10 +105,14 @@ def main():
         )
         productsap = order_info['PRODUCT']
         print("productsap", productsap)
-        logger.info(f"{productsap}")
+        logger.info(f"productsap: {productsap}")
         sap_order = order_info['RESITEMS']
         print("sap_order", sap_order)
-        logger.info(f"{sap_order}")
+        logger.info(f"sap_order: {sap_order}")
+
+        wbs_l = [{'POSID': sub['POSID']} for sub in sap_order]
+        for i in wbs_l:
+            wbs_el = i['POSID']
 
         # breakpoint()
         paramsGOODSMOVEMENTS = []
@@ -130,28 +128,48 @@ def main():
                 'REF_DOC_IT': '0001',
             })
 
-        print("Added first record in paramsGOODSMOVEMENTS", paramsGOODSMOVEMENTS)
-
         for matr in sap_order:
-            paramsGOODSMOVEMENTS.append({
-                'MATERIAL': matr['MATNR'],  # '000000000002003411',
-                'ENTRY_QNT': matr['ERFMG'],  # '1',
-                'ENTRY_UOM': 'ST',
-                'STGE_LOC': '7813',
-                'BATCH': matr['CHARG'],  # '1000001747',
-                'MOVE_TYPE': '261',
-                'SPEC_STOCK': '',  # Индикатор особого запаса
-                'WBS_ELEM': '',  # СПП-элемент
-                'NO_MORE_GR': '',  # = 'X' если конечное подтверждение
-                'RESERV_NO': matr['RSNUM'],  # '0000031904',  # Номер резерва
-                'RES_ITEM': matr['RSPOS'],  # '0020',  # Номер позиции резерва
-                'PLANT': 'SL00',
-                'ORDERID': '00000' + SAP_ORDER,  # '000001000825', '00000' + SAP_ORDER
-                'WITHDRAWN': 'X',  # фиксированное значение
-                'REF_DOC_IT': '0001',  # фиксированное значение
-            })
-        print("Added second and after records in paramsGOODSMOVEMENTS",
-              paramsGOODSMOVEMENTS)
+            if matr['MATNR'].__contains__('0000000000031') and wbs_l != '':
+                paramsGOODSMOVEMENTS.append({
+                    'MATERIAL': matr['MATNR'],  # '000000000002003411',
+                    'ENTRY_QNT': matr['ERFMG'],  # '1',
+                    'ENTRY_UOM': matr['MEINS'],  # 'ST',
+                    'STGE_LOC': '7813',  # matr['LGORT']
+                    'BATCH': matr['CHARG'],  # '1000001747',
+                    'MOVE_TYPE': '261',
+                    # Индикатор особого запаса matr['SOBKZ']
+                    'SPEC_STOCK': 'Q',
+                    'WBS_ELEM': matr['POSID'],  # СПП-элемент
+                    'NO_MORE_GR': '',  # = 'X' если конечное подтверждение
+                    # '0000031904',  # Номер резерва
+                    'RESERV_NO': matr['RSNUM'],
+                    # '0020',  # Номер позиции резерва
+                    'RES_ITEM': matr['RSPOS'],
+                    'PLANT': 'SL00',  # matr['WERKS']
+                    'ORDERID': '00000' + SAP_ORDER,  # '000001000825', '00000' + SAP_ORDER
+                    'WITHDRAWN': 'X',  # фиксированное значение
+                    'REF_DOC_IT': '0001',  # фиксированное значение
+                })
+            else:
+                paramsGOODSMOVEMENTS.append({
+                    'MATERIAL': matr['MATNR'],  # '000000000002003411',
+                    'ENTRY_QNT': matr['ERFMG'],  # '1',
+                    'ENTRY_UOM': matr['MEINS'],  # 'ST',
+                    'STGE_LOC': '7813',  # matr['LGORT']
+                    'BATCH': matr['CHARG'],  # '1000001747',
+                    'MOVE_TYPE': '261',
+                    'SPEC_STOCK': matr['SOBKZ'],  # Индикатор особого запаса
+                    'WBS_ELEM': matr['POSID'],  # СПП-элемент
+                    'NO_MORE_GR': '',  # = 'X' если конечное подтверждение
+                    # '0000031904',  # Номер резерва
+                    'RESERV_NO': matr['RSNUM'],
+                    # '0020',  # Номер позиции резерва
+                    'RES_ITEM': matr['RSPOS'],
+                    'PLANT': 'SL00',  # matr['WERKS']
+                    'ORDERID': '00000' + SAP_ORDER,  # '000001000825', '00000' + SAP_ORDER
+                    'WITHDRAWN': 'X',  # фиксированное значение
+                    'REF_DOC_IT': '0001',  # фиксированное значение
+                })
 
         # добавление скрапа из файла
         rowsScrap = []
@@ -164,36 +182,58 @@ def main():
 
             # добавляем в SAP заказ компоненты из списка по scrap
             for i in rowsScrap:
-                paramsGOODSMOVEMENTS.append({
-                    # '000000000002003411',
-                    'MATERIAL': '00000000000'+i['PART_NO'],
-                    'ENTRY_QNT': i['SUM'],  # '1',
-                    'ENTRY_UOM': 'ST',
-                    'STGE_LOC': '7813',
-                    'BATCH': i['Lot'],  # '1000001747',
-                    'MOVE_TYPE': 'Z61',
-                    'SPEC_STOCK': '',  # Индикатор особого запаса
-                    'WBS_ELEM': '',  # СПП-элемент
-                    'NO_MORE_GR': '',  # = 'X' если конечное подтверждение
-                    # '0000031904',  # Номер резерва
-                    # 'RESERV_NO': matr['RSNUM'],
-                    # '0020',  # Номер позиции резерва
-                    # 'RES_ITEM': matr['RSPOS'],
-                    'PLANT': 'SL00',
-                    'ORDERID': '00000' + SAP_ORDER,  # '000001000825', '00000' + SAP_ORDER
-                    'WITHDRAWN': 'X',  # фиксированное значение
-                    'REF_DOC_IT': '0001',  # фиксированное значение
-                })
+                if wbs_l != '':
+                    paramsGOODSMOVEMENTS.append({
+                        # '000000000002003411',
+                        'MATERIAL': '00000000000'+i['PART_NO'],
+                        'ENTRY_QNT': i['SUM'],  # '1',
+                        'ENTRY_UOM': 'ST',
+                        'STGE_LOC': '7813',
+                        'BATCH': i['Lot'],  # '1000001747',
+                        'MOVE_TYPE': 'Z61',
+                        'SPEC_STOCK': 'Q',  # Индикатор особого запаса
+                        'WBS_ELEM': wbs_el,  # СПП-элемент
+                        'NO_MORE_GR': '',  # = 'X' если конечное подтверждение
+                        # '0000031904',  # Номер резерва
+                        # 'RESERV_NO': matr['RSNUM'],
+                        # '0020',  # Номер позиции резерва
+                        # 'RES_ITEM': matr['RSPOS'],
+                        'PLANT': 'SL00',
+                        'ORDERID': '00000' + SAP_ORDER,  # '000001000825', '00000' + SAP_ORDER
+                        'WITHDRAWN': 'X',  # фиксированное значение
+                        'REF_DOC_IT': '0001',  # фиксированное значение
+                    })
+                else:
+                    paramsGOODSMOVEMENTS.append({
+                        # '000000000002003411',
+                        'MATERIAL': '00000000000'+i['PART_NO'],
+                        'ENTRY_QNT': i['SUM'],  # '1',
+                        'ENTRY_UOM': 'ST',
+                        'STGE_LOC': '7813',
+                        'BATCH': i['Lot'],  # '1000001747',
+                        'MOVE_TYPE': 'Z61',
+                        'SPEC_STOCK': '',  # Индикатор особого запаса
+                        'WBS_ELEM': wbs_el,  # СПП-элемент
+                        'NO_MORE_GR': '',  # = 'X' если конечное подтверждение
+                        # '0000031904',  # Номер резерва
+                        # 'RESERV_NO': matr['RSNUM'],
+                        # '0020',  # Номер позиции резерва
+                        # 'RES_ITEM': matr['RSPOS'],
+                        'PLANT': 'SL00',
+                        'ORDERID': '00000' + SAP_ORDER,  # '000001000825', '00000' + SAP_ORDER
+                        'WITHDRAWN': 'X',  # фиксированное значение
+                        'REF_DOC_IT': '0001',  # фиксированное значение
+                    })
 
                 print(
                     f"add srap in paramsGOODSMOVEMENTS: {paramsGOODSMOVEMENTS}")
-                logger.info(
-                    f"add srap in paramsGOODSMOVEMENTS: {paramsGOODSMOVEMENTS}")
 
             src_path = scrap
-            dst_path = dataArchive + SAP_ORDER+"/scrap"+str(ttime)+".csv"
+            dst_path = dataArchive + SAP_ORDER+"/scrap_"+str(ttime)+".csv"
             shutil.move(src_path, dst_path)
 
+        print(f"add in paramsGOODSMOVEMENTS: {paramsGOODSMOVEMENTS}")
+        logger.info(f"add in paramsGOODSMOVEMENTS: {paramsGOODSMOVEMENTS}")
         # breakpoint()
         # for row in rowsinfoOrder:
         #     for matr in sap_order:  # infoMaterialOrder:
@@ -235,18 +275,21 @@ def main():
         }
         )
 
-        print(outputtedorder)
-        logger.info(f"{outputtedorder}")
-
-        parse_response(outputtedorder)
-        logger.warning(parse_response(f"{outputtedorder}"))
-        print(parse_response(outputtedorder))
-
         file_exist = os.path.exists(infoOrder)
         if file_exist:
             src_path = infoOrder
-            dst_path = dataArchive + SAP_ORDER+"/info_order"+str(ttime)+".csv"
+            dst_path = dataArchive + SAP_ORDER+"/info_order_"+str(ttime)+".csv"
             shutil.move(src_path, dst_path)
+
+        print(outputtedorder)
+        logger.info(f"outputtedorder: {outputtedorder}")
+
+        parse_response(outputtedorder)
+        # logger.warning(parse_response(
+        #    f"outputtedorder parse: {outputtedorder}"))
+        logger.warning(
+            f"outputtedorder parse {parse_response(outputtedorder)}")
+        print(parse_response(outputtedorder))
 
         connection.close()
     # except KeyError:
@@ -286,9 +329,24 @@ def main():
 #                return "Ответ не получен"
 
 
+# def parse_response(dict_value):
+#    if not dict_value:
+#        return "Сообщения нет"
+#    else:
+#        for key, value in dict_value.items():
+#            if key == 'RETURN':
+#                if value.get('TYPE', '') == 'E':
+#                    return 'Error: ' + str(value.get('MESSAGE', ''))
+#                elif value.get('TYPE', '') == 'I':
+#                    return "Infomation: " + str(value.get('MESSAGE', ''))
+#                elif value.get('TYPE', '') == 'W':
+#                    return "Warning: " + str(value.get('MESSAGE', ''))
+
+
 def parse_response(dict_value):
-    if not dict_value:
-        return "Сообщения нет"
+    dv = dict_value['RETURN']
+    if dv == []:
+        return "RETURN: Сообщения нет"
     else:
         for value in dict_value['RETURN']:
             # if key == 'RETURN':

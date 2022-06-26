@@ -79,6 +79,7 @@ def main():
                     f'При проверке получения данных ЕО нет информации о: ео - {exid}, заказ - {order}')
             # arrID.append(get_info_id(infoID))
 
+        # записываю данные SAP по ео в файл, для полседующей проверки в go
         with open(sap_id_info, 'w', newline='') as wfile:
             idwriter = csv.writer(wfile, delimiter=',')
             idwriter.writerows(arrID)
@@ -112,7 +113,8 @@ def get_info_id(dict_value):
                 resLOT = value[0].get('CHARG', '')
                 resQty = value[0].get('VEMNG', '')
                 resStock = value[0].get('LGORT', '')
-                res = [resID, resSAP, resLOT, resQty, resStock]
+                resSPP = value[0].get('POSID', '')
+                res = [resID, resSAP, resLOT, resQty, resStock, resSPP]
             #   res = resID + "", "" + resSAP + "", "" + \
             #       resLOT + "", "" + str(resQty) + "", "" + resStock
                 return res
