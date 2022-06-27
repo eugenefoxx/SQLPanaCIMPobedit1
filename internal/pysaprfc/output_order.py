@@ -20,7 +20,7 @@ def main():
     # fl = open(log_file, 'a+')
     # fl.close()
     # logging.basicConfig(filename="logging.log", level=logging.INFO)
-    global paramsATHDRLEVELS, paramsGOODSMOVEMENTS, SAP_ORDER
+    global paramsATHDRLEVELS, paramsGOODSMOVEMENTS, SAP_ORDER, SAP_ORDER_Number
     # try:
     logger = logging.getLogger("output_order")
     logger.setLevel(logging.INFO)
@@ -63,18 +63,22 @@ def main():
 
         # scrap = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_spp_5/test1_wo_component_scrap.csv"
         scrap = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_spp_5/test2_wo_component_scrap.csv"
-
+        orderSAP = None
         rowsinfoOrder = []
         with open(infoOrder, newline='') as file:
             csvreader = csv.DictReader(file, delimiter=',')
             for row in csvreader:
                 rowsinfoOrder.append(row)
         for row in rowsinfoOrder:
+            if len(row['WO']) == 8:
+                orderSAP = '0000' + row['WO']
+            if len(row['WO']) == 7:
+                orderSAP = '00000' + row['WO']
             paramsATHDRLEVELS = [
 
                 {
                     # '000001000825s',  # 000001000825
-                    'ORDERID': '00000' + row['WO'],
+                    'ORDERID': orderSAP,  # '00000' + row['WO'],
                     'YIELD': row['Qty'],  # '1.00',
                     'POSTG_DATE': row['Date'],  # '20220211',
                     'FIN_CONF': '',
@@ -86,7 +90,12 @@ def main():
         print(str(sapORDER))
         for i in sapORDER:
             print("i", i)
-            SAP_ORDER = i
+            if len(i) == 8:
+                SAP_ORDER = '0000' + i
+            if len(i) == 7:
+                SAP_ORDER = '00000' + i
+            #SAP_ORDER = i
+            SAP_ORDER_Number = i
         # print("sap order", rowsinfoOrder['WO'])
         print(SAP_ORDER)
 
@@ -97,7 +106,7 @@ def main():
         #        infoMaterialOrder.append(row)
 
         order_info = connection.call('Z_IEXT_PRODORD_INFO', **{
-            'AUFNR': '00000' + SAP_ORDER,  # '00000' + SAP_ORDER,
+            'AUFNR': SAP_ORDER,  # '00000' + SAP_ORDER,
             # '000001000836', # str('00000' + str(sapORDER)),  # '00000' + row['WO'],  # orderSAP,  # 000001000825
             'UCODE': '21717',
             'PCODE': 'NEWPASSWORD1',
@@ -124,7 +133,8 @@ def main():
                 'MOVE_TYPE': '131',
                 'ENTRY_QNT': row['Qty'],  # '1',
                 'ENTRY_UOM': 'ST',
-                'ORDERID': '00000' + row['WO'],  # '000001000825',
+                # '00000' + row['WO'],  # '000001000825',
+                'ORDERID': SAP_ORDER,
                 'REF_DOC_IT': '0001',
             })
 
@@ -146,7 +156,7 @@ def main():
                     # '0020',  # Номер позиции резерва
                     'RES_ITEM': matr['RSPOS'],
                     'PLANT': 'SL00',  # matr['WERKS']
-                    'ORDERID': '00000' + SAP_ORDER,  # '000001000825', '00000' + SAP_ORDER
+                    'ORDERID': SAP_ORDER,  # '000001000825', '00000' + SAP_ORDER
                     'WITHDRAWN': 'X',  # фиксированное значение
                     'REF_DOC_IT': '0001',  # фиксированное значение
                 })
@@ -166,7 +176,7 @@ def main():
                     # '0020',  # Номер позиции резерва
                     'RES_ITEM': matr['RSPOS'],
                     'PLANT': 'SL00',  # matr['WERKS']
-                    'ORDERID': '00000' + SAP_ORDER,  # '000001000825', '00000' + SAP_ORDER
+                    'ORDERID': SAP_ORDER,  # '000001000825', '00000' + SAP_ORDER
                     'WITHDRAWN': 'X',  # фиксированное значение
                     'REF_DOC_IT': '0001',  # фиксированное значение
                 })
@@ -199,7 +209,7 @@ def main():
                         # '0020',  # Номер позиции резерва
                         # 'RES_ITEM': matr['RSPOS'],
                         'PLANT': 'SL00',
-                        'ORDERID': '00000' + SAP_ORDER,  # '000001000825', '00000' + SAP_ORDER
+                        'ORDERID': SAP_ORDER,  # '000001000825', '00000' + SAP_ORDER
                         'WITHDRAWN': 'X',  # фиксированное значение
                         'REF_DOC_IT': '0001',  # фиксированное значение
                     })
@@ -220,7 +230,7 @@ def main():
                         # '0020',  # Номер позиции резерва
                         # 'RES_ITEM': matr['RSPOS'],
                         'PLANT': 'SL00',
-                        'ORDERID': '00000' + SAP_ORDER,  # '000001000825', '00000' + SAP_ORDER
+                        'ORDERID': SAP_ORDER,  # '000001000825', '00000' + SAP_ORDER
                         'WITHDRAWN': 'X',  # фиксированное значение
                         'REF_DOC_IT': '0001',  # фиксированное значение
                     })
@@ -229,7 +239,8 @@ def main():
                     f"add srap in paramsGOODSMOVEMENTS: {paramsGOODSMOVEMENTS}")
 
             src_path = scrap
-            dst_path = dataArchive + SAP_ORDER+"/scrap_"+str(ttime)+".csv"
+            dst_path = dataArchive + SAP_ORDER_Number + \
+                "/scrap_"+str(ttime)+".csv"
             shutil.move(src_path, dst_path)
 
         print(f"add in paramsGOODSMOVEMENTS: {paramsGOODSMOVEMENTS}")
@@ -278,7 +289,8 @@ def main():
         file_exist = os.path.exists(infoOrder)
         if file_exist:
             src_path = infoOrder
-            dst_path = dataArchive + SAP_ORDER+"/info_order_"+str(ttime)+".csv"
+            dst_path = dataArchive + SAP_ORDER_Number + \
+                "/info_order_"+str(ttime)+".csv"
             shutil.move(src_path, dst_path)
 
         print(outputtedorder)

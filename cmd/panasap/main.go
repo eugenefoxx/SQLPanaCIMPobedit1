@@ -18,7 +18,6 @@ import (
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/sortworkorders"
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/filereader"
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/logging"
-	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/removefiles"
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/utils"
 	"github.com/joho/godotenv"
 )
@@ -146,9 +145,15 @@ func main() {
 		logger.Errorf(err.Error())
 	}
 	if resGetJobID1 != "" {
-		resGetJobID1 := "5524" // 5499 "5436" 5444 5487 5481 5499 5485 5511 5524
+		resGetJobID1 := "5527" // 5499 "5436" 5444 5487 5481 5499 5485 5511 5524
 		// получаем номер актуального JOB_ID
 		logger.Infof(("resGetJobID1 - %v"), resGetJobID1)
+
+		operationDateDir := os.Getenv("operationdata")
+		if _, err := os.Stat(operationDateDir); os.IsNotExist(err) {
+			// path/to/whatever does not exist
+			os.Mkdir(operationDateDir, 0777)
+		}
 
 		unixSlice, err := panacimStorage.GetUnixTimeWO(resGetJobID1)
 		if err != nil {
@@ -292,9 +297,9 @@ func main() {
 		//printWOname := woName[:strings.IndexByte(woName, '_')]
 		//fmt.Println(printWOname)
 		numberOrder := woname[:strings.IndexByte(woname, '_')]
-		if len(numberOrder) != 8 || len(numberOrder) != 7 {
-			logger.Panicf("Не верное указание в названии ворк-ордера %s", numberOrder)
-		}
+		//if len(numberOrder) != 8 || len(numberOrder) != 7 {
+		//	logger.Panicf("Не верное указание в названии ворк-ордера %s, %s", numberOrder, woname)
+		//}
 		// записываем данные номер заказа, сумму произведенных плат, дату в файл info_order.csv
 		if err := panacimStorage.WriteDataInfoOrderSAP(numberOrder, sumPCB); err != nil {
 			logger.Errorf(err.Error())
@@ -305,14 +310,15 @@ func main() {
 		}
 
 		// проверяем наличие СПП-элемента в заказе
-		/*spp, err := goRfcStorage.GetSPP("1000885") // 1011387 10096392 сюда передать woname[0:8]
-		if err != nil {
-			logger.Errorf(err.Error())
-		}
-		logger.Infof("spp is: %v", spp)*/
+		//spp, err := goRfcStorage.GetSPP(numberOrder) // 1011387 10096392 сюда передать woname[0:8]
+		//if err != nil {
+		//	logger.Errorf(err.Error())
+		//}
+		//logger.Infof("spp is: %v", spp)
 
+		// Перепровверить это дубль panacimStorage.GetPanaCIMDBWOComponent(resGetJobID1) и panacimStorage.WritePanaCIMDBWOComponentToFile(woComponentSlice)
 		// получаем для SAP данные для выпуска заказа - материал, сумма, партия
-		//wo_componentSlice, err := panacimStorage.GetPanacimDataComponentsByJobIdSAP(res)
+		//wo_componentSlice, err := panacimStorage.GetPanacimDataComponentsByJobIdSAP(resGetJobID1)
 		//if err != nil {
 		//	logger.Errorf(err.Error())
 		//}
@@ -320,29 +326,29 @@ func main() {
 		//if err := panacimStorage.WritePanacimDataComponentsByJobIdSAPToFile(wo_componentSlice); err != nil {
 		//	logger.Errorf(err.Error())
 		//}
-
-		// Блок SAP Python RFC
-		// получить срез данных из SAP по ео материала
-		/*get_sap_id_info := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/huinfo.py"
-		err = pysaprfc.PyExec(get_sap_id_info)
-		if err != nil {
-			logger.Errorf(err.Error())
-		}
-		// запуск метода сверки данных по ID между PanaCIM и SAP
-		//check_status, err := panacimStorage.CompareDataID(spp)
-		check_status, err := panacimStorage.CompareDataIDFromDB(spp, res)
-		if err != nil {
-			logger.Errorf(err.Error())
-		}
-		fmt.Println("Проверка на соотвествие ЕО")
-		if !check_status {
-			logger.Errorf("завершение работы из-за не верного результат %v", check_status)
-			os.Exit(1)
-		}
-		time.Sleep(5 * time.Second)
-		fmt.Println("Завершение проверки на соотвествие ЕО")
-		os.Exit(1)*/
 		/*
+			// Блок SAP Python RFC
+			// получить срез данных из SAP по ео материала
+			get_sap_id_info := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/huinfo.py"
+			err = pysaprfc.PyExec(get_sap_id_info)
+			if err != nil {
+				logger.Errorf(err.Error())
+			}
+			// запуск метода сверки данных по ID между PanaCIM и SAP
+			//check_status, err := panacimStorage.CompareDataID(spp)
+			check_status, err := panacimStorage.CompareDataIDFromDB(spp, resGetJobID1)
+			if err != nil {
+				logger.Errorf(err.Error())
+			}
+			fmt.Println("Проверка на соотвествие ЕО")
+			if !check_status {
+				logger.Errorf("завершение работы из-за не верного результата %v", check_status)
+				os.Exit(1)
+			}
+			time.Sleep(5 * time.Second)
+			fmt.Println("Завершение проверки на соотвествие ЕО")
+			//os.Exit(1)
+
 			// вызов модуля SAP для распаковки ео
 			unpack_id_pyrfc := "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/unpack_id.py"
 			err = pysaprfc.PyExec(unpack_id_pyrfc)
@@ -392,36 +398,37 @@ func main() {
 		}
 
 		// объем выпуска ? пока вопрос корректности такого подсчета
-		fmt.Println("get sum pattern")
-		fmt.Println(panacimStorage.GetSumPattert(resGetJobID1))
-		patterSlice, err := panacimStorage.GetSumPattert(resGetJobID1)
-		if err != nil {
-			logger.Errorf(err.Error())
-		}
-		fmt.Printf("кол-во м/з: %v\n", patterSlice[0].SumPattern)
-		qtyPattern := patterSlice[0].SumPattern
+		/*
+			fmt.Println("get sum pattern")
+			fmt.Println(panacimStorage.GetSumPattert(resGetJobID1))
+			patterSlice, err := panacimStorage.GetSumPattert(resGetJobID1)
+			if err != nil {
+				logger.Errorf(err.Error())
+			}
+			fmt.Printf("кол-во м/з: %v\n", patterSlice[0].SumPattern)
+			qtyPattern := patterSlice[0].SumPattern
 
-		pcbSlice, err := panacimStorage.GetPatternForPanel()
-		if err != nil {
-			logger.Errorf(err.Error())
-		}
-		fmt.Printf("кол-во плат в м/з: %v\n", pcbSlice[0])
-		fmt.Printf("кол-во плат в м/з: %v\n", pcbSlice[0].PatternPerPanel)
-		qtyPCB := pcbSlice[0].PatternPerPanel
+			pcbSlice, err := panacimStorage.GetPatternForPanel()
+			if err != nil {
+				logger.Errorf(err.Error())
+			}
+			fmt.Printf("кол-во плат в м/з: %v\n", pcbSlice[0])
+			fmt.Printf("кол-во плат в м/з: %v\n", pcbSlice[0].PatternPerPanel)
+			qtyPCB := pcbSlice[0].PatternPerPanel
 
-		qtyPatternInt, err := strconv.Atoi(qtyPattern)
-		if err != nil {
-			logger.Errorf(err.Error())
-		}
+			qtyPatternInt, err := strconv.Atoi(qtyPattern)
+			if err != nil {
+				logger.Errorf(err.Error())
+			}
 
-		qtyPCBInt, err := strconv.Atoi(qtyPCB)
-		if err != nil {
-			logger.Errorf(err.Error())
-		}
-		//qtyPCB
-		valueLot := qtyPatternInt * qtyPCBInt
-		fmt.Printf("valueLot: %v\n", valueLot)
-
+			qtyPCBInt, err := strconv.Atoi(qtyPCB)
+			if err != nil {
+				logger.Errorf(err.Error())
+			}
+			//qtyPCB
+			valueLot := qtyPatternInt * qtyPCBInt
+			fmt.Printf("valueLot: %v\n", valueLot)
+		*/
 		// конец блока расчета объема выпуска партии
 
 		// ВСТАВКА
@@ -556,9 +563,9 @@ func main() {
 		*/
 
 		// очистка директории
-		directorypath := os.Getenv("operationdata")
-		directory := directorypath
-		removefiles.RemoveFiles(directory)
+		//directorypath := os.Getenv("operationdata")
+		//directory := directorypath
+		//removefiles.RemoveFiles(directory)
 
 		// КОНЕЦ
 

@@ -47,6 +47,7 @@ def main():
         ttime = datetime.now()
 
         work_order = None
+        orderSAP = None
 
         # work_order_name_f = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_spp_5/test1_work_order_name.csv"
         work_order_name_f = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_test_spp_5/test2_work_order_name.csv"
@@ -55,8 +56,12 @@ def main():
             wonamereader = csv.reader(csvfile, delimiter=',', quotechar='|')
             for row in wonamereader:
                 work_order = '' .join(row)
+        if len(work_order) == 8:
+            orderSAP = '0000' + work_order
+        if len(work_order) == 7:
+            orderSAP = '00000' + work_order
         orderSAPFolder = work_order
-        orderSAP = '00000' + work_order  # 000001000825 000001000836
+        # orderSAP = '00000' + work_order  # 000001000825 000001000836
 
         dataArchive = "/home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1/internal/pysaprfc/data_archive/"
 

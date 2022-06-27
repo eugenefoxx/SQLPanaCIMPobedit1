@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Jun 26 16:46:03 2022
+# Make data base, printed on Mon Jun 27 14:44:32 2022
 
 # Variables
 
@@ -17,7 +17,7 @@ GDK_BACKEND = x11
 # environment
 LC_ALL = C
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-a92055c0-90be-4c45-9dda-9acb0e8eb362.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-1176adcb-a3ea-451e-a8c4-3f4375b3de8a.sock
 # environment
 VSCODE_CWD = /home/a20272
 # environment
@@ -65,7 +65,7 @@ CURDIR := /home/a20272/Code/github.com/eugenefoxx/SQLPanaCIMPobedit1
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -87,7 +87,7 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 6690
+VSCODE_PID = 243807
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -222,7 +222,7 @@ GDMSESSION = lightdm-xsession
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-20 14:00:00.09630657
+#  Last modified 2022-06-26 18:00:19.263600926
 #  File has been updated.
 #  Successfully updated.
 
@@ -266,6 +266,6 @@ build:
 # strcache performance: lookups = 31 / hit rate = 22%
 # hash-table stats:
 # Load=24/8192=0%, Rehash=0, Collisions=0/31=0%
-# Finished Make data base on Sun Jun 26 16:46:03 2022
+# Finished Make data base on Mon Jun 27 14:44:32 2022
 
  
