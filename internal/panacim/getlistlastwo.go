@@ -2,7 +2,6 @@ package panacim
 
 import (
 	"context"
-	"database/sql"
 	"encoding/csv"
 	"fmt"
 	"os"
@@ -32,17 +31,8 @@ WHERE [PanaCIM].[dbo].[job_history].CLOSING_TYPE='0'
 order by [PanaCIM].[dbo].[work_orders].JOB_ID desc 
 `
 
-type LastWOData struct {
-	WORKORDERID          string         `db:"WORK_ORDER_ID"`
-	WORKORDERNAME        string         `db:"WORK_ORDER_NAME"`
-	LOTSIZE              string         `db:"LOT_SIZE"`
-	JOBID                string         `db:"JOB_ID"`
-	MASTER_WORK_ORDER_ID string         `db:"MASTER_WORK_ORDER_ID"`
-	COMMENTS             sql.NullString `db:"COMMENTS"`
-}
-
-func (r PanaCIMStorage) GetLastListWO() ([]LastWOData, error) {
-
+func (r *panaCIMStorage) GetLastListWO() ([]LastWOData, error) {
+	// logger := logging.GetLogger()
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -76,8 +66,86 @@ func (r PanaCIMStorage) GetLastListWO() ([]LastWOData, error) {
 
 }
 
-func (r PanaCIMStorage) WriteListWOToFile(in []LastWOData) (err error) {
+const querySelectWOName = `
+SELECT [WORK_ORDER_NAME]
+FROM [PanaCIM].[dbo].[work_orders]
+where [JOB_ID] = `
 
+func (r *panaCIMStorage) GetWOName(name string) ([]LastWOData, error) {
+	// logger := logging.GetLogger()
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	qr, err := r.DB.QueryContext(ctx, querySelectWOName+name)
+	if err != nil {
+		if err.Error() != "sql: no rows in result set" {
+			r.logger.Error(err.Error())
+			return nil, err
+		}
+	}
+	defer qr.Close()
+
+	var qrs []LastWOData
+	for qr.Next() {
+		var qrts LastWOData
+		if err := qr.Scan(
+			&qrts.WORKORDERNAME,
+		); err != nil {
+			return qrs, err
+		}
+		qrs = append(qrs, qrts)
+	}
+	if err = qr.Err(); err != nil {
+		return qrs, err
+	}
+	return qrs, nil
+
+}
+
+func (r *panaCIMStorage) WriteWorkOrderNameToFile(in []LastWOData) (err error) {
+	// logger := logging.GetLogger()
+	work_order_namepath := os.Getenv("work_order_name")
+
+	woNameRemove := work_order_namepath
+	if utils.FileExists(woNameRemove) {
+		os.Remove(woNameRemove)
+	}
+
+	woName := work_order_namepath
+	if _, err := os.Stat(woName); os.IsNotExist(err) {
+		csv_woName, err := os.Create(woName)
+		if err != nil {
+			r.logger.Errorf(err.Error())
+		}
+		defer csv_woName.Close()
+
+		writer := csv.NewWriter(csv_woName)
+		writer.Comma = ','
+		writer.Flush()
+	}
+
+	splitWOName, err := os.OpenFile(woName, os.O_APPEND|os.O_WRONLY, 0644)
+	if err != nil {
+		r.logger.Errorf(err.Error())
+		return nil
+	}
+	defer splitWOName.Close()
+
+	for _, i := range in {
+		var result = []string{i.WORKORDERNAME}
+		for _, v := range result {
+			_, err := fmt.Fprintln(splitWOName, v)
+			if err != nil {
+				splitWOName.Close()
+				return nil
+			}
+		}
+	}
+	return nil
+}
+
+func (r *panaCIMStorage) WriteListWOToFile(in []LastWOData) (err error) {
+	// logger := logging.GetLogger()
 	dirWOpath := os.Getenv("dirWO")
 	closedWORemovepath := os.Getenv("closedWORemove")
 
@@ -107,7 +175,7 @@ func (r PanaCIMStorage) WriteListWOToFile(in []LastWOData) (err error) {
 
 	splitWO, err := os.OpenFile(closedWO, os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
-		r.logger.Errorf(err.Error()) //logger.Errorf(err.Error())
+		r.logger.Errorf(err.Error()) //r.logger.Errorf(err.Error())
 		return nil
 	}
 	defer splitWO.Close()

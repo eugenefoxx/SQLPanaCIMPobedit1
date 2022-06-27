@@ -4,9 +4,11 @@ go 1.17
 
 require (
 	github.com/denisenkom/go-mssqldb v0.12.0
-	github.com/eugenefoxx/SQLPanacimP1 v0.0.403
 	github.com/joho/godotenv v1.4.0
+	github.com/otiai10/copy v1.7.0
+	github.com/sap/gorfc v0.1.1
 	github.com/sirupsen/logrus v1.8.1
+	gopkg.in/ini.v1 v1.66.4
 )
 
 require (

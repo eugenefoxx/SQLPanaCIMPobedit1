@@ -3,6 +3,7 @@ package sortworkorders
 import (
 	"bufio"
 	"context"
+	"database/sql"
 	"encoding/csv"
 	"encoding/json"
 	"fmt"
@@ -12,14 +13,28 @@ import (
 	"sort"
 
 	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/filereader"
+	"github.com/eugenefoxx/SQLPanaCIMPobedit1/pkg/logging"
 )
+
+type operationStorage struct {
+	DB     *sql.DB
+	logger *logging.Logger
+	//mu     sync.Mutex
+}
+
+func NewSortWorkOrdersRepository(db *sql.DB, logger *logging.Logger) SortWorkOrderRepository {
+	return &operationStorage{
+		DB:     db,
+		logger: logger,
+	}
+}
 
 type WorkOrders struct {
 	JobID string `json: "jobid"`
 }
 
-func (r OperationStorage) Getclosedworkorders() {
-	//logger := logging.GetLogger()
+func (r *operationStorage) Getclosedworkorders() {
+	// loggerlogging.GetLogger()
 	//dirWOpath := os.Getenv("dirWO")
 	closedWORemovepath := os.Getenv("closedWORemove")
 	processedWOpath := os.Getenv("processedWO")
@@ -54,7 +69,7 @@ func (r OperationStorage) Getclosedworkorders() {
 	//clwo := filereader.Readfile(closedWO)
 	splitWO, err := os.OpenFile(closedWO, os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
-		logger.Errorf(err.Error())
+		r.logger.Errorf(err.Error())
 		return
 	}
 	defer splitWO.Close()
@@ -84,7 +99,7 @@ func (r OperationStorage) Getclosedworkorders() {
 	if _, err := os.Stat(processedWO); os.IsNotExist(err) {
 		clwo, err := os.Create(processedWO)
 		if err != nil {
-			log.Println(err)
+			r.logger.Errorf(err.Error())
 		}
 		defer clwo.Close()
 
@@ -123,7 +138,8 @@ func (r OperationStorage) Getclosedworkorders() {
 		if error == io.EOF {
 			break
 		} else if error != nil {
-			log.Fatal(error)
+			r.logger.Fatal(error)
+			//log.Fatal(error)
 		}
 		arrWO = append(arrWO, WorkOrders{
 			JobID: line[0],
@@ -197,8 +213,8 @@ func (r OperationStorage) Getclosedworkorders() {
 
 }
 
-func (r OperationStorage) GetLastJobIdValue1() (string, error) {
-
+func (r *operationStorage) GetLastJobIdValue1() (string, error) {
+	// loggerlogging.GetLogger()
 	lastWOpath := os.Getenv("lastJobId")
 	processedWOpath := os.Getenv("processedWO")
 
@@ -303,6 +319,9 @@ func (r OperationStorage) GetLastJobIdValue1() (string, error) {
 	arrlastclosedWOJSON, _ := json.Marshal(arrlastclosedWO)
 
 	err = json.Unmarshal([]byte(arrlastclosedWOJSON), &arrlastclosedWO)
+	if err != nil {
+		r.logger.Errorf(err.Error())
+	}
 
 	crarrclosewo := arrlastclosedWO
 	sort.Slice(crarrclosewo, func(i, j int) bool {
@@ -336,8 +355,8 @@ func (r OperationStorage) GetLastJobIdValue1() (string, error) {
 
 }
 
-func (r OperationStorage) GetLastJobIdValue2() (string, error) {
-
+func (r *operationStorage) GetLastJobIdValue2() (string, error) {
+	// loggerlogging.GetLogger()
 	lastWOpath := os.Getenv("lastJobId")
 	processedWOpath := os.Getenv("processedWO")
 
@@ -391,6 +410,9 @@ func (r OperationStorage) GetLastJobIdValue2() (string, error) {
 	arrwoJSON, _ := json.Marshal(arrWO)
 
 	err = json.Unmarshal([]byte(arrwoJSON), &arrWO)
+	if err != nil {
+		r.logger.Errorf(err.Error())
+	}
 	crarr := arrWO
 	sort.Slice(crarr, func(i, j int) bool {
 		return crarr[i].JobID <= crarr[j].JobID
@@ -474,8 +496,8 @@ func (r OperationStorage) GetLastJobIdValue2() (string, error) {
 
 }
 
-func (r OperationStorage) GetLastJobIdValue3() (string, error) {
-
+func (r *operationStorage) GetLastJobIdValue3() (string, error) {
+	// loggerlogging.GetLogger()
 	lastWOpath := os.Getenv("lastJobId")
 	processedWOpath := os.Getenv("processedWO")
 
@@ -625,7 +647,7 @@ type PanelMap struct {
 	JOBID        string `db:"JOB_ID"`
 }
 
-func (r OperationStorage) TestQr() ([]PanelMap, error) {
+func (r *operationStorage) TestQr() ([]PanelMap, error) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
