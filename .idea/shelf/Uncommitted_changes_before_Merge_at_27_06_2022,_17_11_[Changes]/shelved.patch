@@ -1,0 +1,124 @@
+Index: internal/operationdata/1014277pana.csv
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/internal/operationdata/1014277pana.csv b/internal/operationdata/1014277pana.csv
+--- a/internal/operationdata/1014277pana.csv	
++++ b/internal/operationdata/1014277pana.csv	
+@@ -1,1 +1,1 @@
+-1041778,4000
++1041778,8000
+Index: internal/operationdata/1014279.csv
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/internal/operationdata/1014279.csv b/internal/operationdata/1014279.csv
+--- a/internal/operationdata/1014279.csv	
++++ b/internal/operationdata/1014279.csv	
+@@ -1,2 +1,1 @@
+-1037817
+ 1037888
+Index: internal/operationdata/1014279panatotal.csv
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/internal/operationdata/1014279panatotal.csv b/internal/operationdata/1014279panatotal.csv
+--- a/internal/operationdata/1014279panatotal.csv	
++++ b/internal/operationdata/1014279panatotal.csv	
+@@ -1,1 +1,1 @@
+-Total:,2000
++Total:,8000
+Index: internal/operationdata/1014277panatotal.csv
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/internal/operationdata/1014277panatotal.csv b/internal/operationdata/1014277panatotal.csv
+--- a/internal/operationdata/1014277panatotal.csv	
++++ b/internal/operationdata/1014277panatotal.csv	
+@@ -1,1 +1,1 @@
+-Total:,4000
++Total:,8000
+Index: internal/operationdata/1014279pana.csv
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/internal/operationdata/1014279pana.csv b/internal/operationdata/1014279pana.csv
+--- a/internal/operationdata/1014279pana.csv	
++++ b/internal/operationdata/1014279pana.csv	
+@@ -1,1 +1,1 @@
+-1037888,2000
++1037888,8000
+Index: internal/operationdata/1014044panatotal.csv
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>Total:,6000\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/internal/operationdata/1014044panatotal.csv b/internal/operationdata/1014044panatotal.csv
+--- a/internal/operationdata/1014044panatotal.csv	
++++ b/internal/operationdata/1014044panatotal.csv	
+@@ -1,1 +1,1 @@
+-Total:,6000
++Total:,18000
+Index: internal/operationdata/1014277.csv
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>1015444\n1020067\n1026087\n1027245\n1030860\n1041778\n1042404\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/internal/operationdata/1014277.csv b/internal/operationdata/1014277.csv
+--- a/internal/operationdata/1014277.csv	
++++ b/internal/operationdata/1014277.csv	
+@@ -1,7 +1,2 @@
+-1015444
+-1020067
+-1026087
+-1027245
+ 1030860
+ 1041778
+-1042404
+Index: internal/operationdata/1014044pana.csv
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>1014044,6000\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/internal/operationdata/1014044pana.csv b/internal/operationdata/1014044pana.csv
+--- a/internal/operationdata/1014044pana.csv	
++++ b/internal/operationdata/1014044pana.csv	
+@@ -1,1 +1,1 @@
+-1014044,6000
++1014044,18000
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"5bcdab6d-0bd1-4a21-b0ff-2675b834fa84\" name=\"Changes\" comment=\"\" />\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"developer\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"27T6YUO8HcB7khr64NsOYHy05jS\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"5bcdab6d-0bd1-4a21-b0ff-2675b834fa84\" name=\"Changes\" comment=\"\" />\n      <created>1649331776814</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1649331776814</updated>\n    </task>\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -10,10 +10,13 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="developer" />
++        <entry key="$PROJECT_DIR$" value="developerv2_1" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
++  <component name="HighlightingSettingsPerFile">
++    <setting file="file://$PROJECT_DIR$/sql/common_query.sql" root0="SKIP_INSPECTION" />
+   </component>
+   <component name="MarkdownSettingsMigration">
+     <option name="stateVersion" value="1" />

@@ -1,0 +1,698 @@
+Index: internal/operationdata/2016208panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2016208panatotal.csv b/internal/operationdata/2016208panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016208panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,440
+Index: internal/operationdata/2016203pana.csv
+===================================================================
+diff --git a/internal/operationdata/2016203pana.csv b/internal/operationdata/2016203pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016203pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016703,440
+Index: internal/operationdata/2016206pana.csv
+===================================================================
+diff --git a/internal/operationdata/2016206pana.csv b/internal/operationdata/2016206pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016206pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016706,440
+Index: internal/operationdata/2015741panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2015741panatotal.csv b/internal/operationdata/2015741panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015741panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,500
+Index: internal/operationdata/2016211panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2016211panatotal.csv b/internal/operationdata/2016211panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016211panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,220
+Index: internal/operationdata/2016213.csv
+===================================================================
+diff --git a/internal/operationdata/2016213.csv b/internal/operationdata/2016213.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016213.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016707
+Index: internal/operationdata/2016212pana.csv
+===================================================================
+diff --git a/internal/operationdata/2016212pana.csv b/internal/operationdata/2016212pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016212pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2015729,441
+Index: internal/operationdata/2016210.csv
+===================================================================
+diff --git a/internal/operationdata/2016210.csv b/internal/operationdata/2016210.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016210.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016702
+Index: internal/operationdata/2016209pana.csv
+===================================================================
+diff --git a/internal/operationdata/2016209pana.csv b/internal/operationdata/2016209pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016209pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016700,220
+Index: internal/operationdata/2016209panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2016209panatotal.csv b/internal/operationdata/2016209panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016209panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,220
+Index: internal/operationdata/2015743pana.csv
+===================================================================
+diff --git a/internal/operationdata/2015743pana.csv b/internal/operationdata/2015743pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015743pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016780,250
+Index: internal/operationdata/2015758panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2015758panatotal.csv b/internal/operationdata/2015758panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015758panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,250
+Index: internal/operationdata/2015754pana.csv
+===================================================================
+diff --git a/internal/operationdata/2015754pana.csv b/internal/operationdata/2015754pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015754pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016712,500
+Index: internal/operationdata/2016210panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2016210panatotal.csv b/internal/operationdata/2016210panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016210panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,220
+Index: internal/operationdata/2015740panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2015740panatotal.csv b/internal/operationdata/2015740panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015740panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,256
+Index: internal/operationdata/2015750.csv
+===================================================================
+diff --git a/internal/operationdata/2015750.csv b/internal/operationdata/2015750.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015750.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016782
+Index: internal/operationdata/2015752pana.csv
+===================================================================
+diff --git a/internal/operationdata/2015752pana.csv b/internal/operationdata/2015752pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015752pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016792,252
+Index: internal/operationdata/2015759.csv
+===================================================================
+diff --git a/internal/operationdata/2015759.csv b/internal/operationdata/2015759.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015759.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016787
+Index: internal/operationdata/1014271pana.csv
+===================================================================
+diff --git a/internal/operationdata/1014271pana.csv b/internal/operationdata/1014271pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/1014271pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-1041777,4000
+Index: internal/operationdata/2016216.csv
+===================================================================
+diff --git a/internal/operationdata/2016216.csv b/internal/operationdata/2016216.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016216.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016701
+Index: internal/operationdata/1018851.csv
+===================================================================
+diff --git a/internal/operationdata/1018851.csv b/internal/operationdata/1018851.csv
+deleted file mode 100644
+--- a/internal/operationdata/1018851.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-1018851
+Index: internal/operationdata/2016204.csv
+===================================================================
+diff --git a/internal/operationdata/2016204.csv b/internal/operationdata/2016204.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016204.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016705
+Index: internal/operationdata/2016212panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2016212panatotal.csv b/internal/operationdata/2016212panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016212panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,441
+Index: internal/operationdata/2016217pana.csv
+===================================================================
+diff --git a/internal/operationdata/2016217pana.csv b/internal/operationdata/2016217pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016217pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016704,440
+Index: internal/operationdata/2015743.csv
+===================================================================
+diff --git a/internal/operationdata/2015743.csv b/internal/operationdata/2015743.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015743.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016780
+Index: internal/operationdata/1028032panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/1028032panatotal.csv b/internal/operationdata/1028032panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/1028032panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,2000
+Index: internal/operationdata/2015754panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2015754panatotal.csv b/internal/operationdata/2015754panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015754panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,500
+Index: internal/operationdata/2016202pana.csv
+===================================================================
+diff --git a/internal/operationdata/2016202pana.csv b/internal/operationdata/2016202pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016202pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016699,190
+Index: internal/operationdata/1028032pana.csv
+===================================================================
+diff --git a/internal/operationdata/1028032pana.csv b/internal/operationdata/1028032pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/1028032pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-1028032,2000
+Index: internal/operationdata/2016217.csv
+===================================================================
+diff --git a/internal/operationdata/2016217.csv b/internal/operationdata/2016217.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016217.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016704
+Index: internal/operationdata/2016203.csv
+===================================================================
+diff --git a/internal/operationdata/2016203.csv b/internal/operationdata/2016203.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016203.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016703
+Index: internal/operationdata/2015740pana.csv
+===================================================================
+diff --git a/internal/operationdata/2015740pana.csv b/internal/operationdata/2015740pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015740pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016786,256
+Index: internal/operationdata/2016202.csv
+===================================================================
+diff --git a/internal/operationdata/2016202.csv b/internal/operationdata/2016202.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016202.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016699
+Index: internal/operationdata/2015751pana.csv
+===================================================================
+diff --git a/internal/operationdata/2015751pana.csv b/internal/operationdata/2015751pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015751pana.csv	
++++ /dev/null	
+@@ -1,2 +0,0 @@
+-2016791,159
+-2016793,88
+Index: internal/operationdata/2015739panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2015739panatotal.csv b/internal/operationdata/2015739panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015739panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,255
+Index: internal/operationdata/2016213pana.csv
+===================================================================
+diff --git a/internal/operationdata/2016213pana.csv b/internal/operationdata/2016213pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016213pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016707,219
+Index: internal/operationdata/2016204panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2016204panatotal.csv b/internal/operationdata/2016204panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016204panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,440
+Index: internal/operationdata/2016213panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2016213panatotal.csv b/internal/operationdata/2016213panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016213panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,219
+Index: internal/operationdata/1028032.csv
+===================================================================
+diff --git a/internal/operationdata/1028032.csv b/internal/operationdata/1028032.csv
+deleted file mode 100644
+--- a/internal/operationdata/1028032.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-1028032
+Index: internal/operationdata/2015752.csv
+===================================================================
+diff --git a/internal/operationdata/2015752.csv b/internal/operationdata/2015752.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015752.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016792
+Index: internal/operationdata/2016202panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2016202panatotal.csv b/internal/operationdata/2016202panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016202panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,190
+Index: internal/operationdata/1014475.csv
+===================================================================
+diff --git a/internal/operationdata/1014475.csv b/internal/operationdata/1014475.csv
+deleted file mode 100644
+--- a/internal/operationdata/1014475.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-1047323
+Index: internal/operationdata/2015750panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2015750panatotal.csv b/internal/operationdata/2015750panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015750panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,250
+Index: internal/operationdata/1014271panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/1014271panatotal.csv b/internal/operationdata/1014271panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/1014271panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,4000
+Index: internal/operationdata/2016217panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2016217panatotal.csv b/internal/operationdata/2016217panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016217panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,440
+Index: internal/operationdata/2015750pana.csv
+===================================================================
+diff --git a/internal/operationdata/2015750pana.csv b/internal/operationdata/2015750pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015750pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016782,250
+Index: internal/operationdata/2015751panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2015751panatotal.csv b/internal/operationdata/2015751panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015751panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,247
+Index: internal/operationdata/1013915panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/1013915panatotal.csv b/internal/operationdata/1013915panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/1013915panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,4000
+Index: internal/operationdata/2015739.csv
+===================================================================
+diff --git a/internal/operationdata/2015739.csv b/internal/operationdata/2015739.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015739.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016788
+Index: internal/operationdata/1014475panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/1014475panatotal.csv b/internal/operationdata/1014475panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/1014475panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,2000
+Index: internal/operationdata/2015751.csv
+===================================================================
+diff --git a/internal/operationdata/2015751.csv b/internal/operationdata/2015751.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015751.csv	
++++ /dev/null	
+@@ -1,2 +0,0 @@
+-2016791
+-2016793
+Index: internal/operationdata/2016208.csv
+===================================================================
+diff --git a/internal/operationdata/2016208.csv b/internal/operationdata/2016208.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016208.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016708
+Index: internal/operationdata/2016211.csv
+===================================================================
+diff --git a/internal/operationdata/2016211.csv b/internal/operationdata/2016211.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016211.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016709
+Index: internal/operationdata/2016205.csv
+===================================================================
+diff --git a/internal/operationdata/2016205.csv b/internal/operationdata/2016205.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016205.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016710
+Index: internal/operationdata/1014271.csv
+===================================================================
+diff --git a/internal/operationdata/1014271.csv b/internal/operationdata/1014271.csv
+deleted file mode 100644
+--- a/internal/operationdata/1014271.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-1041777
+Index: internal/operationdata/1014047panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/1014047panatotal.csv b/internal/operationdata/1014047panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/1014047panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,2000
+Index: internal/operationdata/2015754.csv
+===================================================================
+diff --git a/internal/operationdata/2015754.csv b/internal/operationdata/2015754.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015754.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016712
+Index: internal/operationdata/1018851pana.csv
+===================================================================
+diff --git a/internal/operationdata/1018851pana.csv b/internal/operationdata/1018851pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/1018851pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-1018851,2000
+Index: internal/operationdata/2016216panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2016216panatotal.csv b/internal/operationdata/2016216panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016216panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,220
+Index: internal/operationdata/1014047pana.csv
+===================================================================
+diff --git a/internal/operationdata/1014047pana.csv b/internal/operationdata/1014047pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/1014047pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-1014047,2000
+Index: internal/operationdata/2015759pana.csv
+===================================================================
+diff --git a/internal/operationdata/2015759pana.csv b/internal/operationdata/2015759pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015759pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016787,959
+Index: internal/operationdata/2016203panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2016203panatotal.csv b/internal/operationdata/2016203panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016203panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,440
+Index: internal/operationdata/1013915.csv
+===================================================================
+diff --git a/internal/operationdata/1013915.csv b/internal/operationdata/1013915.csv
+deleted file mode 100644
+--- a/internal/operationdata/1013915.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-1025850
+Index: internal/operationdata/2016209.csv
+===================================================================
+diff --git a/internal/operationdata/2016209.csv b/internal/operationdata/2016209.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016209.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016700
+Index: internal/operationdata/2015741pana.csv
+===================================================================
+diff --git a/internal/operationdata/2015741pana.csv b/internal/operationdata/2015741pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015741pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016790,500
+Index: internal/operationdata/2016216pana.csv
+===================================================================
+diff --git a/internal/operationdata/2016216pana.csv b/internal/operationdata/2016216pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016216pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016701,220
+Index: internal/operationdata/2016205pana.csv
+===================================================================
+diff --git a/internal/operationdata/2016205pana.csv b/internal/operationdata/2016205pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016205pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016710,440
+Index: internal/operationdata/2015739pana.csv
+===================================================================
+diff --git a/internal/operationdata/2015739pana.csv b/internal/operationdata/2015739pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015739pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016788,255
+Index: internal/operationdata/2016205panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2016205panatotal.csv b/internal/operationdata/2016205panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016205panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,440
+Index: internal/operationdata/2015740.csv
+===================================================================
+diff --git a/internal/operationdata/2015740.csv b/internal/operationdata/2015740.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015740.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016786
+Index: internal/operationdata/1013915pana.csv
+===================================================================
+diff --git a/internal/operationdata/1013915pana.csv b/internal/operationdata/1013915pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/1013915pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-1025850,4000
+Index: internal/operationdata/1018851panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/1018851panatotal.csv b/internal/operationdata/1018851panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/1018851panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,2000
+Index: internal/operationdata/2015758pana.csv
+===================================================================
+diff --git a/internal/operationdata/2015758pana.csv b/internal/operationdata/2015758pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015758pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016785,250
+Index: internal/operationdata/2016206.csv
+===================================================================
+diff --git a/internal/operationdata/2016206.csv b/internal/operationdata/2016206.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016206.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016706
+Index: internal/operationdata/2015759panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2015759panatotal.csv b/internal/operationdata/2015759panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015759panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,959
+Index: internal/operationdata/2016212.csv
+===================================================================
+diff --git a/internal/operationdata/2016212.csv b/internal/operationdata/2016212.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016212.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2015729
+Index: internal/operationdata/2016208pana.csv
+===================================================================
+diff --git a/internal/operationdata/2016208pana.csv b/internal/operationdata/2016208pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016208pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016708,440
+Index: internal/operationdata/2015743panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2015743panatotal.csv b/internal/operationdata/2015743panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015743panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,250
+Index: internal/operationdata/2016211pana.csv
+===================================================================
+diff --git a/internal/operationdata/2016211pana.csv b/internal/operationdata/2016211pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016211pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016709,220
+Index: internal/operationdata/1014475pana.csv
+===================================================================
+diff --git a/internal/operationdata/1014475pana.csv b/internal/operationdata/1014475pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/1014475pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-1047323,2000
+Index: internal/operationdata/2015758.csv
+===================================================================
+diff --git a/internal/operationdata/2015758.csv b/internal/operationdata/2015758.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015758.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016785
+Index: internal/operationdata/2015752panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2015752panatotal.csv b/internal/operationdata/2015752panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015752panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,252
+Index: internal/operationdata/1014047.csv
+===================================================================
+diff --git a/internal/operationdata/1014047.csv b/internal/operationdata/1014047.csv
+deleted file mode 100644
+--- a/internal/operationdata/1014047.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-1014047
+Index: internal/operationdata/2016206panatotal.csv
+===================================================================
+diff --git a/internal/operationdata/2016206panatotal.csv b/internal/operationdata/2016206panatotal.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016206panatotal.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-Total:,440
+Index: internal/operationdata/2016210pana.csv
+===================================================================
+diff --git a/internal/operationdata/2016210pana.csv b/internal/operationdata/2016210pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016210pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016702,220
+Index: internal/operationdata/2015741.csv
+===================================================================
+diff --git a/internal/operationdata/2015741.csv b/internal/operationdata/2015741.csv
+deleted file mode 100644
+--- a/internal/operationdata/2015741.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016790
+Index: internal/operationdata/2016204pana.csv
+===================================================================
+diff --git a/internal/operationdata/2016204pana.csv b/internal/operationdata/2016204pana.csv
+deleted file mode 100644
+--- a/internal/operationdata/2016204pana.csv	
++++ /dev/null	
+@@ -1,1 +0,0 @@
+-2016705,440
